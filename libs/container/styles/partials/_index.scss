@@ -1,0 +1,28 @@
+@import 'buttons';
+@import 'cards';
+@import 'media-queries';
+@import 'mat-tab';
+@import 'mat-checkbox';
+@import 'mat-slider';
+@import 'mat-divider';
+@import 'mat-expansion-panel';
+@import 'dialogs';
+@import 'mat-stepper';
+@import "text";
+@import 'mat-form-field';
+@import "code-master";
+
+// Shame:
+
+.invisible-button {
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+.photo {
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50%;
+  border: 3px solid var(--accent);
+}

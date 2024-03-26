@@ -1,0 +1,185 @@
+@use '../theme/palettes/default/default-primary';
+@use '../theme/palettes/default/default-accent';
+@use '../theme/palettes/default/default-warn';
+
+// 1. Background Colours
+.bg-color-primary {
+  background-color: var(--primary) !important;
+}
+
+.bg-color-primary-700 {
+  background-color: map-get(default-primary.$default-primary, 700);
+}
+
+.bg-color-accent {
+  background-color: var(--accent) !important;
+}
+
+.bg-black-shade {
+  background-color:rgba(255, 255, 255, 0.12);
+}
+
+.bg-white {
+  background-color: white;
+}
+
+.bg-color-yellow {
+  background-color: map-get(default-accent.$default-accent, 700);
+}
+
+.bg-black {
+  background-color: map-get(default-primary.$default-primary, contrast, 50);
+}
+
+.bg-color-dark {
+  background-color: map-get(
+    default-primary.$default-primary,
+    contrast,
+    50
+  ) !important;
+}
+
+.bg-color-dark-o8 {
+  background-color: #272e2bcc;
+}
+
+.bg-primary-gradient {
+  background-image: linear-gradient(
+    (map-get(default-primary.$default-primary, 500)),
+    (map-get(default-primary.$default-primary, 900))
+  );
+}
+
+.bg-mfc-gradient {
+  background: linear-gradient(to bottom, #4d7b85, #99b3b8, #ded5c6);
+}
+
+.bg-color-light-grey {
+  background-color: map-get(default-primary.$default-primary, contrast, 700);
+}
+.bg-app-grey-background {
+  background-color: map-get(default-primary.$default-primary, contrast, 800);
+}
+
+.bg-color-red {
+  background-color: #b00020;
+}
+
+.bg-black-blur {
+  background-color: #00000033;
+}
+
+.bg-dark-blue {
+  background-color: map-get(default-primary.$default-primary, A100) !important;
+}
+
+.bg-dark-blue2 {
+  background-color: map-get(default-primary.$default-primary, contrast, A800) !important;
+}
+
+.bg-dark-blue-gradient {
+  background-image: linear-gradient(
+    (map-get(default-primary.$default-primary, contrast, A800)),
+    (map-get(default-primary.$default-primary, contrast, A900))
+  );
+}
+
+.bg-app-dark-grey {
+  background-color: #F0F0F0;
+}
+
+//2. Text Colours
+
+.text-color-primary {
+  color: var(--primary) !important;
+}
+
+.text-color-primary-dark {
+  // TODO: We should create css variables for these to make it easier tp update in the future
+  color: map-get(map-get(default-primary.$default-primary, contrast), A800) !important;
+}
+
+.text-color-primary-c-a800 {
+  color: map-get(default-primary.$default-primary, contrast, A800) !important;
+}
+
+.text-color-light-grey {
+  color: map-get(default-primary.$default-primary, contrast, 600);
+}
+
+.text-white {
+  color: white !important;
+}
+
+.text-color-dark-blue {
+  color: map-get(default-primary.$default-primary, A100);
+}
+
+.text-color-accent {
+  color: var(--accent);
+}
+
+.text-color-dark-yellow {
+  color: map-get(default-accent.$default-accent, 700);
+}
+
+.text-error {
+  color: #AF0000;
+}
+
+.text-black {
+  color: #000;
+}
+
+.text-green {
+  color: #3ccc67;
+}
+
+.text-warn {
+  color: var(--warn) !important;
+}
+
+.text-warn-900 {
+  color: map-get(default-warn.$default-warn, 900);
+}
+
+.text-color-peimary {
+  color: #272e2b99;
+}
+
+//3. Line colours
+
+.primary-line-break {
+  background-color: map-get(default-primary.$default-primary, 500);
+  height: 1px;
+}
+
+//4. Border Colors
+.border-left {
+  border-left: 1px solid map-get(default-primary.$default-primary, A100);
+}
+
+.border-left-white {
+  border-left: 1px solid #ffffff;
+}
+
+.white-border {
+  border-color: #ffffff !important;
+}
+
+.border-color-accent {
+  border-color: map-get(default-accent.$default-accent, contrast, 50);
+}
+
+.border-color-primary-dark {
+  border-color: map-get(map-get(default-primary.$default-primary, contrast), A800) !important;
+}
+
+.bottom-border-yellow {
+  border-bottom: 8px solid map-get(default-accent.$default-accent, 700) !important;
+}
+
+.top-border-yellow {
+  border-top: 8px solid map-get(default-accent.$default-accent, 700) !important;
+}
+

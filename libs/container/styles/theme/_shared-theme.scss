@@ -1,0 +1,64 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+@use 'palettes/default/default-primary';
+@use 'palettes/default/default-accent';
+@use 'palettes/default/default-warn';
+
+@use 'palettes/code-master/cm-primary';
+@use 'palettes/code-master/cm-accent';
+@use 'palettes/code-master/cm-warn';
+
+@import "../partials/index";
+@import "../utils/index";
+@import "../variables/index";
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+$default-primary: mat.define-palette(default-primary.$default-primary);
+$default-accent: mat.define-palette(default-accent.$default-accent);
+
+$cm-primary: mat.define-palette(cm-primary.$cm-primary);
+$cm-accent: mat.define-palette(cm-accent.$cm-accent);
+
+$shared-warn: mat.define-palette(default-warn.$default-warn);
+
+// Create the theme object for each theme:
+$default-light-theme: mat.define-light-theme((
+  color: (
+    primary: $default-primary,
+    accent: $default-accent,
+    warn: $shared-warn,
+  )
+));
+
+$default-dark-theme: mat.define-dark-theme((
+  color: (
+    primary: $default-primary,
+    accent: $default-accent,
+    warn: $shared-warn,
+  )
+));
+
+$code-master-theme: mat.define-dark-theme((
+  color: (
+    primary: $cm-primary,
+    accent: $cm-accent,
+    warn: $shared-warn,
+  )
+));
+
+
+@include mat.all-component-themes($default-light-theme);
+
+.default-dark {
+  @include mat.all-component-colors($default-dark-theme);
+}
+
+.code-master {
+  @include mat.all-component-colors($code-master-theme);
+  @import "../partials/code-master-specific";
+}

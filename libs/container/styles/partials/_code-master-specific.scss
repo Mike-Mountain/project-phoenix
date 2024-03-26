@@ -1,0 +1,29 @@
+.mat-drawer-container {
+  background-color: var(--background) !important;
+}
+
+.mat-toolbar {
+  background: var(--containerBackground) !important;
+  color: var(--primary) !important;
+}
+
+.mat-drawer, .mat-card, .mat-menu-panel, .mat-flat-button, {
+  background: var(--containerBackground) !important;
+}
+
+.mat-list-base .mat-list-item {
+  color: var(--primary) !important;
+  transition: background-color .1s;
+  &:hover {
+    background: var(--background) !important;
+  }
+}
+
+.mat-drawer-backdrop.mat-drawer-shown {
+  background-color: rgba(var(--containerBackgroundValues), .6) !important;
+}
+
+.mat-dialog-container {
+  background-color: var(--containerBackground) !important;
+  border-radius: 10px !important;
+}

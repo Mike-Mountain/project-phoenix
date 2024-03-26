@@ -1,0 +1,47 @@
+@import '../theme/palettes/default/default-primary';
+@import '../theme/palettes/default/default-accent';
+@import '../theme/palettes/default/default-warn';
+@import '../theme/palettes/code-master/cm-primary';
+@import '../theme/palettes/code-master/cm-accent';
+@import '../theme/palettes/code-master/cm-warn';
+@import '../theme/palettes/code-master/cm-background';
+
+
+
+:root {
+  .default-dark, .default-light {
+    --primary: #{map-get($default-primary, 500)};
+    --accent: #{map-get($default-accent, 500)};
+    --warn: #{map-get($default-warn, 500)};
+    --primaryValues: #{$default-primary-values};
+    --accentValues: #{$default-accent-values};
+    --warnValues: #{$default-warn-values};
+  }
+
+  .code-master {
+    --primary: #{map-get($cm-primary, 500)};
+    --accent: #{map-get($cm-accent, 500)};
+    --warn: #{map-get($cm-warn, 500)};
+    --background: #{map-get($background, 500)};
+    --containerBackground: #{map-get($background, 700)};
+    --blocksBackground: #{map-get($background, 900)};
+    --primaryValues: #{$cm-primary-values};
+    --accentValues: #{$cm-accent-values};
+    --warnValues: #{$cm-warn-values};
+    --backgroundValues: #{$background-values};
+    --containerBackgroundValues: #{$containerBackground-values};
+  }
+
+  --yellow: #e0ca00;
+  --light-green: #08d44f;
+  --green: #208a45;
+  --light-blue: #3789ed;
+  --blue: #265a99;
+  --indigo: #7700ff;
+  --purple: #a600ff;
+  --magenta: #c800ff;
+  --red: #ce1b0d;
+  --orange: #ff4d00;
+  --tangerine: #ff8400;
+  --peach: #ffa200;
+}

@@ -1,0 +1,29 @@
+.custom-container .mat-dialog-container {
+  padding-left: 13px !important;
+  padding-right: 13px !important;
+  padding-top: 10px !important;
+}
+
+.momo-icon {
+  color: var(--momoPrimary1);
+}
+
+.material-icons-outlined {
+  border: 2px solid var(--primary) !important;
+  border-radius: 50%;
+}
+
+.material-icons-outlined-momo {
+  border: 2px solid var(--momoPrimary1) !important;
+  border-radius: 50%;
+}
+
+.material-icons-outlined-accent {
+  border: 2px solid var(--accent) !important;
+  border-radius: 50%;
+}
+
+.material-icons-outlined-error {
+  border: 2px solid var(--warn) !important;
+  border-radius: 50%;
+}

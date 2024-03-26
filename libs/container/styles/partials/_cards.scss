@@ -1,0 +1,25 @@
+@use '../theme/palettes/default/default-primary';
+
+.card-outline-primary {
+  border: 1px solid;
+  border-color: map-get(default-primary.$default-primary, contrast, A800);
+  border-radius: 8px;
+}
+
+.mat-card {
+  border-radius: 8px !important;
+  color: rgba(0, 0, 0, 0.87);
+  border: none;
+  max-width: 1000px;
+}
+
+.default .mat-card:not([class*='mat-elevation-z']) {
+  box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px,
+    rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+}
+
+.card-outline-yellow {
+  border: 1px solid;
+  border-color: #e58a00;
+  border-radius: 8px;
+}
