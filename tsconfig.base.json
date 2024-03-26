@@ -14,7 +14,23 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@project-phoenix/container/container-ui": [
+        "libs/container/container-ui/src/index.ts"
+      ],
+      "@project-phoenix/shared/shared-data-access": [
+        "libs/shared/shared-data-access/src/index.ts"
+      ],
+      "@project-phoenix/shared/shared-feature": [
+        "libs/shared/shared-feature/src/index.ts"
+      ],
+      "@project-phoenix/shared/shared-ui": [
+        "libs/shared/shared-ui/src/index.ts"
+      ],
+      "@project-phoenix/shared/shared-util": [
+        "libs/shared/shared-util/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
