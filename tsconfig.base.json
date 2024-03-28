@@ -29,7 +29,8 @@
       ],
       "@project-phoenix/shared/shared-util": [
         "libs/shared/shared-util/src/index.ts"
-      ]
+      ],
+      "resume/Routes": ["apps/resume/src/app/remote-entry/entry.routes.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
