@@ -1,1 +1,1 @@
-export * from './lib/resume-resume-ui/resume-resume-ui.component';
+export * from './lib/components';

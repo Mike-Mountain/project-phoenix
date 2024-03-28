@@ -1,0 +1,41 @@
+<ng-container *ngIf="details">
+  <div [class]="isHome ? 'home-grid-container' : 'grid-container'">
+    <img src="assets/images/profile_pic.jpg" [class]="isHome ? 'photo-lg' : 'photo'" [class.mx-auto]="isHome" alt="">
+    <div class="introduction w-95">
+      <h1 [class.text-center]="isHome">{{ details.name }}</h1>
+      <div class="mb-3">
+        @for (title of details.title; track title) {
+          <h3 class="m-0" [class.text-center]="isHome">{{ title }}</h3>
+        }
+      </div>
+      <p class="mb-3 ml-2">{{ details.about.description }}</p>
+      <ul class="ml-4">
+        @for (item of details.about.list; track item) {
+          <li class="description-item mb-3">
+            {{ item }}
+          </li>
+        }
+      </ul>
+    </div>
+    <div class="contact">
+      @for (link of details.about.links; track link) {
+        <div class="flex-center">
+          <mat-icon class="mr-2">{{ link.name }}</mat-icon>
+          <!--          <a [href]="link.link">-->
+          <small>{{ link.value }}</small>
+          <!--          </a>-->
+        </div>
+      }
+    </div>
+  </div>
+  <div class="footer">
+    <div class="flex-center">
+      <mat-icon>location_on</mat-icon>
+      <h3>{{ details.about.location }}</h3>
+    </div>
+    <div class="flex-center">
+      <mat-icon>star</mat-icon>
+      <h3>{{ details.about.experience }}</h3>
+    </div>
+  </div>
+</ng-container>

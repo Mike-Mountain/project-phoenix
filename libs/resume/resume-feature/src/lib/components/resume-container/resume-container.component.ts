@@ -6,7 +6,7 @@ import {
   ProjectCardComponent,
   SkillsComponent,
   WorkHistoryCardComponent
-} from '@project-mike/resume/resume-ui';
+} from '@project-phoenix/resume/resume-ui';
 import {
   educationHistory,
   History,
@@ -15,10 +15,10 @@ import {
   Skill,
   skills,
   workHistory
-} from '@project-mike/resume/resume-data-access';
-import { PersonalDetailsComponent } from '@project-mike/shared/shared-ui';
-import { PersonalDetails } from '@project-mike/shared/shared-data-access';
-import { ToolbarService } from '@project-mike/shared/shared-util';
+} from '@project-phoenix/resume/resume-data-access';
+import { PersonalDetailsComponent } from '@project-phoenix/shared/shared-ui';
+import { PersonalDetails } from '@project-phoenix/shared/shared-data-access';
+import { ToolbarService } from '@project-phoenix/shared/shared-util';
 
 @Component({
   selector: 'resume-feature-resume-container',

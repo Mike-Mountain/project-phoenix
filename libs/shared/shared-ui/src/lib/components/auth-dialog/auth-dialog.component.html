@@ -1,0 +1,56 @@
+<section class="auth">
+  <img class="photo" alt="" src="assets/images/logo.png">
+  @if (successText) {
+    <p class="text-center">{{successText}}</p>
+    <p class="text-left mt-2">Email: {{testEmail}}</p>
+    <p class="text-left">Password: {{testPassword}}</p>
+    <button class="w-80 mx-auto mt-2" mat-raised-button color="accent" (click)="dialogRef.close()">Okay</button>
+  } @else {
+    <h1 class="text-center">
+      @if (data.options.process === 'signIn') {
+        Sign In
+      } @else if (data.options.process === 'signUp') {
+        Sign Up
+      } @else {
+        Create Test Account
+      }
+    </h1>
+    <hr class="w-80 mx-auto my-2">
+
+    @if (data.options.process === 'signUp') {
+      <p class="text-center">
+        Would you like to create a temporary test account?
+      </p>
+      <div class="w-100 flex-around mt-3">
+        <button class="w-45" mat-raised-button color="accent" (click)="createTestAccount()">Create temporary account</button>
+        <button class="w-45" mat-raised-button color="accent" (click)="createPermanentAccount()">Create permanent account</button>
+      </div>
+    } @else {
+      @if (form) {
+        <form class="auth-form" [formGroup]="form">
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput type="email" required formControlName="email">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput type="password" required formControlName="password">
+          </mat-form-field>
+          @if (data.options.process === 'register') {
+            <mat-form-field>
+              <mat-label>Confirm Password</mat-label>
+              <input matInput type="password" required formControlName="confirmPassword">
+            </mat-form-field>
+          }
+        </form>
+        <button class="w-90 mx-auto" mat-raised-button color="accent" (click)="authAction()">
+          @if (data.options.process === 'register') {
+            Sign Up
+          } @else {
+            Sign In
+          }
+        </button>
+      }
+    }
+  }
+</section>
