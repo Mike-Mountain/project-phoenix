@@ -15,8 +15,25 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      // Routing
+      "@project-phoenix/resume-routing": [
+        "libs/resume/resume-feature/src/resume.routes.ts"
+      ],
+      // Index
       "@project-phoenix/container/container-ui": [
         "libs/container/container-ui/src/index.ts"
+      ],
+      "@project-phoenix/resume/resume-data-access": [
+        "libs/resume/resume-data-access/src/index.ts"
+      ],
+      "@project-phoenix/resume/resume-feature": [
+        "libs/resume/resume-feature/src/index.ts"
+      ],
+      "@project-phoenix/resume/resume-ui": [
+        "libs/resume/resume-ui/src/index.ts"
+      ],
+      "@project-phoenix/resume/resume-util": [
+        "libs/resume/resume-util/src/index.ts"
       ],
       "@project-phoenix/shared/shared-data-access": [
         "libs/shared/shared-data-access/src/index.ts"

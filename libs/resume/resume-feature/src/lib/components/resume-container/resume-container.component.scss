@@ -1,0 +1,64 @@
+.resume {
+  padding-bottom: 1rem;
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+
+.portfolio-card, .project-card {
+  width: 65%;
+  margin-top: 2rem;
+}
+
+.portfolio-card {
+  grid-area: history;
+}
+
+.project-card {
+  grid-area: projects;
+  margin-bottom: 1rem;
+}
+
+.history {
+  border-right: 1px solid white;
+  padding-right: 1rem;
+}
+
+.projects {
+  grid-area: projects;
+}
+
+.work {
+  border-bottom: 1px solid white;
+  margin-bottom: 1rem;
+}
+
+.education {
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 3000px) {
+  .portfolio-card, .project-card {
+    width: 75%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .portfolio-card, .project-card {
+    width: 95%;
+    margin-top: .75rem;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .history {
+    border-right: none;
+    padding-right: 0;
+  }
+
+}
