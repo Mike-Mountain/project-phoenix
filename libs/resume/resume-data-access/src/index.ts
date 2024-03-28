@@ -1,1 +1,2 @@
-export * from './lib/resume-resume-data-access/resume-resume-data-access.component';
+export * from './lib/data';
+export * from './lib/models';

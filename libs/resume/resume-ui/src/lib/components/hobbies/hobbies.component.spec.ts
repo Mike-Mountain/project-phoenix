@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ResumeResumeUiComponent } from './resume-resume-ui.component';
+import { HobbiesComponent } from './hobbies.component';
 
-describe('ResumeResumeUiComponent', () => {
-  let component: ResumeResumeUiComponent;
-  let fixture: ComponentFixture<ResumeResumeUiComponent>;
+describe('HobbiesComponent', () => {
+  let component: HobbiesComponent;
+  let fixture: ComponentFixture<HobbiesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ResumeResumeUiComponent],
+      imports: [HobbiesComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ResumeResumeUiComponent);
+    fixture = TestBed.createComponent(HobbiesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

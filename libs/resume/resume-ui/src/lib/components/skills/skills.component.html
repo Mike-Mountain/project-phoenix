@@ -1,0 +1,15 @@
+<div class="skills">
+  <h2>Skills:</h2>
+  <h3 class="text-color-accent mt-2">Frontend:</h3>
+  @for (skill of frontendSkills; track skill.name) {
+    <mat-chip class="m-1">{{skill.name}}</mat-chip>
+  }
+  <h3 class="text-color-accent mt-2">Backend:</h3>
+  @for (skill of backendSkills; track skill.name) {
+    <mat-chip class="m-1">{{skill.name}}</mat-chip>
+  }
+  <h3 class="text-color-accent mt-2">Misc:</h3>
+  @for (skill of miscSkills; track skill.name) {
+    <mat-chip class="m-1">{{skill.name}}</mat-chip>
+  }
+</div>
