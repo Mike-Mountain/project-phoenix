@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCard, MatCardContent } from '@angular/material/card';
-import { History } from '@project-mike/resume/resume-data-access';
+import { History } from '@project-phoenix/resume/resume-data-access';
 
 @Component({
   selector: 'resume-ui-work-history-card',

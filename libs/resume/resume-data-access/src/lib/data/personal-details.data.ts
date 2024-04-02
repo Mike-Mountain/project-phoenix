@@ -1,4 +1,4 @@
-import { PersonalDetails } from '@project-mike/shared/shared-data-access';
+import { PersonalDetails } from '@project-phoenix/shared/shared-data-access';
 
 export const resumePersonalDetails: PersonalDetails = {
   name: 'Michael Mountain',

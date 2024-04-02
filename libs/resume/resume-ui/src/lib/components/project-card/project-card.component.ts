@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatChip } from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
 import { take } from 'rxjs';
-import { SideProject } from '@project-mike/resume/resume-data-access';
+import { SideProject } from '@project-phoenix/resume/resume-data-access';
 
 @Component({
   selector: 'resume-ui-project-card',

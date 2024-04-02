@@ -1,7 +1,7 @@
 import { Component, inject, Inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { AuthDialogOptions, AuthService } from '@project-mike/shared/shared-data-access';
+import { AuthDialogOptions, AuthService } from '@project-phoenix/shared/shared-data-access';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';

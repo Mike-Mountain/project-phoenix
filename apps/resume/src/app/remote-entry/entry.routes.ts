@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
-import { RemoteEntryComponent } from './entry.component';
+import { loadRemoteModule } from '@nx/angular/mf';
 
 export const remoteRoutes: Route[] = [
-  { path: '', component: RemoteEntryComponent },
+  { path: '', loadChildren: () => import('@project-phoenix/resume-routing').then(r => r.resumeRoutes) }
 ];
