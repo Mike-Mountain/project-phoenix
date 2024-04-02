@@ -15,6 +15,18 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@project-phoenix/code-master/code-master-data-access": [
+        "libs/code-master/code-master-data-access/src/index.ts"
+      ],
+      "@project-phoenix/code-master/code-master-feature": [
+        "libs/code-master/code-master-feature/src/index.ts"
+      ],
+      "@project-phoenix/code-master/code-master-ui": [
+        "libs/code-master/code-master-ui/src/index.ts"
+      ],
+      "@project-phoenix/code-master/code-master-util": [
+        "libs/code-master/code-master-util/src/index.ts"
+      ],
       "@project-phoenix/container/container-ui": [
         "libs/container/container-ui/src/index.ts"
       ],
@@ -29,6 +41,9 @@
       ],
       "@project-phoenix/shared/shared-util": [
         "libs/shared/shared-util/src/index.ts"
+      ],
+      "code-master/Routes": [
+        "apps/code-master/src/app/remote-entry/entry.routes.ts"
       ]
     }
   },

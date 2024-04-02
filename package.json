@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "create-data-access-lib": "nx g @nx/angular:lib shared-data-access --tags=scope:shared,type:data-access --prefix=shared-data-access --directory=libs/shared --standalone",
-    "create-feature-lib": "nx g @nx/angular:lib shared-feature --tags=scope:shared,type:feature --prefix=shared-feature --directory=libs/shared --standalone",
-    "create-ui-lib": "nx g @nx/angular:lib shared-ui --tags=scope:shared,type:ui --prefix=shared-ui --directory=libs/shared --standalone",
-    "create-util-lib": "nx g @nx/angular:lib shared-util --tags=scope:shared,type:util --prefix=shared-util --directory=libs/shared --standalone",
-    "create-scoped-libs": "npm run create-data-access-lib --scope=shared && npm run create-feature-lib --scope=shared && npm run create-ui-lib --scope=shared && npm run create-util-lib --scope=shared --directory=libs/shared --standalone"
+    "create-data-access-lib": "nx g @nx/angular:lib code-master-data-access --tags=scope:code-master,type:data-access --prefix=code-master-data-access --directory=libs/code-master/master-data-access --standalone",
+    "create-feature-lib": "nx g @nx/angular:lib code-master-feature --tags=scope:code-master,type:feature --prefix=code-master-feature --directory=libs/code-master/code-master-feature --standalone",
+    "create-ui-lib": "nx g @nx/angular:lib code-master-ui --tags=scope:code-master,type:ui --prefix=code-master-ui --directory=libs/code-master/code-master-ui --standalone",
+    "create-util-lib": "nx g @nx/angular:lib code-master-util --tags=scope:code-master,type:util --prefix=code-master-util --directory=libs/code-master/code-master-util --standalone",
+    "create-scoped-libs": "npm run create-data-access-lib --scope=code-master && npm run create-feature-lib --scope=code-master && npm run create-ui-lib --scope=code-master && npm run create-util-lib --scope=code-master --directory=libs/code-master/ --standalone"
   },
   "private": true,
   "dependencies": {

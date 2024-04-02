@@ -1,0 +1,20 @@
+{
+  "name": "code-master-code-master-util",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/code-master/code-master-util/src",
+  "prefix": "code-master-util",
+  "tags": ["scope:code-master", "type:util"],
+  "projectType": "library",
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/code-master/code-master-util/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}
