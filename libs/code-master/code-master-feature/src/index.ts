@@ -1,1 +1,1 @@
-export * from './lib/code-master-code-master-feature/code-master-code-master-feature.component';
+export * from './lib/components/game-container/game-container.component';

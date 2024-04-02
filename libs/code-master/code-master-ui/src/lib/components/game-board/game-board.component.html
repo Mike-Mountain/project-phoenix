@@ -1,0 +1,66 @@
+<figure class="codemaster-game-board">
+  <div class="master-turn">
+    <div class="master-colors-container">
+      @for (color of masterColors; track color) {
+        <button
+          class="color-button master-color"
+          [ngClass]="state !== winState.InProgress ? 'button-' + (color || 'undefined') : ''"
+        >{{ state !== winState.InProgress ? color : '' }}
+        </button>
+      }
+    </div>
+    <hr class="game-divider">
+  </div>
+  @if (turns.length > 0) {
+    @for (turn of turns; track turn.turnState; let turnIdx = $index) {
+      <div
+        [class.turn-complete]="turn.turnState === turnState.Complete"
+        [class.turn-disabled]="turn.turnState === turnState.NotStarted"
+        class="turn"
+      >
+        <div class="pins-container">
+          @for (pin of turn.pins; track pin) {
+            <div class="w-100 flex-center">
+              <div [class]="pin.color + '-pin'" class="pin"></div>
+            </div>
+          }
+        </div>
+        <div class="colors-container">
+          @for (color of turn.colors; track color.selectedColor) {
+            <button
+              (click)="toggleSelected(turn.turnState, color)"
+              *ngIf="!color.selectable"
+              [class]="'button-' + color.selectedColor"
+              [disabled]="turn.turnState !== turnState.InProgress"
+              class="color-button"
+            >{{ color.selectedColor || 'blank' }}
+            </button>
+            <div
+              (click)="toggleSelected(turn.turnState, color)"
+              *ngIf="color.selectable"
+              class="color-button multi-button"
+            >
+              @for (gameColor of colors; track gameColor) {
+                <button
+                  (click)="toggleSelected(turn.turnState, color, gameColor)"
+                  [class]="'color-button button-' + gameColor"
+                  [disabled]="turn.turnState !== turnState.InProgress"
+                ></button>
+              }
+            </div>
+          }
+        </div>
+        <div class="w-100 h-100 flex-center">
+          <button
+            class="complete-button"
+            (click)="completeTurn(turn, turnIdx)"
+          >
+            @if (turn.turnState === turnState.Complete) {
+              <mat-icon>done</mat-icon>
+            }
+          </button>
+        </div>
+      </div>
+    }
+  }
+</figure>
