@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'project-phoenix',
+  displayName: 'resume',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../coverage/apps/project-phoenix',
+  coverageDirectory: '../../coverage/apps/resume',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

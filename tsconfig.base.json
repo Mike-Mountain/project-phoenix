@@ -15,8 +15,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      // Routes
-      // Indexes
       "@project-phoenix/code-master/code-master-data-access": [
         "libs/code-master/code-master-data-access/src/index.ts"
       ],
@@ -46,7 +44,8 @@
       ],
       "code-master/Routes": [
         "apps/code-master/src/app/remote-entry/entry.routes.ts"
-      ]
+      ],
+      "resume/Routes": ["apps/resume/src/app/remote-entry/entry.routes.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

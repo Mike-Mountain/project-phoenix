@@ -1,6 +1,6 @@
 import { getGreeting } from '../support/app.po';
 
-describe('project-phoenix-e2e', () => {
+describe('resume-e2e', () => {
   beforeEach(() => cy.visit('/'));
 
   it('should display welcome message', () => {
