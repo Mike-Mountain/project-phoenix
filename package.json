@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "create-data-access-lib": "nx g @nx/angular:lib code-master-data-access --tags=scope:code-master,type:data-access --prefix=code-master-data-access --directory=libs/code-master/master-data-access --standalone",
-    "create-feature-lib": "nx g @nx/angular:lib code-master-feature --tags=scope:code-master,type:feature --prefix=code-master-feature --directory=libs/code-master/code-master-feature --standalone",
-    "create-ui-lib": "nx g @nx/angular:lib code-master-ui --tags=scope:code-master,type:ui --prefix=code-master-ui --directory=libs/code-master/code-master-ui --standalone",
-    "create-util-lib": "nx g @nx/angular:lib code-master-util --tags=scope:code-master,type:util --prefix=code-master-util --directory=libs/code-master/code-master-util --standalone",
-    "create-scoped-libs": "npm run create-data-access-lib --scope=code-master && npm run create-feature-lib --scope=code-master && npm run create-ui-lib --scope=code-master && npm run create-util-lib --scope=code-master --directory=libs/code-master/ --standalone"
+    "create-data-access-lib": "nx g @nx/angular:lib resume-data-access --tags=scope:resume,type:data-access --prefix=resume-data-access --directory=libs/resume/resume-data-access --standalone",
+    "create-feature-lib": "nx g @nx/angular:lib resume-feature --tags=scope:resume,type:feature --prefix=resume-feature --directory=libs/resume/resume-feature --standalone",
+    "create-ui-lib": "nx g @nx/angular:lib resume-ui --tags=scope:resume,type:ui --prefix=resume-ui --directory=libs/resume/resume-ui --standalone",
+    "create-util-lib": "nx g @nx/angular:lib resume-util --tags=scope:resume,type:util --prefix=resume-util --directory=libs/resume/resume-util --standalone",
+    "create-scoped-libs": "npm run create-data-access-lib --scope=resume && npm run create-feature-lib --scope=resume && npm run create-ui-lib --scope=resume && npm run create-util-lib --scope=resume --directory=libs/resume/ --standalone"
   },
   "private": true,
   "dependencies": {

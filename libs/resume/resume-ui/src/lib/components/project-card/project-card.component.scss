@@ -1,0 +1,29 @@
+.project {
+  border-bottom: 1px solid white;
+  padding-bottom: .75rem;
+  margin-bottom: 1rem;
+}
+
+.images {
+  border: 1px solid white;
+  border-radius: 8px;
+  width: calc(100% - 2rem);
+  margin: .75rem auto;
+  padding: .5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.preview-image {
+  height: 10rem;
+  border: 1px solid white;
+  margin: .5rem;
+  border-radius: 8px;
+}
+
+@media (max-width: 1000px) {
+  .preview-image {
+    height: 8rem;
+  }
+}

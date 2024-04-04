@@ -1,0 +1,13 @@
+<div class="w-100 flex-between my-1">
+  <h3>{{ label }}</h3>
+  @if (selectedEntry.length > 0) {
+    <div class="flex flex-column flex-wrap">
+      @for (item of selectedEntry; track item) {
+        <mat-chip class="my-1">{{ item }}</mat-chip>
+      }
+    </div>
+  } @else {
+    <mat-chip>None</mat-chip>
+  }
+</div>
+

@@ -1,0 +1,23 @@
+<div class="project m-2 mb-3" *ngIf="project">
+  <div class="w-100 flex-between mb-2">
+    <a [href]="project.link" target="_blank" rel="noopener noreferrer">
+      <h3 class="text-color-accent">{{ project.title }}</h3>
+    </a>
+    <h4>{{ project.date }}</h4>
+  </div>
+  <p class="ml-4" [innerHTML]="project.description"></p>
+  <div class="images">
+    @for (image of project.screenshots; track image) {
+      <button class="invisible-button" (click)="openImageModal(image, imageModal)">
+        <img alt="" class="preview-image" [src]="'assets/images/' + image">
+      </button>
+    }
+  </div>
+  @for (item of project.stack; track item) {
+    <mat-chip class="mx-1 my-2">{{ item }}</mat-chip>
+  }
+</div>
+
+<ng-template #imageModal>
+  <img alt="" [src]="'assets/images/' + selectedImage">
+</ng-template>
