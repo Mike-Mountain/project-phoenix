@@ -30,6 +30,18 @@
       "@project-phoenix/container/container-ui": [
         "libs/container/container-ui/src/index.ts"
       ],
+      "@project-phoenix/life-tracker-data-access": [
+        "libs/life-tracker/life-tracker-data-access/src/index.ts"
+      ],
+      "@project-phoenix/life-tracker-feature": [
+        "libs/life-tracker/life-tracker-feature/src/index.ts"
+      ],
+      "@project-phoenix/life-tracker-ui": [
+        "libs/life-tracker/life-tracker-ui/src/index.ts"
+      ],
+      "@project-phoenix/life-tracker-util": [
+        "libs/life-tracker/life-tracker-util/src/index.ts"
+      ],
       "@project-phoenix/resume-data-access": [
         "libs/resume/resume-data-access/src/index.ts"
       ],

@@ -1,0 +1,20 @@
+{
+  "name": "life-tracker-util",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/life-tracker/life-tracker-util/src",
+  "prefix": "life-tracker-util",
+  "tags": ["scope:life-tracker", "type:util"],
+  "projectType": "library",
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/life-tracker/life-tracker-util/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

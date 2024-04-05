@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "create-data-access-lib": "nx g @nx/angular:lib resume-data-access --tags=scope:resume,type:data-access --prefix=resume-data-access --directory=libs/resume/resume-data-access --standalone",
-    "create-feature-lib": "nx g @nx/angular:lib resume-feature --tags=scope:resume,type:feature --prefix=resume-feature --directory=libs/resume/resume-feature --standalone",
-    "create-ui-lib": "nx g @nx/angular:lib resume-ui --tags=scope:resume,type:ui --prefix=resume-ui --directory=libs/resume/resume-ui --standalone",
-    "create-util-lib": "nx g @nx/angular:lib resume-util --tags=scope:resume,type:util --prefix=resume-util --directory=libs/resume/resume-util --standalone",
-    "create-scoped-libs": "npm run create-data-access-lib --scope=resume && npm run create-feature-lib --scope=resume && npm run create-ui-lib --scope=resume && npm run create-util-lib --scope=resume --directory=libs/resume/ --standalone"
+    "create-data-access-lib": "nx g @nx/angular:lib life-tracker-data-access --tags=scope:life-tracker,type:data-access --prefix=life-tracker-data-access --directory=libs/life-tracker/life-tracker-data-access --standalone",
+    "create-feature-lib": "nx g @nx/angular:lib life-tracker-feature --tags=scope:life-tracker,type:feature --prefix=life-tracker-feature --directory=libs/life-tracker/life-tracker-feature --standalone",
+    "create-ui-lib": "nx g @nx/angular:lib life-tracker-ui --tags=scope:life-tracker,type:ui --prefix=life-tracker-ui --directory=libs/life-tracker/life-tracker-ui --standalone",
+    "create-util-lib": "nx g @nx/angular:lib life-tracker-util --tags=scope:life-tracker,type:util --prefix=life-tracker-util --directory=libs/life-tracker/life-tracker-util --standalone",
+    "create-scoped-libs": "npm run create-data-access-lib --scope=life-tracker && npm run create-feature-lib --scope=life-tracker && npm run create-ui-lib --scope=life-tracker && npm run create-util-lib --scope=life-tracker --directory=libs/life-tracker/ --standalone"
   },
   "private": true,
   "dependencies": {
