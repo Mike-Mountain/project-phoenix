@@ -12,6 +12,10 @@
   font-size: 13px;
 }
 
+.mat-drawer-content {
+  overflow: hidden !important;
+}
+
 .mat-icon {
   transform: scale(.75);
 }
@@ -37,13 +41,11 @@ button {
 
 main {
   width: 100%;
-  height: calc(100% - 64px);
   overflow-y: auto;
 }
 
 section {
   width: 100%;
-  height: calc(100% - 56px);
   padding: 0.5rem;
 }
 

@@ -1,0 +1,18 @@
+// TODO: Move to shared css
+.portfolio-card {
+  width: 65%;
+  margin-top: 2rem;
+}
+
+@media (max-width: 3000px) {
+  .portfolio-card {
+    width: 75%;
+  }
+}
+
+@media (max-width: 900px) {
+  .portfolio-card {
+    width: 95%;
+    margin-top: .75rem;
+  }
+}

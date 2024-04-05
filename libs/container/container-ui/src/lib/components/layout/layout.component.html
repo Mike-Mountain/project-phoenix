@@ -1,8 +1,8 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]="(isHandset$ | async)">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item routerLink="resume" (click)="drawer.close()">Resume</a>
@@ -21,8 +21,22 @@
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
       }
-      <span>Project Phoenix</span>
+      <a routerLink="/">
+        <button mat-stroked-button color="accent">Project Phoenix</button>
+      </a>
+      @if (!(isHandset$ | async)) {
+        <div class="flex-end w-100">
+          <a routerLink="resume">
+            <button class="ml-2" mat-stroked-button color="accent">Resume</button>
+          </a>
+          <a routerLink="code-master">
+            <button class="ml-2" mat-stroked-button color="accent">Code Master</button>
+          </a>
+        </div>
+      }
     </mat-toolbar>
-    <router-outlet></router-outlet>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
