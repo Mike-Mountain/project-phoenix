@@ -8,12 +8,16 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:webpack-browser",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/container",
         "index": "apps/container/src/index.html",
         "main": "apps/container/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/container/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -25,7 +29,9 @@
             "output": "/assets/"
           }
         ],
-        "styles": ["apps/container/src/styles.scss"],
+        "styles": [
+          "apps/container/src/styles.scss"
+        ],
         "scripts": [],
         "customWebpackConfig": {
           "path": "apps/container/webpack.config.ts"
@@ -88,7 +94,9 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/container/jest.config.ts"
       }
@@ -99,6 +107,23 @@
         "buildTarget": "container:build",
         "port": 4200
       }
+    },
+    "deploy": {
+      "executor": "@angular/fire:deploy",
+      "options": {
+        "version": 2
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "container:build:production",
+          "serveTarget": "container:serve:production"
+        },
+        "development": {
+          "buildTarget": "container:build:development",
+          "serveTarget": "container:serve:development"
+        }
+      },
+      "defaultConfiguration": "production"
     }
   }
 }

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "project-mike-92": {
+      "hosting": {
+        "container": [
+          "project-mike-92"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "project-mike-92"
+  }
+}

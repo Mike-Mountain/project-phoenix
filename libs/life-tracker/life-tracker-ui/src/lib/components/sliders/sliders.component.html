@@ -1,0 +1,17 @@
+@if (sliders) {
+  <mat-card>
+    <mat-card-content>
+      @for (slider of sliders.controls; track slider.value) {
+        <form [formGroup]="slider | as:FormGroup" class="flex flex-column">
+          <div class="w-100 flex-between">
+            <mat-label>{{ slider.value.name }}</mat-label>
+            <mat-label>{{ slider.value.value }}%</mat-label>
+          </div>
+          <mat-slider min="1" max="100" step="1" color="accent">
+            <input matSliderThumb formControlName="value" color="accent">
+          </mat-slider>
+        </form>
+      }
+    </mat-card-content>
+  </mat-card>
+}

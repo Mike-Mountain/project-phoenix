@@ -1,1 +1,1 @@
-export * from './lib/life-tracker-feature/life-tracker-feature.component';
+export * from './lib/components/tracker-home/tracker-home.component';

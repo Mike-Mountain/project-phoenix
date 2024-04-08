@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { LifeTrackerUiComponent } from './life-tracker-ui.component';
+import { SelectMoodComponent } from './select-mood.component';
 
-describe('LifeTrackerUiComponent', () => {
-  let component: LifeTrackerUiComponent;
-  let fixture: ComponentFixture<LifeTrackerUiComponent>;
+describe('SelectMoodComponent', () => {
+  let component: SelectMoodComponent;
+  let fixture: ComponentFixture<SelectMoodComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LifeTrackerUiComponent],
+      imports: [SelectMoodComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(LifeTrackerUiComponent);
+    fixture = TestBed.createComponent(SelectMoodComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

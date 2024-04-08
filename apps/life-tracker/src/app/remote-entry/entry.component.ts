@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { TrackerHomeComponent } from '@project-phoenix/life-tracker-feature';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, NxWelcomeComponent],
+  imports: [CommonModule, TrackerHomeComponent],
   selector: 'app-life-tracker-entry',
-  template: `<app-nx-welcome></app-nx-welcome>`,
+  template: `<life-tracker-feature-tracker-home></life-tracker-feature-tracker-home>`,
 })
 export class RemoteEntryComponent {}

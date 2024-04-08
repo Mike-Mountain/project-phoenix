@@ -1,0 +1,136 @@
+<section class="life-tracker">
+  @if (user$ | async) {
+    <h1 class="text-center my-3">Welcome {{ (user$ | async)?.email }}</h1>
+    <mat-card>
+      <mat-card-content>
+        <div class="flex-between">
+          <a class="invisible-button" (click)="createEntry('Happy')">
+            <img class="photo" src="assets/images/emojis/emoji-happy.png" alt="">
+          </a>
+          <a class="invisible-button" (click)="createEntry('Anxious')">
+            <img class="photo" src="assets/images/emojis/emoji-anxious.png" alt="">
+          </a>
+          <a class="invisible-button" (click)="createEntry('Sad')">
+            <img class="photo" src="assets/images/emojis/emoji-sad.png" alt="">
+          </a>
+        </div>
+        <h2 class="text-center mt-3">How are you feeling today?</h2>
+      </mat-card-content>
+    </mat-card>
+    <!--// MOOD HISTORY-->
+    <div class="mt-3">
+      <mat-card>
+        <mat-card-content>
+          <h2 class="text-center">Mood history</h2>
+          <div class="flex-around">
+            @if ((entries$ | async | length) > 0) {
+              @for (entry of entries$ | async; track entry) {
+                <button class="invisible-button entry-box" (click)="expandEntry(entry, entryDetails)">
+                  <div class="flex-start mb-1">
+                    <img class="entry-photo mr-1" alt="" [src]="'assets/images/emojis/emoji-' + entry['mood'] + '.png'">
+                    <h3 class="text-capitalize">{{ entry['mood'] }}</h3>
+                  </div>
+                  <div class="mb-2">
+                    @for (slider of entry['sliders']; track slider) {
+                      <div class="flex-between mb-1">
+                        <p class="text-capitalize">{{ slider.name | split:' ' }}</p>
+                        <p>{{ slider.value }}%</p>
+                      </div>
+                    }
+                  </div>
+                  <small>{{ entry['date'] | date : 'shortDate' }}</small>
+                </button>
+              }
+            } @else {
+              <h1 class="text-center">Add a journal entry above to get started!</h1>
+            }
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  } @else {
+    <h1 class="text-center">Please log in</h1>
+  }
+</section>
+
+<ng-template #entryDetails>
+  @if (selectedEntry) {
+    <mat-dialog-content>
+      <div class="flex-center flex-column">
+        <h1>{{ selectedEntry['date'] | date : 'longDate' }}</h1>
+        <img class="photo mx-auto" alt="" [src]="'assets/images/emojis/emoji-' + selectedEntry['mood'] + '.png'">
+        <h3 class="text-capitalize text-center">{{ selectedEntry['mood'] }}</h3>
+        <hr class="w-75 mx-auto my-2">
+        <div class="w-100">
+          <p class="w-85 mx-auto">{{ selectedEntry['moodNotes'] }}</p>
+          <div class="flex-around mt-2">
+            @for (slider of selectedEntry['sliders']; track slider) {
+              <div class="flex-center flex-column box">
+                <h2>{{ slider.value }}%</h2>
+                <p>{{ slider.name | truncate: ' ' }}</p>
+              </div>
+            }
+          </div>
+        </div>
+        <hr class="w-75 mx-auto my-2">
+        <div class="w-100">
+          <shared-ui-list-display
+            [label]="'Breakfast'"
+            [selectedEntry]="selectedEntry['food'].breakfast"
+          ></shared-ui-list-display>
+
+          <shared-ui-list-display
+            [label]="'Lunch'"
+            [selectedEntry]="selectedEntry['food'].lunch"
+          ></shared-ui-list-display>
+
+          <shared-ui-list-display
+            [label]="'Dinner'"
+            [selectedEntry]="selectedEntry['food'].dinner"
+          ></shared-ui-list-display>
+
+          <shared-ui-list-display
+            [label]="'Snacks'"
+            [selectedEntry]="selectedEntry['food'].snacks"
+          ></shared-ui-list-display>
+
+          <shared-ui-list-display
+            [label]="'Drinks'"
+            [selectedEntry]="selectedEntry['drinks']"
+          ></shared-ui-list-display>
+
+          <shared-ui-list-display
+            [label]="'Activities'"
+            [selectedEntry]="selectedEntry['activities']"
+          ></shared-ui-list-display>
+        </div>
+        <hr class="w-75 mx-auto my-2">
+        <div class="w-100 flex-center flex-column">
+          <h3>I {{ selectedEntry['workedOut'] ? 'worked out' : 'did not work out' }} today</h3>
+          @if (selectedEntry['workedOut']) {
+            <p>My workout was {{ selectedEntry['workoutIntensity'] }}</p>
+          }
+        </div>
+        <hr class="w-75 mx-auto my-2">
+        <div class="w-100">
+          <shared-ui-list-display
+            [label]="'Urine'"
+            [selectedEntry]="selectedEntry['bathroom'].urine"
+          ></shared-ui-list-display>
+
+          <shared-ui-list-display
+            [label]="'Stool'"
+            [selectedEntry]="selectedEntry['bathroom'].stool"
+          ></shared-ui-list-display>
+        </div>
+        <hr class="w-75 mx-auto my-2">
+        <div class="box w-100 p-2">
+          <p>{{ selectedEntry['journalEntry'] }}</p>
+        </div>
+        <hr class="w-75 mx-auto my-2">
+        <!--// TODO: Set up log entry editing-->
+        <button mat-raised-button color="accent" class="w-85">Edit</button>
+      </div>
+    </mat-dialog-content>
+  }
+</ng-template>

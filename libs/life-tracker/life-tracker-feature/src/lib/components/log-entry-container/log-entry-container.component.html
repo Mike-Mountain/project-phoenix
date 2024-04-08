@@ -1,0 +1,129 @@
+<section class="log-entry">
+  <h2 class="text-center my-2">How do you feel today?</h2>
+  @if (logForm) {
+    <form [formGroup]="logForm">
+      <life-tracker-ui-select-mood
+        [mood]="logForm.value['mood']"
+        (selectedMood)="selectMood($event)"
+      ></life-tracker-ui-select-mood>
+
+      <div class="mt-3">
+        <mat-card>
+          <mat-card-content>
+            <mat-form-field class="w-100">
+              <mat-label>Mood Notes</mat-label>
+              <textarea matInput formControlName="moodNotes"></textarea>
+            </mat-form-field>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div class="mt-3">
+        <life-tracker-ui-sliders [sliders]="sliders"></life-tracker-ui-sliders>
+      </div>
+
+      <div class="mt-3">
+        <mat-card>
+          <mat-card-content>
+            @for (type of foodTypes; track type) {
+              <life-tracker-ui-array-entry
+                [foodType]="type"
+                [formGroup]="logForm.controls['food'] | as:FormGroup"
+                (foodItem)="addItem($event, 'food')"
+              ></life-tracker-ui-array-entry>
+              <div class="w-100 flex-start flex-wrap mt-1 mb-3">
+                @for (item of (logForm.controls['food'] | as:FormGroup).controls[type].value; track item) {
+                  <mat-chip color="accent" class="mr-2 my-1">{{ item }}</mat-chip>
+                }
+              </div>
+            }
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div class="mt-3">
+        <mat-card>
+          <mat-card-content>
+            <life-tracker-ui-array-entry
+              [foodType]="'drinks'"
+              [formGroup]="logForm"
+              (foodItem)="addItem($event, 'drinks')"
+            ></life-tracker-ui-array-entry>
+            <div class="w-100 flex-start flex-wrap mt-1">
+              @for (item of logForm.controls['drinks'].value; track item) {
+                <mat-chip color="accent" class="mr-2 my-1">{{ item }}</mat-chip>
+              }
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div class="mt-3">
+        <mat-card>
+          <mat-card-content>
+            <life-tracker-ui-array-entry
+              [foodType]="'activities'"
+              [formGroup]="logForm"
+              (foodItem)="addItem($event, 'activities')"
+            ></life-tracker-ui-array-entry>
+            <div class="w-100 flex-start flex-wrap mt-1">
+              @for (item of logForm.controls['activities'].value; track item) {
+                <mat-chip color="accent" class="mr-2 my-1">{{ item }}</mat-chip>
+              }
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div class="mt-3">
+        <life-tracker-ui-workout [form]="logForm"></life-tracker-ui-workout>
+      </div>
+
+      <div class="mt-3">
+        <mat-card>
+          <mat-card-content>
+            <life-tracker-ui-array-entry
+              [foodType]="'urine'"
+              [formGroup]="logForm.controls['bathroom'] | as:FormGroup"
+              (foodItem)="addItem($event, 'bathroom')"
+            ></life-tracker-ui-array-entry>
+            <div class="w-100 flex-start flex-wrap mt-1">
+              @for (item of (logForm.controls['bathroom'] | as:FormGroup).controls['urine'].value; track item) {
+                <mat-chip color="accent" class="mr-2 my-1">{{ item }}</mat-chip>
+              }
+            </div>
+
+            <life-tracker-ui-array-entry
+              [foodType]="'stool'"
+              [formGroup]="logForm.controls['bathroom'] | as:FormGroup"
+              (foodItem)="addItem($event, 'bathroom')"
+            ></life-tracker-ui-array-entry>
+            <div class="w-100 flex-start flex-wrap mt-1">
+              @for (item of (logForm.controls['bathroom'] | as:FormGroup).controls['stool'].value; track item) {
+                <mat-chip color="accent" class="mr-2 my-1">{{ item }}</mat-chip>
+              }
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div class="mt-3">
+        <mat-card>
+          <mat-card-content>
+            <mat-form-field class="w-100">
+              <mat-label>Journal Entry</mat-label>
+              <textarea matInput formControlName="journalEntry"></textarea>
+            </mat-form-field>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div class="w-100 flex-center">
+        <button mat-raised-button color="accent" class="w-80 my-3" (click)="submitForm()">
+          Submit Log Entry
+        </button>
+      </div>
+
+    </form>
+  }
+</section>

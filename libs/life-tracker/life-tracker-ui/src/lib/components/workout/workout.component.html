@@ -1,0 +1,21 @@
+@if (form) {
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="form">
+        <h2 class="text-center">Did you workout today?</h2>
+        <mat-radio-group formControlName="workedOut" class="flex-center" (change)="updateIntensityVal()">
+          <mat-radio-button [value]="false">No</mat-radio-button>
+          <mat-radio-button [value]="true">Yes</mat-radio-button>
+        </mat-radio-group>
+        @if (form.controls['workedOut'].value === true) {
+          <h2 class="text-center mt-3">How intense was it?</h2>
+          <mat-radio-group formControlName="workoutIntensity" class="flex-center">
+            <mat-radio-button value="low">Low</mat-radio-button>
+            <mat-radio-button value="medium">Medium</mat-radio-button>
+            <mat-radio-button value="high">High</mat-radio-button>
+          </mat-radio-group>
+        }
+      </form>
+    </mat-card-content>
+  </mat-card>
+}

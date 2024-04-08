@@ -1,0 +1,12 @@
+<mat-card>
+  <mat-card-content>
+    <div class="moods">
+      @for (item of moods; track item.value) {
+        <button class="mood-button" [class.selected]="item.value === mood" (click)="selectMood(item.value)">
+          {{ item.value }}
+          <img class="mini-emoji" alt="" [src]="'assets/images/emojis/' + item.emoji">
+        </button>
+      }
+    </div>
+  </mat-card-content>
+</mat-card>

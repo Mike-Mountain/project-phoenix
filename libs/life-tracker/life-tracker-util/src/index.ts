@@ -1,1 +1,1 @@
-export * from './lib/life-tracker-util/life-tracker-util.component';
+export * from './lib/functions/life-tracker.fn';

@@ -1,0 +1,13 @@
+@if (formGroup) {
+  <form [formGroup]="formGroup">
+    <div class="w-100 flex-between">
+      <mat-form-field [formArrayName]="foodType" class="w-100 mr-2">
+        <mat-label>{{ foodType }}:</mat-label>
+        <input matInput type="text" #input>
+      </mat-form-field>
+      <button mat-mini-fab color="accent" (click)="addItem(input)">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </form>
+}
