@@ -10,10 +10,7 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": [
-      "es2020",
-      "dom"
-    ],
+    "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
@@ -33,18 +30,22 @@
       "@project-phoenix/container/container-ui": [
         "libs/container/container-ui/src/index.ts"
       ],
+      "@project-phoenix/movies-data-access": [
+        "libs/movies/movies-data-access/src/index.ts"
+      ],
+      "@project-phoenix/movies-feature": [
+        "libs/movies/movies-feature/src/index.ts"
+      ],
+      "@project-phoenix/movies-ui": ["libs/movies/movies-ui/src/index.ts"],
+      "@project-phoenix/movies-util": ["libs/movies/movies-util/src/index.ts"],
       "@project-phoenix/resume-data-access": [
         "libs/resume/resume-data-access/src/index.ts"
       ],
       "@project-phoenix/resume-feature": [
         "libs/resume/resume-feature/src/index.ts"
       ],
-      "@project-phoenix/resume-ui": [
-        "libs/resume/resume-ui/src/index.ts"
-      ],
-      "@project-phoenix/resume-util": [
-        "libs/resume/resume-util/src/index.ts"
-      ],
+      "@project-phoenix/resume-ui": ["libs/resume/resume-ui/src/index.ts"],
+      "@project-phoenix/resume-util": ["libs/resume/resume-util/src/index.ts"],
       "@project-phoenix/shared/shared-data-access": [
         "libs/shared/shared-data-access/src/index.ts"
       ],
@@ -60,13 +61,8 @@
       "code-master/Routes": [
         "apps/code-master/src/app/remote-entry/entry.routes.ts"
       ],
-      "resume/Routes": [
-        "apps/resume/src/app/remote-entry/entry.routes.ts"
-      ]
+      "resume/Routes": ["apps/resume/src/app/remote-entry/entry.routes.ts"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }

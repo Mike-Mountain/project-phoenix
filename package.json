@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "create-data-access-lib": "nx g @nx/angular:lib resume-data-access --tags=scope:resume,type:data-access --prefix=resume-data-access --directory=libs/resume/resume-data-access --standalone",
-    "create-feature-lib": "nx g @nx/angular:lib resume-feature --tags=scope:resume,type:feature --prefix=resume-feature --directory=libs/resume/resume-feature --standalone",
-    "create-ui-lib": "nx g @nx/angular:lib resume-ui --tags=scope:resume,type:ui --prefix=resume-ui --directory=libs/resume/resume-ui --standalone",
-    "create-util-lib": "nx g @nx/angular:lib resume-util --tags=scope:resume,type:util --prefix=resume-util --directory=libs/resume/resume-util --standalone",
-    "create-scoped-libs": "npm run create-data-access-lib --scope=resume && npm run create-feature-lib --scope=resume && npm run create-ui-lib --scope=resume && npm run create-util-lib --scope=resume --directory=libs/resume/ --standalone"
+    "create-data-access-lib": "nx g @nx/angular:lib movies-data-access --tags=scope:movies,type:data-access --prefix=movies-data-access --directory=libs/movies/movies-data-access --standalone",
+    "create-feature-lib": "nx g @nx/angular:lib movies-feature --tags=scope:movies,type:feature --prefix=movies-feature --directory=libs/movies/movies-feature --standalone",
+    "create-ui-lib": "nx g @nx/angular:lib movies-ui --tags=scope:movies,type:ui --prefix=movies-ui --directory=libs/movies/movies-ui --standalone",
+    "create-util-lib": "nx g @nx/angular:lib movies-util --tags=scope:movies,type:util --prefix=movies-util --directory=libs/movies/movies-util --standalone",
+    "create-scoped-libs": "npm run create-data-access-lib --scope=movies && npm run create-feature-lib --scope=movies && npm run create-ui-lib --scope=movies && npm run create-util-lib --scope=movies --directory=libs/movies/ --standalone"
   },
   "private": true,
   "dependencies": {
