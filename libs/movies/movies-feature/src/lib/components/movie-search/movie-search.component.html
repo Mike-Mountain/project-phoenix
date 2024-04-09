@@ -1,0 +1,39 @@
+<section class="search bg-secondary text-light">
+  <mat-form-field class="w-100 flex-center">
+    <mat-label>Search</mat-label>
+    <input
+      matInput
+      #inputElement
+      type="search"
+      class="form-control border-primary text-primary"
+      id="mediaSearchInput"
+      placeholder="Search movies, series, and video games"
+      (keydown.enter)="search(searchQuery); inputElement.blur()"
+      [(ngModel)]="searchQuery"
+    >
+  </mat-form-field>
+  <div
+    class="flex-between"
+    [ngClass]="isRouted ? ['flex-row-reverse'] : ['flex-column']"
+  >
+    <button
+      mat-stroked-button
+      color="accent"
+      [ngClass]="isRouted ? ['w-55'] : ['w-60']"
+      (click)="search(searchQuery)"
+    >
+      Search
+    </button>
+    <button
+      mat-stroked-button
+      color="primary"
+      [ngClass]="isRouted ? ['w-40'] : ['btn-sm', 'mt-2', 'w-40']"
+      (click)="feelingLuckySearch(searchQuery)"
+    >
+      Feelin' Lucky
+    </button>
+  </div>
+  <ng-container *ngIf="!isRouted">
+<!--    <app-featured></app-featured>-->
+  </ng-container>
+</section>

@@ -1,0 +1,63 @@
+@import "libs/container/styles/mixins/util-mixins";
+@import "libs/container/styles/variables/breakpoints";
+
+.app-layout {
+  height: 100%;
+  width: 100%;
+  display: grid;
+}
+
+.show-content {
+  grid-template-rows: 2.7rem calc(100% - 2.5rem - 9rem) 9rem;
+}
+
+.content, .search {
+  width: 100%;
+  @include breakpoint('tablet-wide', 'min') {
+    width: 60%;
+    margin: 0 auto;
+  }
+}
+
+.content {
+  max-height: 100%;
+  width: 90%;
+  margin: -.25rem auto;
+  overflow-y: auto;
+  z-index: 8;
+  padding: .5rem;
+  @include breakpoint('tablet-wide', 'min') {
+    width: 45%;
+    margin: 0 auto;
+  }
+}
+
+.card {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.hide-content {
+  grid-template-rows: 2.7rem 0 1fr;
+}
+
+.navigation {
+  width: 100%;
+  z-index: 9;
+}
+
+ /* Style scrollbar on larger devices */
+@media screen and (min-width: map-get($breakpoints, 'tablet-wide')) {
+  #content::-webkit-scrollbar-track {
+    background-color: var(--light);
+  }
+
+  #content::-webkit-scrollbar {
+    width: 5px;
+    background-color: var(--light);
+  }
+
+  //#content::-webkit-scrollbar-thumb {
+  //  background-color: darken(var(--light), 15%);
+  //}
+}

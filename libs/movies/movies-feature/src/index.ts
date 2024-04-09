@@ -1,1 +1,1 @@
-export * from './lib/movies-feature/movies-feature.component';
+export * from './lib/components/movie-search/movie-search.component';

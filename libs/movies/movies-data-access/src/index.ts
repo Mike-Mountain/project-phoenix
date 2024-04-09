@@ -1,1 +1,2 @@
-export * from './lib/movies-data-access/movies-data-access.component';
+export * from './lib/services/movie-details/movie-details.service';
+export * from './lib/models/index'

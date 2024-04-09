@@ -7,7 +7,6 @@
 @import '../theme/palettes/code-master/cm-background';
 
 
-
 :root {
   .default-dark, .default-light {
     --primary: #{map-get($default-primary, 500)};
@@ -44,4 +43,6 @@
   --orange: #ff4d00;
   --tangerine: #ff8400;
   --peach: #ffa200;
+  --light: #EFF1ED;
+  --dark: #54494B;
 }
