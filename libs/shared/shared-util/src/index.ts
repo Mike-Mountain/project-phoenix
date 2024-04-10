@@ -3,3 +3,7 @@ export * from './lib/pipes/as/as.pipe';
 export * from './lib/pipes/split/split.pipe';
 export * from './lib/pipes/length/length.pipe';
 export * from './lib/pipes/truncate/truncate.pipe';
+export * from './lib/directives/bg-image/bg-image.directive';
+export * from './lib/pipes/break-title/break-title.pipe';
+export * from './lib/pipes/default-image/default-image.pipe';
+export * from './lib/pipes/to-array/to-array.pipe';

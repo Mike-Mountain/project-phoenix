@@ -41,15 +41,15 @@ export class AuthDialogComponent implements OnInit {
   }
 
   public createTestAccount() {
-    this.authService.createTestAccount().subscribe((details: {
-      email: string,
-      password: string,
-      successText: string
-    }) => {
-      this.testEmail = details.email;
-      this.testPassword = details.password;
-      this.successText = details.successText;
-    });
+    // this.authService.createTestAccount().subscribe((details: {
+    //   email: string,
+    //   password: string,
+    //   successText: string
+    // }) => {
+    //   this.testEmail = details.email;
+    //   this.testPassword = details.password;
+    //   this.successText = details.successText;
+    // });
   }
 
   public authAction() {
@@ -64,14 +64,14 @@ export class AuthDialogComponent implements OnInit {
   }
 
   private registerUser(email: string, password: string, confirmPassword: string) {
-    if (password === confirmPassword) {
-      this.authService.createUserWithEmailAndPassword(email, password)
-        .subscribe(() => this.dialogRef.close());
-    }
+    // if (password === confirmPassword) {
+    //   this.authService.createUserWithEmailAndPassword(email, password)
+    //     .subscribe(() => this.dialogRef.close());
+    // }
   }
 
   private signInUser(email: string, password: string) {
-    this.authService.signInWithEmailAndPassword(email, password)
-      .subscribe(() => this.dialogRef.close());
+    // this.authService.signInWithEmailAndPassword(email, password)
+    //   .subscribe(() => this.dialogRef.close());
   }
 }

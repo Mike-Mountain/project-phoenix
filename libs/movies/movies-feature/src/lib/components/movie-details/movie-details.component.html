@@ -1,0 +1,120 @@
+<!--<app-spinner>-->
+@if (details$) {
+  <ng-container *ngIf="details$ | async as details; else noResults">
+    <section class="details-container">
+      @if (details.poster) {
+        <div [bgImage]="details.poster"></div>
+      }
+      <div class="details">
+        <h2 class="card-title">{{ (details.title ) || details.title }}</h2>
+        <h4 class="card-subtitle">{{ (details.title) }}</h4>
+        <div class="w-100 flex-start flex-wrap">
+          @for (genre of (details.genre ); track genre) {
+            <small class="text-primary mx-1">{{ genre }}</small>
+          }
+        </div>
+        <div class="plot">
+          <small>{{ details.plot }}</small>
+        </div>
+        <div class="nav nav-tabs mb-1">
+          @for (tab of tabs; track tab) {
+            <div class="nav-item">
+              <a
+                class="nav-link"
+                [class.active]="tab === currentTab"
+                (click)="changeTab(tab, tabContent)"
+              >
+                {{ tab }}
+              </a>
+            </div>
+          }
+        </div>
+        <div class="card mb-2">
+          <div class="card-body" #tabContent>
+            @switch (currentTab) {
+              @case ('Cast') {
+                <h5>Actors:</h5>
+                <div class="w-100 flex-between flex-wrap">
+                  <ng-container *ngFor="let actor of (details.actors)">
+                    <small class="card custom-card my-1">{{ actor }}</small>
+                  </ng-container>
+                </div>
+                <h5>Directed by:</h5>
+                <div class="w-100 flex-between flex-wrap">
+                  <ng-container *ngFor="let director of (details.director)">
+                    <small class="card custom-card my-1">{{ director }}</small>
+                  </ng-container>
+                </div>
+              }
+              @case ('Acclaim') {
+                <div class="w-100 flex-between">
+                  <div class="w-70 d-flex flex-align-start flex-column">
+                    @for (rating of details.ratings; track rating.source) {
+                      <div class="card custom-card my-1 flex-align-start w-80">
+                        <small>
+                          {{ rating.source }}
+                        </small>
+                      </div>
+                    }
+                  </div>
+                  <div class="w-30 d-flex flex-align-end flex-column">
+                    @for (rating of details.ratings; track rating.value) {
+                      <div class="card custom-card flex-align-end w-80 my-1">
+                        <small>
+                          {{ rating.value }}
+                        </small>
+                      </div>
+                    }
+                  </div>
+                </div>
+                @if (details.awards && details.awards !== 'N/A') {
+                  <div class="w-100 flex-center">
+                    <small class="card custom-card my-1 text-wrap">{{ details.awards }}</small>
+                  </div>
+                }
+              }
+              @case ('More') {
+                <div class="w-100 flex-between">
+                  <div class="w-33 flex-start">
+                    <small class="card custom-card my-1 text-wrap">{{ details.released }}</small>
+                  </div>
+                  <div class="w-33 flex-center">
+                    <small class="card custom-card my-1 text-wrap">{{ details.type }}</small>
+                  </div>
+                  <div class="w-33 flex-end">
+                    <small class="card custom-card my-1 text-wrap">{{ details.runtime }}</small>
+                  </div>
+                </div>
+                <hr class="dropdown-divider w-75 mx-auto">
+                <div class="w-100 mt-2 flex-between flex-wrap">
+                  @for (language of details.language; track language ) {
+                    <small class="card custom-card my-1">{{ language }}</small>
+                  }
+                </div>
+                <hr class="dropdown-divider w-75 mx-auto">
+                <div class="w-100 mt-2 flex-between flex-wrap">
+                  @for (country of details.country; track country ) {
+                    <small class="card custom-card my-1">{{ country }}</small>
+                  }
+                </div>
+              }
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+  </ng-container>
+}
+<!--</app-spinner>-->
+
+<ng-template #noResults>
+  <div class="w-100 h-100 flex-center">
+    <div class="card mb-5">
+      <div class="card-body">
+        <h3 class="w-100  text-center">
+          No results returned. Please check your query and try again.
+        </h3>
+      </div>
+    </div>
+  </div>
+</ng-template>
