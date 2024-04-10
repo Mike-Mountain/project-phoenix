@@ -3,13 +3,13 @@
   <ng-container *ngIf="details$ | async as details; else noResults">
     <section class="details-container">
       @if (details.poster) {
-        <div [bgImage]="details.poster"></div>
+        <div  [bgImage]="details.poster | defaultImage"></div>
       }
       <div class="details">
-        <h2 class="card-title">{{ (details.title ) || details.title }}</h2>
-        <h4 class="card-subtitle">{{ (details.title) }}</h4>
+        <h2 class="card-title">{{ (details.title | breakTitle)?.title || details.title }}</h2>
+        <h4 class="card-subtitle">{{ (details.title | breakTitle)?.subtitle }}</h4>
         <div class="w-100 flex-start flex-wrap">
-          @for (genre of (details.genre ); track genre) {
+          @for (genre of (details.genre | toArray ); track genre) {
             <small class="text-primary mx-1">{{ genre }}</small>
           }
         </div>
@@ -35,13 +35,13 @@
               @case ('Cast') {
                 <h5>Actors:</h5>
                 <div class="w-100 flex-between flex-wrap">
-                  <ng-container *ngFor="let actor of (details.actors)">
+                  <ng-container *ngFor="let actor of (details.actors | toArray)">
                     <small class="card custom-card my-1">{{ actor }}</small>
                   </ng-container>
                 </div>
                 <h5>Directed by:</h5>
                 <div class="w-100 flex-between flex-wrap">
-                  <ng-container *ngFor="let director of (details.director)">
+                  <ng-container *ngFor="let director of (details.director | toArray)">
                     <small class="card custom-card my-1">{{ director }}</small>
                   </ng-container>
                 </div>
@@ -87,13 +87,13 @@
                 </div>
                 <hr class="dropdown-divider w-75 mx-auto">
                 <div class="w-100 mt-2 flex-between flex-wrap">
-                  @for (language of details.language; track language ) {
+                  @for (language of (details.language | toArray); track language ) {
                     <small class="card custom-card my-1">{{ language }}</small>
                   }
                 </div>
                 <hr class="dropdown-divider w-75 mx-auto">
                 <div class="w-100 mt-2 flex-between flex-wrap">
-                  @for (country of details.country; track country ) {
+                  @for (country of (details.country | toArray); track country ) {
                     <small class="card custom-card my-1">{{ country }}</small>
                   }
                 </div>

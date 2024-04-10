@@ -1,0 +1,52 @@
+<div class="pagination justify-content-center" *ngIf="totalPages && totalPages > 0">
+  <div class="page-item">
+    <button
+      class="page-link"
+      [disabled]="page === 1"
+      [class.disabled]="page === 1"
+      (click)="updatePage('first')"
+    >
+      <span aria-hidden="true">&laquo;&laquo;</span>
+      <span class="sr-only">First</span>
+    </button>
+  </div>
+  <div class="page-item">
+    <button
+      class="page-link"
+      [disabled]="page === 1"
+      [class.disabled]="page === 1"
+      (click)="updatePage('previous')"
+    >
+      <span aria-hidden="true">&laquo;</span>
+      <span class="sr-only">Previous</span>
+    </button>
+  </div>
+  <ng-container *ngFor="let singlePage of pages">
+    <div class="page-item" [class.active]="singlePage === page" *ngIf="singlePage > 0">
+      <button
+        class="page-link"
+        (click)="updatePage('number', singlePage)"
+      >
+        {{singlePage}}
+      </button>
+    </div>
+  </ng-container>
+  <div class="page-item">
+    <button
+      class="page-link"
+      (click)="updatePage('next')"
+    >
+      <span aria-hidden="true">&raquo;</span>
+      <span class="sr-only">Next</span>
+    </button>
+  </div>
+  <div class="page-item">
+    <button
+      class="page-link"
+      (click)="updatePage('last')"
+    >
+      <span aria-hidden="true">&raquo;&raquo;</span>
+      <span class="sr-only">Last</span>
+    </button>
+  </div>
+</div>

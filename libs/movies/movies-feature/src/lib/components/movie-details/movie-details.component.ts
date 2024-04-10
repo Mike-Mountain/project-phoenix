@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { Observable, switchMap } from 'rxjs';
 import { MovieDetailsService, SearchResults } from '@project-phoenix/movies-data-access';
 import { ActivatedRoute } from '@angular/router';
-import { BgImageDirective } from '@project-phoenix/shared/shared-util';
+import { BgImageDirective, BreakTitlePipe, DefaultImagePipe, ToArrayPipe } from '@project-phoenix/shared/shared-util';
 
 @Component({
   selector: 'movies-feature-movie-details',
   standalone: true,
-  imports: [CommonModule, BgImageDirective],
+  imports: [CommonModule, BgImageDirective, DefaultImagePipe, BreakTitlePipe, ToArrayPipe],
   templateUrl: './movie-details.component.html',
   styleUrl: './movie-details.component.scss'
 })

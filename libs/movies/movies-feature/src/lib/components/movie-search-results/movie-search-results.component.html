@@ -1,0 +1,30 @@
+<div class="w-100 flex-start" #pageTop></div>
+<!--<app-spinner>-->
+  @if (results$ && (results$ | async)?.search) {
+    <section class="results-list">
+      <div class="results-content">
+        @for (result of (results$ | async)?.search; track result) {
+          <movies-ui-results-list-item
+            [searchResult]="result"
+            [searchQuery]="searchQuery"
+          ></movies-ui-results-list-item>
+        }
+      </div>
+      <movies-feature-results-pagination
+        [page]="currentPage"
+        [totalPages]="(results$ | async)?.totalResults"
+        (newPage)="updatePage($event, pageTop)"
+      ></movies-feature-results-pagination>
+    </section>
+  } @else {
+    <div class="w-100 h-100 flex-center">
+      <div class="card mb-5">
+        <div class="card-body">
+          <h3 class="w-100  text-center">
+            No results returned. Please check your query and try again.
+          </h3>
+        </div>
+      </div>
+    </div>
+  }
+<!--</app-spinner>-->

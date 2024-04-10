@@ -1,0 +1,20 @@
+@if (searchResult) {
+  <a class="card my-1" [routerLink]="'/details/id/' + searchResult.imdbID + '/' + searchQuery">
+    <div class="flex-between flex-align-start">
+      <div class="poster">
+        <img
+          class="poster-image"
+          [src]="searchResult.poster | defaultImage"
+          [alt]="'Poster for ' + (searchResult.title | breakTitle)?.title || searchResult.title"
+        >
+      </div>
+      <div class="details">
+        <h3 class="card-title mb-0">
+          {{ (searchResult.title | breakTitle)?.title || searchResult.title }}
+        </h3>
+        <small class="card-subtitle my-1">{{ (searchResult.title | breakTitle)?.subtitle }}</small>
+        <small class="text-sm-left text-info mt-1">{{ searchResult.type }}</small>
+      </div>
+    </div>
+  </a>
+}

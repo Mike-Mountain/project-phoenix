@@ -42,7 +42,7 @@ export class MovieSearchComponent implements OnInit, OnDestroy {
   public search(query: string): void {
     if (query.trim() !== '') {
       this.detailsService.searchType = 'id';
-      this.router.navigate([`results/${query}`], { queryParams: { page: 1 } });
+      this.router.navigate([`movies/results/${query}`], { queryParams: { page: 1 } });
     } else {
       // this.toastr.error('Please enter a search query', '', {positionClass: 'toast-top-center'});
     }
