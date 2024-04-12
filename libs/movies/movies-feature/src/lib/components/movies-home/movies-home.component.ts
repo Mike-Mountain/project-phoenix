@@ -5,7 +5,7 @@ import { Observable, of, switchMap } from 'rxjs';
 import { MovieSearchComponent } from '@project-phoenix/movies-feature';
 
 @Component({
-  selector: 'movies-ui-movies-home',
+  selector: 'movies-feature-movies-home',
   standalone: true,
   imports: [CommonModule, RouterOutlet, MovieSearchComponent],
   templateUrl: './movies-home.component.html',

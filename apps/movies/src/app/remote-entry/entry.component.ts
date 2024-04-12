@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MoviesHomeComponent } from '@project-phoenix/movies-ui';
+import { RouterOutlet } from '@angular/router';
+
 
 @Component({
   standalone: true,
-  imports: [CommonModule, MoviesHomeComponent],
+  imports: [CommonModule, RouterOutlet],
   selector: 'app-movies-entry',
-  template: `<movies-ui-movies-home></movies-ui-movies-home>`,
+  template: `
+    <router-outlet></router-outlet>`,
 })
 export class RemoteEntryComponent {}

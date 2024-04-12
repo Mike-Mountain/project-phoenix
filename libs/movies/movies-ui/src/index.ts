@@ -1,1 +1,1 @@
-export * from './lib/components/movies-home/movies-home.component';
+export * from './lib/components/results-list-item/results-list-item.component';

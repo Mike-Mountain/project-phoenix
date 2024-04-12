@@ -12,6 +12,7 @@ export class BaseHttpService<T> {
   private http = inject(HttpClient);
 
   public setMovieUrl(type: SearchType, query: string, page?: number): string {
+    console.log(this.apiUrl);
     let url = `${this.apiUrl}&${type}=${query}`;
     if (page) {
       url += `&page=${page}`;

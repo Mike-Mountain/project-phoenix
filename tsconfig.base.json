@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@project-phoenix/config": [
+        "config/index.ts"
+      ],
       "@project-phoenix/code-master/code-master-data-access": [
         "libs/code-master/code-master-data-access/src/index.ts"
       ],

@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
-import { MoviesHomeComponent } from '@project-phoenix/movies-ui';
 import { MovieSearchResultsComponent } from './components/movie-search-results/movie-search-results.component';
+import { MoviesHomeComponent } from './components/movies-home/movies-home.component';
 
 export const movieRoutes: Routes = [
   { path: '', component: MoviesHomeComponent },
+  { path: 'results/:query', component: MovieSearchResultsComponent },
   { path: 'id/:imdbId/:query', component: MovieDetailsComponent },
-  { path: 'title/:query', component: MovieDetailsComponent },
-  { path: 'results/:query', component: MovieSearchResultsComponent }
+  { path: 'title/:query', component: MovieDetailsComponent }
 ];

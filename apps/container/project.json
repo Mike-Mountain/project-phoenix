@@ -56,7 +56,14 @@
           "vendorChunk": true,
           "extractLicenses": false,
           "sourceMap": true,
-          "namedChunks": true
+          "namedChunks": true,
+          "assets": [
+            {
+              "glob": "**/*",
+              "input": "../../config/dev.config.ts",
+              "output": "config/dev.config.ts"
+            }
+          ]
         }
       },
       "defaultConfiguration": "production"

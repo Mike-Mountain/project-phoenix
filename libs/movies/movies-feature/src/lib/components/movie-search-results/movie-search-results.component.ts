@@ -1,11 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Observable, switchMap, tap } from 'rxjs';
 import { MovieSearchResultsService, ResultsList } from '@project-phoenix/movies-data-access';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import {
-  ResultsListItemComponent
-} from '../../../../../movies-ui/src/lib/components/results-list-item/results-list-item.component';
+import { ResultsListItemComponent } from '@project-phoenix/movies-ui';
 import { ResultsPaginationComponent } from '../results-pagination/results-pagination.component';
 
 @Component({
