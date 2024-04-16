@@ -1,0 +1,32 @@
+:host {
+  height: 100%;
+}
+
+.details-container {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 98% 1fr;
+}
+
+.poster {
+  width: 100%;
+}
+
+.cast-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-body {
+  padding: .75rem;
+}
+
+.badge {
+  padding: .75rem;
+}
+
+.custom-card {
+  padding: .25rem;
+}

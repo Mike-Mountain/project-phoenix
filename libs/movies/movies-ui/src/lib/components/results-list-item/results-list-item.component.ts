@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { SingleResult } from '@project-phoenix/movies-data-access';
 import { RouterLink } from '@angular/router';
 import { BreakTitlePipe, DefaultImagePipe } from '@project-phoenix/shared/shared-util';
+import { MatCard, MatCardContent } from '@angular/material/card';
 
 @Component({
   selector: 'movies-ui-results-list-item',
   standalone: true,
-  imports: [CommonModule, RouterLink, DefaultImagePipe, BreakTitlePipe],
+  imports: [CommonModule, RouterLink, DefaultImagePipe, BreakTitlePipe, MatCard, MatCardContent],
   templateUrl: './results-list-item.component.html',
   styleUrl: './results-list-item.component.scss',
 })

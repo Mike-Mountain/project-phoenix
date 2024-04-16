@@ -29,20 +29,28 @@
             </div>
           }
         </div>
-        <div class="card mb-2">
-          <div class="card-body" #tabContent>
+        <mat-card>
+          <mat-card-content #tabContent>
             @switch (currentTab) {
               @case ('Cast') {
                 <h5>Actors:</h5>
                 <div class="w-100 flex-between flex-wrap">
                   <ng-container *ngFor="let actor of (details.actors | toArray)">
-                    <small class="card custom-card my-1">{{ actor }}</small>
+                    <mat-card class="custom-card my-1 flex-align-start w-80">
+                      <mat-card-content>
+                        <small>{{actor}}</small>
+                      </mat-card-content>
+                    </mat-card>
                   </ng-container>
                 </div>
                 <h5>Directed by:</h5>
                 <div class="w-100 flex-between flex-wrap">
                   <ng-container *ngFor="let director of (details.director | toArray)">
-                    <small class="card custom-card my-1">{{ director }}</small>
+                    <mat-card class="custom-card my-1 flex-align-start w-80">
+                      <mat-card-content>
+                        <small>{{director}}</small>
+                      </mat-card-content>
+                    </mat-card>
                   </ng-container>
                 </div>
               }
@@ -50,57 +58,81 @@
                 <div class="w-100 flex-between">
                   <div class="w-70 d-flex flex-align-start flex-column">
                     @for (rating of details.ratings; track rating.source) {
-                      <div class="card custom-card my-1 flex-align-start w-80">
-                        <small>
-                          {{ rating.source }}
-                        </small>
-                      </div>
+                      <mat-card class="custom-card my-1 flex-align-start w-80">
+                        <mat-card-content>
+                          <small>{{rating.source}}</small>
+                        </mat-card-content>
+                      </mat-card>
                     }
                   </div>
                   <div class="w-30 d-flex flex-align-end flex-column">
                     @for (rating of details.ratings; track rating.value) {
-                      <div class="card custom-card flex-align-end w-80 my-1">
-                        <small>
-                          {{ rating.value }}
-                        </small>
-                      </div>
+                      <mat-card class="custom-card my-1 flex-align-start w-80">
+                        <mat-card-content>
+                          <small>{{rating.value}}</small>
+                        </mat-card-content>
+                      </mat-card>
                     }
                   </div>
                 </div>
                 @if (details.awards && details.awards !== 'N/A') {
                   <div class="w-100 flex-center">
-                    <small class="card custom-card my-1 text-wrap">{{ details.awards }}</small>
+                    <mat-card class="custom-card my-1 text-wrap">
+                      <mat-card-content>
+                        <small>{{details.awards}}</small>
+                      </mat-card-content>
+                    </mat-card>
                   </div>
                 }
               }
               @case ('More') {
                 <div class="w-100 flex-between">
                   <div class="w-33 flex-start">
-                    <small class="card custom-card my-1 text-wrap">{{ details.released }}</small>
+                    <mat-card class="custom-card my-1 text-wrap">
+                      <mat-card-content>
+                        <small>{{details.released}}</small>
+                      </mat-card-content>
+                    </mat-card>
                   </div>
                   <div class="w-33 flex-center">
-                    <small class="card custom-card my-1 text-wrap">{{ details.type }}</small>
+                    <mat-card class="custom-card my-1 text-wrap">
+                      <mat-card-content>
+                        <small>{{details.type}}</small>
+                      </mat-card-content>
+                    </mat-card>
                   </div>
                   <div class="w-33 flex-end">
-                    <small class="card custom-card my-1 text-wrap">{{ details.runtime }}</small>
+                    <mat-card class="custom-card my-1 text-wrap">
+                      <mat-card-content>
+                        <small>{{details.runtime}}</small>
+                      </mat-card-content>
+                    </mat-card>
                   </div>
                 </div>
                 <hr class="dropdown-divider w-75 mx-auto">
                 <div class="w-100 mt-2 flex-between flex-wrap">
                   @for (language of (details.language | toArray); track language ) {
-                    <small class="card custom-card my-1">{{ language }}</small>
+                    <mat-card class="custom-card my-1">
+                      <mat-card-content>
+                        <small>{{language}}</small>
+                      </mat-card-content>
+                    </mat-card>
                   }
                 </div>
                 <hr class="dropdown-divider w-75 mx-auto">
                 <div class="w-100 mt-2 flex-between flex-wrap">
                   @for (country of (details.country | toArray); track country ) {
-                    <small class="card custom-card my-1">{{ country }}</small>
+                    <mat-card class="custom-card my-1">
+                      <mat-card-content>
+                        <small>{{country}}</small>
+                      </mat-card-content>
+                    </mat-card>
                   }
                 </div>
               }
             }
-          </div>
-        </div>
+          </mat-card-content>
+        </mat-card>
       </div>
     </section>
   </ng-container>
@@ -109,12 +141,12 @@
 
 <ng-template #noResults>
   <div class="w-100 h-100 flex-center">
-    <div class="card mb-5">
-      <div class="card-body">
+    <mat-card class="mb-5">
+      <mat-card-content>
         <h3 class="w-100  text-center">
           No results returned. Please check your query and try again.
         </h3>
-      </div>
-    </div>
+      </mat-card-content>
+    </mat-card>
   </div>
 </ng-template>

@@ -2,14 +2,16 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SearchType } from '../../models/movie-api-params.model';
 import { Observable } from 'rxjs';
+import { ConfigService } from '../../config/config/config.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BaseHttpService<T> {
 
-  private readonly apiUrl: string | undefined;
+  private configService = inject(ConfigService);
   private http = inject(HttpClient);
+  private readonly apiUrl = this.configService.config?.apiUrl;
 
   public setMovieUrl(type: SearchType, query: string, page?: number): string {
     console.log(this.apiUrl);

@@ -16,7 +16,6 @@ export class ConfigService {
     return new Promise<ApplicationConfig>(resolve => {
       import('config/dev.config').then((response) => {
         this.config = Object.assign({}, response.config) as ApplicationConfig;
-        console.log('CONFIG:', this.config);
         resolve(this.config);
       });
     });

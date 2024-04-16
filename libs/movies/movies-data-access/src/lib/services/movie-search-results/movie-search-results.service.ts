@@ -25,7 +25,9 @@ export class MovieSearchResultsService extends BaseHttpService<ResultsList> {
       url = super.setMovieUrl(type, query);
     }
     return super._get(url).pipe(
-      map(results => new ResultsList(results as unknown as ApiResultsModel)),
+      map(results => {
+        return new ResultsList(results as unknown as ApiResultsModel);
+      }),
       catchError(err => {
         console.log(err);
         throw new Error();
