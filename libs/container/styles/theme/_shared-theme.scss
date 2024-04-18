@@ -10,6 +10,9 @@
 @use 'palettes/code-master/cm-accent';
 @use 'palettes/code-master/cm-warn';
 
+@use 'palettes/movies/movies-primary';
+@use 'palettes/movies/movies-background';
+
 @import "../partials/index";
 @import "../utils/index";
 @import "../variables/index";
@@ -25,6 +28,8 @@ $default-accent: mat.define-palette(default-accent.$default-accent);
 
 $cm-primary: mat.define-palette(cm-primary.$cm-primary);
 $cm-accent: mat.define-palette(cm-accent.$cm-accent);
+
+$movies-primary: mat.define-palette(movies-primary.$movies-primary);
 
 $shared-warn: mat.define-palette(default-warn.$default-warn);
 
@@ -53,6 +58,14 @@ $code-master-theme: mat.define-dark-theme((
   )
 ));
 
+$movies-theme: mat.define-dark-theme((
+  color: (
+    primary: $movies-primary,
+    accent: $cm-accent,
+    warn: $shared-warn,
+  )
+));
+
 
 @include mat.all-component-themes($default-light-theme);
 
@@ -63,4 +76,9 @@ $code-master-theme: mat.define-dark-theme((
 .code-master {
   @include mat.all-component-colors($code-master-theme);
   @import "../partials/code-master-specific";
+}
+
+.movies {
+  @include mat.all-component-colors($movies-theme);
+  @import "../partials/movies-specific";
 }

@@ -28,14 +28,10 @@ export class MovieSearchResultsComponent implements OnInit {
 
   ngOnInit() {
     this.currentLocation = this.location;
-    this.results$ = this.route.params.pipe(
-      tap(data => console.log('RESULT:', data)),
-      switchMap((params) => {
+    this.results$ = this.route.queryParams.pipe(
+      switchMap(params => {
         this.searchQuery = params['query'];
-        return this.route.queryParams;
-      }),
-      switchMap((queryParams) => {
-        this.currentPage = queryParams['page'];
+        this.currentPage = params['page'];
         return this.resultsService.searchMedia('s', this.searchQuery, this.currentPage);
       })
     );

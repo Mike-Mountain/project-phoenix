@@ -14,7 +14,6 @@ export class BaseHttpService<T> {
   private readonly apiUrl = this.configService.config?.apiUrl;
 
   public setMovieUrl(type: SearchType, query: string, page?: number): string {
-    console.log(this.apiUrl);
     let url = `${this.apiUrl}&${type}=${query}`;
     if (page) {
       url += `&page=${page}`;

@@ -4,8 +4,11 @@ import { MovieSearchResultsComponent } from './components/movie-search-results/m
 import { MoviesHomeComponent } from './components/movies-home/movies-home.component';
 
 export const movieRoutes: Routes = [
-  { path: '', component: MoviesHomeComponent },
-  { path: 'results/:query', component: MovieSearchResultsComponent },
-  { path: 'id/:imdbId/:query', component: MovieDetailsComponent },
-  { path: 'title/:query', component: MovieDetailsComponent }
+  {
+    path: '', component: MoviesHomeComponent, children: [
+      { path: 'results', component: MovieSearchResultsComponent },
+      { path: 'id/:imdbId/:query', component: MovieDetailsComponent },
+      { path: 'title/:query', component: MovieDetailsComponent }
+    ]
+  }
 ];

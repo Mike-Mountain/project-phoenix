@@ -26,6 +26,9 @@
   overflow-y: auto;
   z-index: 8;
   padding: .5rem;
+  .mat-mdc-card {
+    background-color: white !important;
+  }
   @include breakpoint('tablet-wide', 'min') {
     width: 45%;
     margin: 0 auto;
@@ -35,10 +38,6 @@
 .card {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-}
-
-.hide-content {
-  grid-template-rows: 2.7rem 0 1fr;
 }
 
 .navigation {

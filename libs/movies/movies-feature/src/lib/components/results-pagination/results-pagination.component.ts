@@ -1,12 +1,14 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatRipple } from '@angular/material/core';
 
 @Component({
   selector: 'movies-feature-results-pagination',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatPaginator, MatRipple],
   templateUrl: './results-pagination.component.html',
-  styleUrl: './results-pagination.component.scss',
+  styleUrl: './results-pagination.component.scss'
 })
 export class ResultsPaginationComponent implements OnInit {
   @Input() public totalPages: number | undefined = 0;
@@ -16,18 +18,19 @@ export class ResultsPaginationComponent implements OnInit {
   private currentPage = 1;
 
   public get page(): number | undefined {
-    return this.currentPage;
+    return Number(this.currentPage);
   }
 
   @Input()
   public set page(value: number | undefined) {
     if (value) {
-      this.currentPage = value;
+      this.currentPage = Number(value);
     }
   }
 
   ngOnInit() {
     if (this.page) {
+      this.page = Number(this.page);
       this.pages = [
         this.page,
         this.page + 1,

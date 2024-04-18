@@ -1,0 +1,35 @@
+$movies-background-values: 0, 49, 82;
+$movies-containerBackground-values: 91, 99, 138;
+
+$movies-background: (
+  50 : #e0e6ea,
+  100 : #b3c1cb,
+  200 : #8098a9,
+  300 : #4d6f86,
+  400 : #26506c,
+  500 : #003152,
+  600 : #002c4b,
+  700 : #002541,
+  800 : #001f38,
+  900 : #001328,
+  A100 : #6399ff,
+  A200 : #3077ff,
+  A400 : #0057fc,
+  A700 : #004ee2,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);

@@ -1,5 +1,5 @@
 <section class="search bg-secondary text-light">
-  <mat-form-field class="w-100 flex-center">
+  <mat-form-field class="w-100 flex-center" color="primary" appearance="outline">
     <mat-label>Search</mat-label>
     <input
       matInput
@@ -12,10 +12,7 @@
       [(ngModel)]="searchQuery"
     >
   </mat-form-field>
-  <div
-    class="flex-between"
-    [ngClass]="isRouted ? ['flex-row-reverse'] : ['flex-column']"
-  >
+  <div class="flex-between" [ngClass]="isRouted ? ['flex-row-reverse'] : ['flex-column']">
     <button
       mat-stroked-button
       color="accent"

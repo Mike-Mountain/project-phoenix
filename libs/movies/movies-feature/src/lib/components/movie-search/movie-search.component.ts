@@ -15,34 +15,17 @@ import { MatButton } from '@angular/material/button';
   templateUrl: './movie-search.component.html',
   styleUrl: './movie-search.component.scss'
 })
-export class MovieSearchComponent implements OnInit, OnDestroy {
+export class MovieSearchComponent {
   private router = inject(Router);
   private detailsService = inject(MovieDetailsService);
 
   @Input() public isRouted: boolean | undefined | null
-  public searchQuery = '';
-
-  private destroyed$ = new ReplaySubject<boolean>(1);
-
-  ngOnInit() {
-    this.router.events
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe(event => {
-        if (event instanceof NavigationEnd) {
-          this.searchQuery = this.setSearchQuery(event.urlAfterRedirects);
-        }
-      });
-  }
-
-  ngOnDestroy() {
-    this.destroyed$.next(true);
-    this.destroyed$.complete();
-  }
+  @Input() public searchQuery = '';
 
   public search(query: string): void {
     if (query.trim() !== '') {
       this.detailsService.searchType = 'id';
-      this.router.navigate([`movies/results/${query}`], { queryParams: { page: 1 } });
+      this.router.navigate([`results`], { queryParams: { query, page: 1 } });
     } else {
       // this.toastr.error('Please enter a search query', '', {positionClass: 'toast-top-center'});
     }

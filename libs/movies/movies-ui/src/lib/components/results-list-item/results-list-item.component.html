@@ -1,6 +1,6 @@
 @if (searchResult) {
   <a class="my-1" [routerLink]="'/details/id/' + searchResult.imdbID + '/' + searchQuery">
-    <mat-card class="my-1">
+    <mat-card class="my-1 results-card">
       <mat-card-content>
         <div class="flex-between flex-align-start">
           <div class="poster">
@@ -11,11 +11,11 @@
             >
           </div>
           <div class="details">
-            <h3 class="card-title mb-0">
+            <h2 class="card-title mb-0">
               {{ (searchResult.title | breakTitle)?.title || searchResult.title }}
-            </h3>
+            </h2>
             <small class="card-subtitle my-1">{{ (searchResult.title | breakTitle)?.subtitle }}</small>
-            <small class="text-sm-left text-info mt-1">{{ searchResult.type }}</small>
+            <small class="results-type text-sm-left text-info mt-1">{{ searchResult.type }}</small>
           </div>
         </div>
       </mat-card-content>

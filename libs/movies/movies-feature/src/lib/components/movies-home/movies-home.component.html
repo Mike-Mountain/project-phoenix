@@ -1,12 +1,17 @@
-@if (isRoutedValue$) {
-  <div class="app-layout bg-secondary" [ngClass]="(isRoutedValue$ | async) === true ? 'show-content' : 'hide-content'">
-    <main class="content" id="content" [class.card]="isRoutedValue$">
-      <router-outlet></router-outlet>
+<div class="app-layout bg-secondary pt-2">
+  @if (isSearching$ |async) {
+    <main class="content" id="content">
+      <mat-card>
+        <mat-card-content>
+          <router-outlet></router-outlet>
+        </mat-card-content>
+      </mat-card>
     </main>
-    <div class="search">
-      <movies-feature-movie-search
-        [isRouted]="isRoutedValue$ | async"
-      ></movies-feature-movie-search>
-    </div>
+  }
+  <div class="search">
+    <movies-feature-movie-search
+      [isRouted]="isSearching$ | async"
+      [searchQuery]="searchQuery"
+    ></movies-feature-movie-search>
   </div>
-}
+</div>

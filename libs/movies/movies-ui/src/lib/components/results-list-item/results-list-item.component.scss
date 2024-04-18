@@ -21,3 +21,20 @@
   justify-content: flex-start;
   align-items: flex-start;
 }
+
+.results-card.mat-mdc-card {
+  background-color: var(--containerBackground) !important;
+
+  .mat-mdc-card-content {
+    padding: 0 !important;
+  }
+}
+
+.card-title, .card-subtitle, .results-type {
+  color: var(--primary);
+  margin-left: .75rem;
+}
+
+.card-subtitle, .results-type {
+  //margin-left: 1rem;
+}

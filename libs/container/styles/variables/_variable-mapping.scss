@@ -5,6 +5,8 @@
 @import '../theme/palettes/code-master/cm-accent';
 @import '../theme/palettes/code-master/cm-warn';
 @import '../theme/palettes/code-master/cm-background';
+@import '../theme/palettes/movies/movies-primary';
+@import '../theme/palettes/movies/movies-background';
 
 
 :root {
@@ -21,14 +23,28 @@
     --primary: #{map-get($cm-primary, 500)};
     --accent: #{map-get($cm-accent, 500)};
     --warn: #{map-get($cm-warn, 500)};
-    --background: #{map-get($background, 500)};
-    --containerBackground: #{map-get($background, 700)};
-    --blocksBackground: #{map-get($background, 900)};
+    --background: #{map-get($cm-background, 500)};
+    --containerBackground: #{map-get($cm-background, 700)};
+    --blocksBackground: #{map-get($cm-background, 900)};
     --primaryValues: #{$cm-primary-values};
     --accentValues: #{$cm-accent-values};
     --warnValues: #{$cm-warn-values};
-    --backgroundValues: #{$background-values};
-    --containerBackgroundValues: #{$containerBackground-values};
+    --backgroundValues: #{$cm-background-values};
+    --containerBackgroundValues: #{$cm-containerBackground-values};
+  }
+
+  .movies {
+    --primary: #{map-get($movies-primary, 500)};
+    --accent: #{map-get($cm-accent, 500)};
+    --warn: #{map-get($cm-warn, 500)};
+    --background: #{map-get($movies-background, 500)};
+    --containerBackground: #{map-get($movies-background, 700)};
+    --blocksBackground: #{map-get($movies-background, 900)};
+    --primaryValues: #{$movies-primary-values};
+    --accentValues: #{$cm-accent-values};
+    --warnValues: #{$cm-warn-values};
+    --backgroundValues: #{$movies-background-values};
+    --containerBackgroundValues: #{$movies-containerBackground-values};
   }
 
   --yellow: #e0ca00;
