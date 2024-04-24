@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "create-data-access-lib": "nx g @nx/angular:lib movies-data-access --tags=scope:movies,type:data-access --prefix=movies-data-access --directory=libs/movies/movies-data-access --standalone",
-    "create-feature-lib": "nx g @nx/angular:lib movies-feature --tags=scope:movies,type:feature --prefix=movies-feature --directory=libs/movies/movies-feature --standalone",
-    "create-ui-lib": "nx g @nx/angular:lib movies-ui --tags=scope:movies,type:ui --prefix=movies-ui --directory=libs/movies/movies-ui --standalone",
-    "create-util-lib": "nx g @nx/angular:lib movies-util --tags=scope:movies,type:util --prefix=movies-util --directory=libs/movies/movies-util --standalone",
-    "create-scoped-libs": "npm run create-data-access-lib --scope=movies && npm run create-feature-lib --scope=movies && npm run create-ui-lib --scope=movies && npm run create-util-lib --scope=movies --directory=libs/movies/ --standalone"
+    "create-data-access-lib": "nx g @nx/angular:lib budgets-data-access --tags=scope:budgets,type:data-access --prefix=budgets-data-access --directory=libs/budgets/budgets-data-access --standalone",
+    "create-feature-lib": "nx g @nx/angular:lib budgets-feature --tags=scope:budgets,type:feature --prefix=budgets-feature --directory=libs/budgets/budgets-feature --standalone",
+    "create-ui-lib": "nx g @nx/angular:lib budgets-ui --tags=scope:budgets,type:ui --prefix=budgets-ui --directory=libs/budgets/budgets-ui --standalone",
+    "create-util-lib": "nx g @nx/angular:lib budgets-util --tags=scope:budgets,type:util --prefix=budgets-util --directory=libs/budgets/budgets-util --standalone",
+    "create-scoped-libs": "npm run create-data-access-lib --scope=budgets && npm run create-feature-lib --scope=budgets && npm run create-ui-lib --scope=budgets && npm run create-util-lib --scope=budgets --directory=libs/budgets/ --standalone"
   },
   "private": true,
   "dependencies": {
