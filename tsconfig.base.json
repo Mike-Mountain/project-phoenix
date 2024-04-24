@@ -62,6 +62,7 @@
       "@project-phoenix/shared/shared-util": [
         "libs/shared/shared-util/src/index.ts"
       ],
+      "budgets/Routes": ["apps/budgets/src/app/remote-entry/entry.routes.ts"],
       "code-master/Routes": [
         "apps/code-master/src/app/remote-entry/entry.routes.ts"
       ],
