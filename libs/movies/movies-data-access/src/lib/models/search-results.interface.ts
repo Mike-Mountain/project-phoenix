@@ -93,7 +93,7 @@ export function createSearchResults(params: ApiDetails) {
     metascore: params.Metascore,
     imdbRating: params.imdbRating,
     imdbVotes: params.imdbVotes,
-    imdbId: params.imdbId,
+    imdbId: params.imdbID,
     type: params.Type,
     dvd: params.DVD,
     boxOffice: params.BoxOffice,

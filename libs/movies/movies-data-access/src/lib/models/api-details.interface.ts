@@ -34,7 +34,7 @@ export interface ApiDetails {
   Metascore: string;
   imdbRating: string;
   imdbVotes: string;
-  imdbId: string;
+  imdbID: string;
   Type: string;
   DVD: string;
   BoxOffice: string;

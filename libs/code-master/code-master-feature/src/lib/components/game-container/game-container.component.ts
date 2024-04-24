@@ -1,14 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  inject,
-  Inject,
-  OnDestroy,
-  OnInit,
-  Renderer2,
-  TemplateRef,
-  ViewChild
-} from '@angular/core';
+import { AfterViewInit, Component, inject, Inject, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { GameBoardComponent } from '@project-phoenix/code-master/code-master-ui';
 import {
@@ -21,6 +11,8 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { ReplaySubject, switchMap, takeUntil } from 'rxjs';
 import { MatButton } from '@angular/material/button';
+import { ThemeService } from '@project-phoenix/shared/shared-ui';
+import { Theme } from '@project-phoenix/shared/shared-data-access';
 
 @Component({
   selector: 'code-master-feature-game-container',
@@ -45,6 +37,7 @@ export class GameContainerComponent implements OnInit, AfterViewInit, OnDestroy 
   private gameService = inject(CmGameService);
   private cmSettingsService = inject(CmSettingsService);
   private dialog = inject(MatDialog);
+  private themeService = inject(ThemeService);
   // private toolbarService = inject(ToolbarService);
 
   private destroyed$ = new ReplaySubject<boolean>(1);
@@ -53,9 +46,7 @@ export class GameContainerComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   ngOnInit(): void {
-    // Update theme
-    this.document.body.classList.remove('default-dark');
-    this.document.body.classList.add('code-master');
+    this.themeService.updateTheme(Theme.CODE_MASTER);
 
     // this.toolbarService.updateTitle('Code Master');
 

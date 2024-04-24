@@ -1,12 +1,10 @@
-<div class="app-layout bg-secondary pt-2">
+<div class="app-layout bg-secondary" [class.p-3]="(isSearching$ | async) !== true">
   @if (isSearching$ |async) {
-    <main class="content" id="content">
-      <mat-card>
-        <mat-card-content>
-          <router-outlet></router-outlet>
-        </mat-card-content>
-      </mat-card>
-    </main>
+    <mat-card class="content" id="content">
+      <mat-card-content>
+        <router-outlet></router-outlet>
+      </mat-card-content>
+    </mat-card>
   }
   <div class="search">
     <movies-feature-movie-search

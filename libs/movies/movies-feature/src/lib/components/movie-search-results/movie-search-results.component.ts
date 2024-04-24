@@ -6,11 +6,12 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ResultsListItemComponent } from '@project-phoenix/movies-ui';
 import { ResultsPaginationComponent } from '../results-pagination/results-pagination.component';
 import { MatCard, MatCardContent } from '@angular/material/card';
+import { SpinnerComponent } from '@project-phoenix/shared/shared-feature';
 
 @Component({
   selector: 'movies-feature-movie-search-results',
   standalone: true,
-  imports: [CommonModule, ResultsListItemComponent, ResultsPaginationComponent, MatCard, MatCardContent],
+  imports: [CommonModule, ResultsListItemComponent, ResultsPaginationComponent, MatCard, MatCardContent, SpinnerComponent],
   templateUrl: './movie-search-results.component.html',
   styleUrl: './movie-search-results.component.scss'
 })

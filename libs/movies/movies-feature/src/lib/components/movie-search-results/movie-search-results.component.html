@@ -1,5 +1,5 @@
 <div class="w-100 flex-start" #pageTop></div>
-<!--<app-spinner>-->
+<shared-feature-spinner>
 @if (results$) {
   <ng-container *ngIf="results$ | async as results">
     <section class="results-list">
@@ -29,4 +29,4 @@
     </mat-card>
   </div>
 }
-<!--</app-spinner>-->
+</shared-feature-spinner>

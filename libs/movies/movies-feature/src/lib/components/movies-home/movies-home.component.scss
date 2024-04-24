@@ -5,10 +5,7 @@
   height: 100%;
   width: 100%;
   display: grid;
-}
-
-.show-content {
-  grid-template-rows: 2.7rem calc(100% - 2.5rem - 9rem) 9rem;
+  grid-template-rows: 7fr 1fr;
 }
 
 .content, .search {
@@ -22,27 +19,18 @@
 .content {
   max-height: 100%;
   width: 90%;
-  margin: -.25rem auto;
+  margin: -1.5rem auto;
   overflow-y: auto;
   z-index: 8;
   padding: .5rem;
-  .mat-mdc-card {
-    background-color: white !important;
-  }
   @include breakpoint('tablet-wide', 'min') {
     width: 45%;
     margin: 0 auto;
   }
 }
 
-.card {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
-.navigation {
-  width: 100%;
-  z-index: 9;
+.content.mat-mdc-card {
+  background-color: white !important;
 }
 
  /* Style scrollbar on larger devices */

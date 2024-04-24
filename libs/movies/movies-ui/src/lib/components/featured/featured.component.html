@@ -1,0 +1,9 @@
+<div class="featured-list">
+  @for (movie of movies; track movie.title) {
+    <a
+      (click)="routeToDetails(movie)"
+      class="featured-poster"
+      [bgImage]="movie.poster"
+    ></a>
+  }
+</div>

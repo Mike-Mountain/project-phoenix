@@ -1,143 +1,128 @@
-<!--<app-spinner>-->
-@if (details$) {
-  <ng-container *ngIf="details$ | async as details; else noResults">
-    <section class="details-container">
-      @if (details.poster) {
-        <div  [bgImage]="details.poster | defaultImage"></div>
-      }
-      <div class="details">
-        <h2 class="card-title">{{ (details.title | breakTitle)?.title || details.title }}</h2>
-        <h4 class="card-subtitle">{{ (details.title | breakTitle)?.subtitle }}</h4>
-        <div class="w-100 flex-start flex-wrap">
-          @for (genre of (details.genre | toArray ); track genre) {
-            <small class="text-primary mx-1">{{ genre }}</small>
-          }
-        </div>
-        <div class="plot">
-          <small>{{ details.plot }}</small>
-        </div>
-        <div class="nav nav-tabs mb-1">
-          @for (tab of tabs; track tab) {
-            <div class="nav-item">
-              <a
-                class="nav-link"
-                [class.active]="tab === currentTab"
-                (click)="changeTab(tab, tabContent)"
-              >
-                {{ tab }}
-              </a>
-            </div>
-          }
-        </div>
-        <mat-card>
-          <mat-card-content #tabContent>
-            @switch (currentTab) {
-              @case ('Cast') {
-                <h5>Actors:</h5>
-                <div class="w-100 flex-between flex-wrap">
-                  <ng-container *ngFor="let actor of (details.actors | toArray)">
-                    <mat-card class="custom-card my-1 flex-align-start w-80">
-                      <mat-card-content>
-                        <small>{{actor}}</small>
-                      </mat-card-content>
-                    </mat-card>
-                  </ng-container>
-                </div>
-                <h5>Directed by:</h5>
-                <div class="w-100 flex-between flex-wrap">
-                  <ng-container *ngFor="let director of (details.director | toArray)">
-                    <mat-card class="custom-card my-1 flex-align-start w-80">
-                      <mat-card-content>
-                        <small>{{director}}</small>
-                      </mat-card-content>
-                    </mat-card>
-                  </ng-container>
-                </div>
-              }
-              @case ('Acclaim') {
-                <div class="w-100 flex-between">
-                  <div class="w-70 d-flex flex-align-start flex-column">
-                    @for (rating of details.ratings; track rating.source) {
-                      <mat-card class="custom-card my-1 flex-align-start w-80">
-                        <mat-card-content>
-                          <small>{{rating.source}}</small>
-                        </mat-card-content>
-                      </mat-card>
-                    }
-                  </div>
-                  <div class="w-30 d-flex flex-align-end flex-column">
-                    @for (rating of details.ratings; track rating.value) {
-                      <mat-card class="custom-card my-1 flex-align-start w-80">
-                        <mat-card-content>
-                          <small>{{rating.value}}</small>
-                        </mat-card-content>
-                      </mat-card>
-                    }
-                  </div>
-                </div>
-                @if (details.awards && details.awards !== 'N/A') {
-                  <div class="w-100 flex-center">
-                    <mat-card class="custom-card my-1 text-wrap">
-                      <mat-card-content>
-                        <small>{{details.awards}}</small>
-                      </mat-card-content>
-                    </mat-card>
-                  </div>
-                }
-              }
-              @case ('More') {
-                <div class="w-100 flex-between">
-                  <div class="w-33 flex-start">
-                    <mat-card class="custom-card my-1 text-wrap">
-                      <mat-card-content>
-                        <small>{{details.released}}</small>
-                      </mat-card-content>
-                    </mat-card>
-                  </div>
-                  <div class="w-33 flex-center">
-                    <mat-card class="custom-card my-1 text-wrap">
-                      <mat-card-content>
-                        <small>{{details.type}}</small>
-                      </mat-card-content>
-                    </mat-card>
-                  </div>
-                  <div class="w-33 flex-end">
-                    <mat-card class="custom-card my-1 text-wrap">
-                      <mat-card-content>
-                        <small>{{details.runtime}}</small>
-                      </mat-card-content>
-                    </mat-card>
-                  </div>
-                </div>
-                <hr class="dropdown-divider w-75 mx-auto">
-                <div class="w-100 mt-2 flex-between flex-wrap">
-                  @for (language of (details.language | toArray); track language ) {
-                    <mat-card class="custom-card my-1">
-                      <mat-card-content>
-                        <small>{{language}}</small>
-                      </mat-card-content>
-                    </mat-card>
-                  }
-                </div>
-                <hr class="dropdown-divider w-75 mx-auto">
-                <div class="w-100 mt-2 flex-between flex-wrap">
-                  @for (country of (details.country | toArray); track country ) {
-                    <mat-card class="custom-card my-1">
-                      <mat-card-content>
-                        <small>{{country}}</small>
-                      </mat-card-content>
-                    </mat-card>
-                  }
-                </div>
-              }
+<shared-feature-spinner>
+  @if (details$) {
+    <ng-container *ngIf="details$ | async as details; else noResults">
+      <section class="details-container">
+        @if (details.poster) {
+          <div [bgImage]="details.poster | defaultImage"></div>
+        }
+        <div class="details text-black">
+          <h2 class="card-title">{{ (details.title | breakTitle)?.title || details.title }}</h2>
+          <h4 class="card-subtitle">{{ (details.title | breakTitle)?.subtitle }}</h4>
+          <div class="w-100 flex-start flex-wrap">
+            @for (genre of (details.genre | toArray); track genre) {
+              <small class="text-color-primary m-1">{{ genre }}</small>
             }
-          </mat-card-content>
-        </mat-card>
-      </div>
-    </section>
-  </ng-container>
-}
-<!--</app-spinner>-->
+          </div>
+          <div class="plot">
+            <small>{{ details.plot }}</small>
+          </div>
+          <mat-tab-group class="text-color-light-grey">
+            <mat-tab label="Cast" class="text-color-light-grey">
+              <h5 class="text-black">Actors:</h5>
+              <div class="w-100 flex-between flex-wrap">
+                @for (actor of (details.actors | toArray); track actor) {
+                  <mat-card class="custom-card my-1 flex-align-start w-48">
+                    <mat-card-content>
+                      <small>{{ actor }}</small>
+                    </mat-card-content>
+                  </mat-card>
+                }
+              </div>
+              <h5 class="text-black">Directed by:</h5>
+              <div class="w-100 flex-between flex-wrap">
+                <ng-container *ngFor="let director of (details.director | toArray)">
+                  <mat-card class="custom-card my-1 flex-align-start w-48">
+                    <mat-card-content>
+                      <small>{{ director }}</small>
+                    </mat-card-content>
+                  </mat-card>
+                </ng-container>
+              </div>
+            </mat-tab>
+
+            <mat-tab label="Acclaim">
+              <div class="w-100 flex-between">
+                <div class="w-70 d-flex flex-align-start flex-column">
+                  @for (rating of details.ratings; track rating.source) {
+                    <mat-card class="custom-card my-1 flex-align-start w-90">
+                      <mat-card-content>
+                        <small>{{ rating.source }}</small>
+                      </mat-card-content>
+                    </mat-card>
+                  }
+                </div>
+                <div class="w-30 d-flex flex-align-end flex-column">
+                  @for (rating of details.ratings; track rating.value) {
+                    <mat-card class="custom-card my-1 flex-align-start w-100">
+                      <mat-card-content>
+                        <small>{{ rating.value }}</small>
+                      </mat-card-content>
+                    </mat-card>
+                  }
+                </div>
+              </div>
+              @if (details.awards && details.awards !== 'N/A') {
+                <div class="w-100 flex-center">
+                  <mat-card class="custom-card my-1 text-wrap">
+                    <mat-card-content>
+                      <small>{{ details.awards }}</small>
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+              }
+            </mat-tab>
+
+            <mat-tab label="More">
+              <div class="w-100 flex-between">
+                <div class="w-33 flex-start">
+                  <mat-card class="custom-card my-1 text-wrap">
+                    <mat-card-content>
+                      <small>{{ details.released | date : 'YYYY' }}</small>
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+                <div class="w-33 flex-center">
+                  <mat-card class="custom-card my-1 text-wrap">
+                    <mat-card-content>
+                      <small>{{ details.type }}</small>
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+                <div class="w-33 flex-end">
+                  <mat-card class="custom-card my-1 text-wrap">
+                    <mat-card-content>
+                      <small>{{ details.runtime }}</small>
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+              </div>
+              <hr class="dropdown-divider w-75 mx-auto mt-2">
+              <div class="w-100 mt-2 flex-between flex-wrap">
+                @for (language of (details.language | toArray); track language) {
+                  <mat-card class="custom-card my-1">
+                    <mat-card-content>
+                      <small>{{ language }}</small>
+                    </mat-card-content>
+                  </mat-card>
+                }
+              </div>
+              <hr class="dropdown-divider w-75 mx-auto mt-2">
+              <div class="w-100 mt-2 flex-between flex-wrap">
+                @for (country of (details.country | toArray); track country) {
+                  <mat-card class="custom-card my-1">
+                    <mat-card-content>
+                      <small>{{ country }}</small>
+                    </mat-card-content>
+                  </mat-card>
+                }
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </section>
+    </ng-container>
+  }
+</shared-feature-spinner>
 
 <ng-template #noResults>
   <div class="w-100 h-100 flex-center">

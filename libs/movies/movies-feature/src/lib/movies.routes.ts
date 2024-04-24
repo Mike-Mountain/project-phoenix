@@ -7,8 +7,8 @@ export const movieRoutes: Routes = [
   {
     path: '', component: MoviesHomeComponent, children: [
       { path: 'results', component: MovieSearchResultsComponent },
-      { path: 'id/:imdbId/:query', component: MovieDetailsComponent },
-      { path: 'title/:query', component: MovieDetailsComponent }
+      { path: 'id', component: MovieDetailsComponent },
+      { path: 'title', component: MovieDetailsComponent }
     ]
   }
 ];

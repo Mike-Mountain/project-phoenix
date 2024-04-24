@@ -10,14 +10,16 @@ import {
 import {
   educationHistory,
   History,
-  hobbies, resumePersonalDetails, SideProject,
+  hobbies,
+  resumePersonalDetails,
+  SideProject,
   sideProjects,
   Skill,
   skills,
   workHistory
 } from '@project-phoenix/resume-data-access';
-import { PersonalDetailsComponent } from '@project-phoenix/shared/shared-ui';
-import { PersonalDetails } from '@project-phoenix/shared/shared-data-access';
+import { PersonalDetailsComponent, ThemeService } from '@project-phoenix/shared/shared-ui';
+import { PersonalDetails, Theme } from '@project-phoenix/shared/shared-data-access';
 import { ToolbarService } from '@project-phoenix/shared/shared-util';
 
 @Component({
@@ -36,8 +38,10 @@ export class ResumeContainerComponent implements OnInit {
   public sideProjects: SideProject[] = sideProjects;
 
   private toolbarService = inject(ToolbarService);
+  private themeService = inject(ThemeService);
 
   ngOnInit(): void {
+    this.themeService.updateTheme(Theme.DEFAULT);
     this.toolbarService.updateTitle('Curriculum Vitae');
   }
 }

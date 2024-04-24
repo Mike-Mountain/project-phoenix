@@ -1,0 +1,15 @@
+.featured-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 16.5rem;
+  margin: .75rem auto;
+}
+
+.featured-poster {
+  margin: .25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px ridge var(--primary);
+  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0, 0, 0, 0.1);
+}

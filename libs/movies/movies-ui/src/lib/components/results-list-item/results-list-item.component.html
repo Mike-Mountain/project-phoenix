@@ -1,5 +1,5 @@
 @if (searchResult) {
-  <a class="my-1" [routerLink]="'/details/id/' + searchResult.imdbID + '/' + searchQuery">
+  <a class="my-1" (click)="routeToDetails(searchResult)">
     <mat-card class="my-1 results-card">
       <mat-card-content>
         <div class="flex-between flex-align-start">

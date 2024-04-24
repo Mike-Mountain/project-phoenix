@@ -15,9 +15,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@project-phoenix/config": [
-        "config/index.ts"
-      ],
       "@project-phoenix/code-master/code-master-data-access": [
         "libs/code-master/code-master-data-access/src/index.ts"
       ],
@@ -30,6 +27,7 @@
       "@project-phoenix/code-master/code-master-util": [
         "libs/code-master/code-master-util/src/index.ts"
       ],
+      "@project-phoenix/config": ["config/index.ts"],
       "@project-phoenix/container/container-ui": [
         "libs/container/container-ui/src/index.ts"
       ],

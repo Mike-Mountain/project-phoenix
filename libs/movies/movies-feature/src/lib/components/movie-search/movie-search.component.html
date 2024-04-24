@@ -30,7 +30,11 @@
       Feelin' Lucky
     </button>
   </div>
-  <ng-container *ngIf="!isRouted">
-<!--    <app-featured></app-featured>-->
-  </ng-container>
+  @if (!isRouted) {
+    <shared-feature-spinner>
+      <movies-ui-featured
+        [movies]="featuredMovies$ | async"
+      ></movies-ui-featured>
+    </shared-feature-spinner>
+  }
 </section>

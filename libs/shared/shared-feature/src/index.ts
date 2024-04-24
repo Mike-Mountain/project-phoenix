@@ -1,1 +1,2 @@
-export * from './lib/shared-shared-feature/shared-shared-feature.component';
+export * from './lib/components/spinner/spinner.component';
+export * from './lib/services/loading/loading.service';

@@ -12,6 +12,7 @@ export class MovieDetailsService extends BaseHttpService<SearchResults> {
 
   public getDetails(imdbId: string): Observable<SearchResults> {
     const url = super.setMovieUrl('i', imdbId);
+    console.log(url);
     return super._get(url).pipe(
       map((details) => createSearchResults(details as unknown as ApiDetails)),
       catchError(err => {
