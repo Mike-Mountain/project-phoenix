@@ -29,7 +29,7 @@ export class DatabaseService<T> {
     return await store.getAll();
   }
 
-  public async post(storeName: string, value: any) {
+  public async post(storeName: string, value: T) {
     const store = await this.getObjectStore(storeName, 'readwrite');
     if (store) {
       // @ts-expect-error: Object is defined
@@ -39,7 +39,7 @@ export class DatabaseService<T> {
     }
   }
 
-  public async put(storeName: string, value: any) {
+  public async put(storeName: string, value: T) {
     const store = await this.getObjectStore(storeName, 'readwrite');
     if (store) {
       // @ts-expect-error: Object is defined
