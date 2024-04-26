@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { from, Observable, Observer, ReplaySubject, switchMap, take } from 'rxjs';
 import { openDB, IDBPDatabase } from 'idb';
 
 @Injectable({
@@ -7,86 +6,69 @@ import { openDB, IDBPDatabase } from 'idb';
 })
 export class DatabaseService<T> {
 
-  private db: ReplaySubject<IDBPDatabase> = new ReplaySubject<IDBPDatabase>(1);
-
   constructor() {
-    this.create();
+    this.createDb();
   }
 
-  async create() {
-    if (!window.indexedDB) {
-      this.db.complete();
+  public async createDb() {
+    const createStore = this.createObjectStore;
+    const db = await openDB('project_phoenix', 3, {
+      upgrade(db) {
+        createStore(db, 'test', {name: '', id: 0, done: false});
+      }
+    });
+  }
+
+  public async getOne(storeName: string, id: number) {
+    const store = await this.getObjectStore(storeName, 'readonly');
+    return await store.get(id);
+  }
+
+  public async getAll(storeName: string) {
+    const store = await this.getObjectStore(storeName, 'readonly');
+    return await store.getAll();
+  }
+
+  public async post(storeName: string, value: any) {
+    const store = await this.getObjectStore(storeName, 'readwrite');
+    if (store) {
+      // @ts-expect-error: Object is defined
+      return await store.add(value);
     } else {
-      const database = indexedDB.open('project_phoenix', 2);
-      database.onerror = (err) => {
-        this.db.error(err);
-        this.db.complete();
-      };
-
-      database.onupgradeneeded = (e: any) => {
-        const db = e.target.result;
-        const objectStore = db.createObjectStore('test', { autoIncrement: true, keyPath: 'id' });
-        objectStore.createIndex('id', 'id', { unique: true });
-        objectStore.createIndex('name', 'name', { unique: false });
-        objectStore.createIndex('done', 'done', { unique: false });
-      };
-
-      this.db.next(await openDB('project_phoenix'));
+      throw new Error('Store does not exist');
     }
   }
 
-  get(storeName: string, id: number): Observable<T> {
-    return this.db.pipe(
-      switchMap(db => {
-        if (!db) {
-          throw new Error('IndexDB not supported');
-        }
-        return from(db.get(storeName, id));
-      })
-    );
+  public async put(storeName: string, value: any) {
+    const store = await this.getObjectStore(storeName, 'readwrite');
+    if (store) {
+      // @ts-expect-error: Object is defined
+      return await store.put(value);
+    } else {
+      throw new Error('Store does not exist');
+    }
   }
 
-  post(storeName: string, value: T): Observable<IDBValidKey> {
-    return this.db.pipe(
-      switchMap(db => {
-        if (!db) {
-          throw new Error('IndexDB not supported');
-        }
-        return from(db.add(storeName, value));
-      })
-    );
+  public async delete(storeName: string, id: number) {
+    const store = await this.getObjectStore(storeName, 'readwrite');
+    if (store) {
+      // @ts-expect-error: Object is defined
+      return await store.delete(id);
+    } else {
+      throw new Error('Store does not exist');
+    }
   }
 
-  put(storeName: string, value: T, id: number): Observable<IDBValidKey> {
-    return this.db.pipe(
-      switchMap(db => {
-        if (!db) {
-          throw new Error('IndexDB not supported');
-        }
-        return from(db.put(storeName, value, id));
-      })
-    );
+  private async createObjectStore(db: IDBPDatabase, name: string, model: any) {
+    const store = db.createObjectStore(name, { autoIncrement: true, keyPath: 'id' });
+    Object.keys(model).forEach((key, idx) => {
+      store.createIndex(key, key, { unique: key === 'id' ? true : false });
+    });
   }
 
-  putInline(storeName: string, keyName: string, value: any): Observable<IDBValidKey> {
-    return this.db.pipe(
-      switchMap(db => {
-        if (!db) {
-          throw new Error('IndexDB not supported');
-        }
-        return from(db.put(storeName, { [keyName]: value }));
-      })
-    );
-  }
-
-  delete(storeName: string, id: number) {
-    return this.db.pipe(
-      switchMap(db => {
-        if (!db) {
-          throw new Error('IndexDB not supported');
-        }
-        return from(db.delete(storeName, id));
-      })
-    );
+  private async getObjectStore(storeName: string, mode: IDBTransactionMode) {
+    const db = await openDB('project_phoenix');
+    const transaction = db.transaction(storeName, mode);
+    return transaction.objectStore(storeName);
   }
 }
