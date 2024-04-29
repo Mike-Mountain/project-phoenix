@@ -1,0 +1,107 @@
+h4 {
+  margin: .3rem;
+}
+
+.flex-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.budget-list {
+  margin: .75rem;
+}
+
+.budget-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.single-budget {
+  margin: .75rem 0;
+  width: 100%;
+}
+
+.budget-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.financial-details {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.open-budget {
+  margin: .35rem auto;
+}
+
+.delete-budget {
+  color: rgba(var(--warnValues), 0.7);
+  margin: .75rem auto;
+}
+
+.edit-budget {
+  color: rgba(var(--primaryValues), 0.7);
+  margin: .75rem auto;
+}
+
+.add-budget {
+  position: absolute;
+  bottom: 1.3rem;
+  right: 1.3rem;
+}
+
+.touch-menu-trigger {
+  font-size: 16px;
+  margin: .2rem -1rem 0 .5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  &:active {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}
+
+.item-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.open-budget-menu {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sections {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.left-section {
+  width: 50%;
+  text-align: left;
+}
+
+.middle-section {
+  width: 50%;
+  text-align: center;
+}
+
+.right-section {
+  width: 33%;
+  text-align: right;
+}
+
+.center {
+  width: 100%;
+  height: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

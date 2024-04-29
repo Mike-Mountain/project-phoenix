@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { openDB, IDBPDatabase } from 'idb';
+import { IDBPDatabase, openDB } from 'idb';
+import { Budget, BudgetDuration } from '../../models/budget.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,14 @@ export class DatabaseService<T> {
     const createStore = this.createObjectStore;
     const db = await openDB('project_phoenix', 3, {
       upgrade(db) {
-        createStore(db, 'test', {name: '', id: 0, done: false});
+        createStore<Budget>(db, 'budgets', {
+          id: 0,
+          budgetType: '',
+          name: '',
+          duration: BudgetDuration.DAY,
+          expenses: [],
+          income: []
+        });
       }
     });
   }
@@ -59,10 +67,10 @@ export class DatabaseService<T> {
     }
   }
 
-  private async createObjectStore(db: IDBPDatabase, name: string, model: any) {
+  private async createObjectStore<T extends object>(db: IDBPDatabase, name: string, model: T) {
     const store = db.createObjectStore(name, { autoIncrement: true, keyPath: 'id' });
-    Object.keys(model).forEach((key, idx) => {
-      store.createIndex(key, key, { unique: key === 'id' ? true : false });
+    Object.keys(model).forEach((key) => {
+      store.createIndex(key, key, { unique: key === 'id' });
     });
   }
 

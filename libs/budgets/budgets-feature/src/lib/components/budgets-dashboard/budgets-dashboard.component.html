@@ -1,0 +1,98 @@
+<mat-card>
+  <mat-card-content>
+    <div class="flex-right">
+      <h2>My Budgets</h2>
+    </div>
+  </mat-card-content>
+</mat-card>
+<div class="budget-list">
+  <ng-container *ngIf="budgets$ | async as budgets">
+    @if (budgets.length > 0) {
+      <mat-accordion>
+        @if (personalBudgets.length > 0) {
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>Personal Budgets</mat-panel-title>
+            </mat-expansion-panel-header>
+            @for (budget of personalBudgets; track budget.id) {
+              <div class="budget-wrapper">
+                <button mat-raised-button color="primary" class="single-budget" (click)="openBudget(budget.id)">
+                  <h4>{{ budget.name }}</h4>
+                </button>
+                <mat-menu #budgetMenu="matMenu">
+                  <button mat-menu-item (click)="deleteBudget(budget.id)">Delete Budget</button>
+                  <button mat-menu-item (click)="openBudgetDialog(newBudget, budget)">Edit
+                    Budget
+                  </button>
+                </mat-menu>
+                <mat-icon class="touch-menu-trigger" [matMenuTriggerFor]="budgetMenu">
+                  more_vert
+                </mat-icon>
+              </div>
+            }
+          </mat-expansion-panel>
+        }
+
+        @if (householdBudgets.length > 0) {
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>HouseHold Budgets</mat-expansion-panel-header>
+            @for (budget of householdBudgets; track budget.id) {
+              <div class="budget-wrapper">
+                <button mat-raised-button color="accent" class="single-budget" (click)="openBudget(budget.id)">
+                  <h4>{{ budget.name }}</h4>
+                </button>
+                <mat-menu #budgetMenu="matMenu">
+                  <button mat-menu-item (click)="deleteBudget(budget.id)">Delete Budget</button>
+                  <button mat-menu-item (click)="openBudgetDialog(newBudget, budget)">Edit
+                    Budget
+                  </button>
+                </mat-menu>
+                <mat-icon class="touch-menu-trigger" [matMenuTriggerFor]="budgetMenu">
+                  more_vert
+                </mat-icon>
+              </div>
+            }
+          </mat-expansion-panel>
+        }
+
+
+        @if (businessBudgets.length > 0) {
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>Business Budgets</mat-expansion-panel-header>
+
+            @for (budget of businessBudgets; track budget.id) {
+              <div class="budget-wrapper">
+                <button mat-raised-button color="warn" class="single-budget" (click)="openBudget(budget.id)">
+                  <h4>{{ budget.name }}</h4>
+                </button>
+                <mat-menu #budgetMenu="matMenu">
+                  <button mat-menu-item (click)="deleteBudget(budget.id)">Delete Budget</button>
+                  <button mat-menu-item (click)="openBudgetDialog(newBudget, budget)">Edit
+                    Budget
+                  </button>
+                </mat-menu>
+                <mat-icon class="touch-menu-trigger" (click)="$event.stopPropagation()"
+                          [matMenuTriggerFor]="budgetMenu">more_vert
+                </mat-icon>
+              </div>
+            }
+          </mat-expansion-panel>
+        }
+      </mat-accordion>
+    } @else {
+      <div class="flex-center flex-column">
+        <h2 class="mb-2">You have no budgets.</h2>
+        <button mat-raised-button color="accent" (click)="addBudget(newBudget)">
+          Create a Budget
+        </button>
+      </div>
+    }
+  </ng-container>
+</div>
+<button mat-fab color="primary" class="add-budget" (click)="addBudget(newBudget)">
+  <mat-icon>add</mat-icon>
+</button>
+
+<ng-template #newBudget>
+  <budgets-feature-add-edit-budget [dialogRef]="dialogRef" [budget]="selectedBudget"></budgets-feature-add-edit-budget>
+</ng-template>
