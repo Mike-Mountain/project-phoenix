@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BudgetsUiComponent } from './budgets-ui.component';
+import { BudgetCardComponent } from './budget-card.component';
 
-describe('BudgetsUiComponent', () => {
-  let component: BudgetsUiComponent;
-  let fixture: ComponentFixture<BudgetsUiComponent>;
+describe('BudgetCardComponent', () => {
+  let component: BudgetCardComponent;
+  let fixture: ComponentFixture<BudgetCardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BudgetsUiComponent],
+      imports: [BudgetCardComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(BudgetsUiComponent);
+    fixture = TestBed.createComponent(BudgetCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

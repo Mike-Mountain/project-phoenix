@@ -24,7 +24,7 @@ export interface Budget {
   id: number;
   budgetType: string;
   duration: BudgetDuration;
-  expenses?: Array<string>;
-  income?: Array<string>;
+  expenses?: Array<Expense>;
+  income?: Array<Income>;
   name: string;
 }
