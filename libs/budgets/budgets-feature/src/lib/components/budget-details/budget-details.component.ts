@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { from, Observable, switchMap } from 'rxjs';
 import { Budget, DatabaseService, Expense, Income } from '@project-phoenix/shared/shared-data-access';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { AddEditBudgetItemComponent } from '@project-phoenix/budgets-ui';
+import { AddEditBudgetItemComponent, BudgetCardComponent } from '@project-phoenix/budgets-ui';
 import { MatIcon } from '@angular/material/icon';
 import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
 import { BudgetService } from '../../services/budget/budget.service';
@@ -14,7 +14,7 @@ import { MatMiniFabButton } from '@angular/material/button';
 @Component({
   selector: 'budgets-feature-budget-details',
   standalone: true,
-  imports: [CommonModule, MatCard, MatCardContent, AddEditBudgetItemComponent, MatIcon, MatMenu, MatMenuTrigger, MatMiniFabButton],
+  imports: [CommonModule, MatCard, MatCardContent, AddEditBudgetItemComponent, MatIcon, MatMenu, MatMenuTrigger, MatMiniFabButton, BudgetCardComponent],
   templateUrl: './budget-details.component.html',
   styleUrl: './budget-details.component.scss'
 })

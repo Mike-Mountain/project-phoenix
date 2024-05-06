@@ -8,80 +8,23 @@
   </mat-card>
 
   <div class="single-budget-details">
-    <mat-card>
-      <mat-card-content>
-        <div class="card-top">
-          <h4>Income</h4>
-          <button mat-mini-fab color="primary" (click)="openDialog(addEditItem, 'income')">
-            <mat-icon>add</mat-icon>
-          </button>
-        </div>
-        <div class="container item-list">
-          @if (budget.income?.length) {
-            @for (income of budget.income; track income.id) {
-              <mat-menu #incomeMenu="matMenu">
-                <button mat-menu-item (click)="delete('income', income, budget)">Delete Income</button>
-                <button mat-menu-item (click)="openDialog(addEditItem, 'income', income)">Edit Income</button>
-              </mat-menu>
-              <div class="budget-item-wrapper">
-                <button class="budget-item item-button" matRipple matRippleColor="rgba(46, 134, 171, 0.4)"
-                        (click)="openDialog(itemDetail, 'income', income)">
-                  <small class="income-name">{{ income.name }}</small>
-                  <span class="right-side">
-                    <small class="income-amount">{{ income.amount | currency:'ZAR':'symbol-narrow' }}</small>
-                  </span>
-                </button>
-                <mat-icon class="touch-menu-trigger" matRipple [matMenuTriggerFor]="incomeMenu">more_vert</mat-icon>
-              </div>
-            }
-          } @else {
-            <small class="no-items-text">Please add an income stream to get started</small>
-          }
-          <div class="budget-item total">
-            <small>Total:</small>
-            <small class="margin-right">{{ incomeTotal() | currency:'ZAR':'symbol-narrow' }}</small>
-          </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
+    <!--// Income -->
+    <budgets-ui-budget-card
+      [budgetItems]="budget.income || []"
+      [itemType]="'Income'"
+      [totalAmount]="incomeTotal"
+      (addEdit)="openDialog($event.type === 'detail' ? itemDetail : addEditItem, 'income', $event.data)"
+      (deleteItem)="delete('income', $event, budget)"
+    ></budgets-ui-budget-card>
 
-    <mat-card>
-      <mat-card-content>
-        <div class="card-top">
-          <h4>Expenses</h4>
-          <button mat-mini-fab color="accent" (click)="openDialog(addEditItem, 'expense')">
-            <mat-icon>add</mat-icon>
-          </button>
-        </div>
-        <div class="container item-list">
-          @if (budget.expenses?.length) {
-            @for (expense of budget.expenses; track expense.id) {
-              <mat-menu #expenseMenu="matMenu">
-                <button mat-menu-item (click)="delete('expenses', expense, budget)">Delete Expense</button>
-                <button mat-menu-item (click)="openDialog(addEditItem, 'expense', expense)">Edit Income</button>
-              </mat-menu>
-              <div class="budget-item-wrapper">
-                <button class="budget-item item-button" matRipple matRippleColor="rgba(114, 157, 57, 0.4)"
-                        (click)="openDialog(itemDetail, 'expense', expense)">
-                  <small class="income-name">{{ expense.name }}</small>
-                  <span class="right-side">
-                    <small class="income-amount">{{ expense.amount | currency:'ZAR':'symbol-narrow' }}</small>
-                  </span>
-                </button>
-                <mat-icon class="touch-menu-trigger" matRipple [matMenuTriggerFor]="expenseMenu">more_vert
-                </mat-icon>
-              </div>
-            }
-          } @else {
-            <small class="no-items-text">Please add an expense to get started</small>
-          }
-          <div class="budget-item other-total">
-            <small>Total:</small>
-            <small class="margin-right">{{ expenseTotal() | currency:'ZAR':'symbol-narrow' }}</small>
-          </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
+    <!--// Expenses -->
+    <budgets-ui-budget-card
+      [budgetItems]="budget.expenses || []"
+      [itemType]="'Expense'"
+      [totalAmount]="expenseTotal"
+      (addEdit)="openDialog(addEditItem, 'expense', $event.data)"
+      (deleteItem)="delete('expenses', $event, budget)"
+    ></budgets-ui-budget-card>
 
     <div class="amount-after-budget">
       <h5>Amount left after budget:</h5>
