@@ -19,6 +19,9 @@ export class ThemeService {
       case classList.contains(Theme.MOVIES):
         this.document.body.classList.remove(Theme.MOVIES);
         break;
+      case classList.contains(Theme.BUDGETS):
+        this.document.body.classList.remove(Theme.BUDGETS);
+        break;
       default:
         this.document.body.classList.remove(Theme.DEFAULT);
         break;

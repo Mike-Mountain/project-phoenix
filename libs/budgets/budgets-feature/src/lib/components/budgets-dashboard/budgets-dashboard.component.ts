@@ -57,7 +57,7 @@ export class BudgetsDashboardComponent {
   public dialogRef: MatDialogRef<any> | undefined;
 
   constructor() {
-    this.themeService.updateTheme(Theme.DEFAULT);
+    this.themeService.updateTheme(Theme.BUDGETS);
     this.budgets$ = from(this.dbService.getAll('budgets')).pipe(
       tap(budgets => {
         this.personalBudgets = budgets.filter(budget => budget.budgetType === 'Personal');
