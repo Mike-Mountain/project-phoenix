@@ -1,7 +1,7 @@
 <mat-card class="my-3">
   <mat-card-content>
     <div class="card-top">
-      <h4>{{itemType}}</h4>
+      <h4>{{ itemType }}</h4>
       <button mat-mini-fab color="accent" (click)="openDialog('add')">
         <mat-icon>add</mat-icon>
       </button>
@@ -10,8 +10,8 @@
       @if (budgetItems.length) {
         @for (item of budgetItems; track item.id) {
           <mat-menu #budgetItemMenu="matMenu">
-            <button mat-menu-item (click)="delete(item)">Delete {{itemType}}</button>
-            <button mat-menu-item (click)="openDialog('edit', item)">Edit {{itemType}}</button>
+            <button mat-menu-item (click)="delete(item)">Delete {{ itemType }}</button>
+            <button mat-menu-item (click)="openDialog('edit', item)">Edit {{ itemType }}</button>
           </mat-menu>
           <div class="budget-item-wrapper">
             <button class="budget-item item-button" matRipple matRippleColor="rgba(46, 134, 171, 0.4)"
@@ -25,11 +25,13 @@
           </div>
         }
       } @else {
-        <small class="no-items-text mt-2">Please add an {{itemType}} to get started</small>
+        <small class="no-items-text mt-2">Please add an {{ itemType }} to get started</small>
       }
       <div class="budget-item total">
         <small>Total:</small>
-        <small class="margin-right">{{ totalAmount() | currency:'ZAR':'symbol-narrow' }}</small>
+        @if (totalAmount !== null) {
+          <small class="ml-auto">{{ totalAmount | currency:'ZAR':'symbol-narrow' }}</small>
+        }
       </div>
     </div>
   </mat-card-content>

@@ -12,7 +12,7 @@
     <budgets-ui-budget-card
       [budgetItems]="budget.income || []"
       [itemType]="'Income'"
-      [totalAmount]="incomeTotal"
+      [totalAmount]="incomeTotal$ | async"
       (addEdit)="openDialog($event.type === 'detail' ? itemDetail : addEditItem, 'income', $event.data)"
       (deleteItem)="delete('income', $event, budget)"
     ></budgets-ui-budget-card>
@@ -21,41 +21,48 @@
     <budgets-ui-budget-card
       [budgetItems]="budget.expenses || []"
       [itemType]="'Expense'"
-      [totalAmount]="expenseTotal"
+      [totalAmount]="expenseTotal$ | async"
       (addEdit)="openDialog(addEditItem, 'expense', $event.data)"
       (deleteItem)="delete('expenses', $event, budget)"
     ></budgets-ui-budget-card>
 
     <div class="amount-after-budget">
       <h5>Amount left after budget:</h5>
-      <h3 [class.balance-positive]="isBalancePositive" [class.balance-negative]="!isBalancePositive">
-        {{ totalBudgetRemaining | currency:'ZAR':'symbol-narrow' }}
+      <h3 [class]="(totalBudgetRemaining$ | async)! > 0 ? 'balance-positive' : 'balance-negative'" >
+        {{ totalBudgetRemaining$ | async | currency:'ZAR':'symbol-narrow' }}
       </h3>
     </div>
 
     <div class="back">
-      <button app-button color="primary" size="lg" (click)="goBack()">Go Back</button>
+      <button mat-stroked-button color="warn" (click)="goBack()">Go Back</button>
     </div>
   </div>
+
+
+  <ng-template #itemDetail>
+    @if (selectedItem) {
+      <section class="item-details">
+        <h4>{{ selectedItem.name }}</h4>
+        <small>{{ selectedItem.amount | currency:'ZAR':'symbol-narrow' }}</small>
+        <hr class="app-divider">
+        <!--<div class="details">-->
+        <!--<small *ngIf="selectedItem.type" class="item">Type: {{selectedItem.type}}</small>-->
+        <!--<small *ngIf="selectedItem.categoryName" class="item">Category: {{selectedItem.categoryName}}</small>-->
+        <!--<small *ngIf="selectedItem.dueDate" class="item">Due by: {{selectedItem.dueDate.toDate() | date}}</small>-->
+        <!--</div>-->
+      </section>
+    } @else {
+      <h4 class="text-center">Please select an item to view</h4>
+    }
+  </ng-template>
+
+  <ng-template #addEditItem>
+    <budgets-ui-add-edit-budget-item
+      [budgetId]="(selectedBudget$ | async)?.id"
+      [dialogRef]="dialogRef"
+      [item]="selectedItem"
+      [type]="selectedItemType"
+      (createItem)="createBudgetItem($event, budget)"
+    ></budgets-ui-add-edit-budget-item>
+  </ng-template>
 </ng-container>
-
-<ng-template #itemDetail>
-  @if (selectedItem) {
-    <section class="item-details">
-      <h4>{{ selectedItem.name }}</h4>
-      <small>{{ selectedItem.amount | currency:'ZAR':'symbol-narrow' }}</small>
-      <hr class="app-divider">
-      <!--<div class="details">-->
-      <!--<small *ngIf="selectedItem.type" class="item">Type: {{selectedItem.type}}</small>-->
-      <!--<small *ngIf="selectedItem.categoryName" class="item">Category: {{selectedItem.categoryName}}</small>-->
-      <!--<small *ngIf="selectedItem.dueDate" class="item">Due by: {{selectedItem.dueDate.toDate() | date}}</small>-->
-      <!--</div>-->
-    </section>
-  } @else {
-    <h4 class="text-center">Please select an item to view</h4>
-  }
-</ng-template>
-
-<ng-template #addEditItem>
-  <budgets-ui-add-edit-budget-item></budgets-ui-add-edit-budget-item>
-</ng-template>

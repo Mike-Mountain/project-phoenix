@@ -37,7 +37,7 @@ export class AddEditBudgetComponent {
   public addUpdateBudget() {
     if (!this.budgetForm.hasError('required')) {
       this.dbService.put('budgets', this.budgetForm.value).then((id) => {
-        this.router.navigateByUrl(`/details/${id}`);
+        this.router.navigateByUrl(`/budgets//details/${id}`);
         this.closeDialog();
       });
     }

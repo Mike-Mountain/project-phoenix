@@ -2,19 +2,19 @@ import { Component, inject, TemplateRef } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { MatCard, MatCardContent } from '@angular/material/card';
 import { ActivatedRoute } from '@angular/router';
-import { from, Observable, switchMap } from 'rxjs';
-import { Budget, DatabaseService, Expense, Income } from '@project-phoenix/shared/shared-data-access';
+import { Observable } from 'rxjs';
+import { Budget, Expense, Income } from '@project-phoenix/shared/shared-data-access';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AddEditBudgetItemComponent, BudgetCardComponent } from '@project-phoenix/budgets-ui';
 import { MatIcon } from '@angular/material/icon';
 import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
 import { BudgetService } from '../../services/budget/budget.service';
-import { MatMiniFabButton } from '@angular/material/button';
+import { MatButton, MatMiniFabButton } from '@angular/material/button';
 
 @Component({
   selector: 'budgets-feature-budget-details',
   standalone: true,
-  imports: [CommonModule, MatCard, MatCardContent, AddEditBudgetItemComponent, MatIcon, MatMenu, MatMenuTrigger, MatMiniFabButton, BudgetCardComponent],
+  imports: [CommonModule, MatCard, MatCardContent, AddEditBudgetItemComponent, MatIcon, MatMenu, MatMenuTrigger, MatMiniFabButton, BudgetCardComponent, MatButton],
   templateUrl: './budget-details.component.html',
   styleUrl: './budget-details.component.scss'
 })
@@ -25,31 +25,33 @@ export class BudgetDetailsComponent {
   private location = inject(Location);
 
   public selectedItem: (Income | Expense) | undefined;
-  public selectedItemType: string | undefined;
+  public selectedItemType: 'income' | 'expense' | undefined;
   public dialogRef: MatDialogRef<any> | undefined;
 
-  public expenseTotal = this.budgetService.expenseTotal;
-  public incomeTotal = this.budgetService.incomeTotal;
-
-  public totalBudgetRemaining = 0;
+  public incomeTotal$ = this.budgetService.getIncomeTotal();
+  public expenseTotal$ = this.budgetService.getExpenseTotal();
+  public totalBudgetRemaining$ = this.budgetService.getTotalRemaining();
   public isBalancePositive = false;
 
   public selectedBudget$: Observable<Budget> = this.budgetService.getSelectedBudget(this.route.params);
 
   public openDialog(template: TemplateRef<any>, type: 'income' | 'expense', data?: Expense | Income) {
     if (data) {
-      this.selectedItemType = type;
       this.selectedItem = data;
     }
+    this.selectedItemType = type;
     this.dialogRef = this.dialog.open(template, {
       width: '95%'
     });
   }
 
   public delete(type: 'income' | 'expenses', value: Income | Expense, budget: Budget) {
-    this.budgetService.removeIncomeOrExpense(type, value, budget).subscribe(() => {
-      // Reset income list
-    })
+    this.budgetService.removeIncomeOrExpense(type, value, budget).subscribe(data => console.log(data));
+  }
+
+  public createBudgetItem(item: Income | Expense, budget: Budget) {
+    const itemType = 'type' in item ? 'income' : 'expenses';
+    this.budgetService.addIncomeOrExpense(itemType, item, budget);
   }
 
   public goBack() {
