@@ -79,6 +79,7 @@
       "code-master/Routes": [
         "apps/code-master/src/app/remote-entry/entry.routes.ts"
       ],
+      "gallery/Routes": ["apps/gallery/src/app/remote-entry/entry.routes.ts"],
       "movies/Routes": ["apps/movies/src/app/remote-entry/entry.routes.ts"],
       "resume/Routes": ["apps/resume/src/app/remote-entry/entry.routes.ts"]
     }

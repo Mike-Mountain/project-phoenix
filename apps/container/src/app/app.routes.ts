@@ -3,6 +3,10 @@ import { HomeComponent } from '@project-phoenix/container/container-ui';
 
 export const appRoutes: Route[] = [
   {
+    path: 'gallery',
+    loadChildren: () => import('gallery/Routes').then((m) => m.remoteRoutes),
+  },
+  {
     path: 'budgets',
     loadChildren: () => import('budgets/Routes').then((m) => m.remoteRoutes),
   },
