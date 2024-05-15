@@ -1,0 +1,53 @@
+<div class="gallery-dashboard">
+  <div class="sidebar">
+    <button class="sidebar-item" [class.active]="selectedGallery === 'blender'" (click)="setActiveGallery('blender')">
+      <img src="assets/images/gallery/logos/blender.png" alt="blender">
+    </button>
+    <button class="sidebar-item" [class.active]="selectedGallery === 'gaming'" (click)="setActiveGallery('gaming')">
+      <img src="assets/images/gallery/logos/gaming.png" alt="gaming">
+    </button>
+  </div>
+  <section class="content">
+    <div class="slider">
+      @for (item of featuredGallery$ | async; track item.name) {
+        <a class="slide-item" [routerLink]="'/details/' + item.id">
+          <shared-ui-image
+            class="featured-image"
+            [assetPath]="'assets/images/gallery/'"
+            [imagePath]="item.images[0].path"
+          ></shared-ui-image>
+          <div class="flex flex-column flex-between flex-align-start h-100">
+            <mat-chip>{{ item.categories[0] }}</mat-chip>
+            <div class="flex flex-column flex-align-start text-white text-shadow">
+              <h2 class="m-0 position-relative">{{ item.name }}</h2>
+              <p class="m-0  position-relative">{{ item.tech[0] }}</p>
+            </div>
+          </div>
+        </a>
+      }
+    </div>
+    <div class="custom-tab-group">
+      @for (category of categories; track category.path) {
+        <button class="custom-tab" (click)="setSelectedCategory(category.name)">
+          <img [src]="'assets/images/gallery/tabs/' + category.path + '.jpg'" alt="" class="tab-img" height="48"
+               width="48">
+          <p class="ml-1">{{ category.name }}</p>
+        </button>
+      }
+    </div>
+    <div class="custom-tab-content">
+      <h1>{{ selectedCategory }}</h1>
+      <div class="image-gallery">
+        @for (image of gallery$ | async; track image.name) {
+          <a [routerLink]="'/details/' + image.id">
+            <shared-ui-image
+              [assetPath]="'assets/images/gallery/'"
+              [imageClass]="'gallery-image'"
+              [imagePath]="image.images[0].path"
+            ></shared-ui-image>
+          </a>
+        }
+      </div>
+    </div>
+  </section>
+</div>

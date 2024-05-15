@@ -1,0 +1,46 @@
+<section class="image-details">
+  <ng-container *ngIf="imageDetails$ | async as imageDetails">
+    <h1 class="mb-2 text-center">{{ imageDetails.name }}</h1>
+    <div class="flex flex-column flex-center">
+      @for (image of imageDetails.images; track image.path) {
+        <div class="mb-2">
+          <button class="invisible-button" (click)="openSelectedImage(image.path, imageDialog)">
+            <shared-ui-image
+              [imageClass]="'gallery-image'"
+              [assetPath]="'assets/images/gallery/'"
+              [imagePath]="image.path"
+            ></shared-ui-image>
+          </button>
+          @if (imageDetails.images.length > 1) {
+            <h3 class="text-center text-capitalize">{{ image.name }}</h3>
+          }
+        </div>
+      }
+    </div>
+    <div class="details">
+      <p class="text-center w-80 mx-auto">{{ imageDetails.description }}</p>
+      <div class="flex-center my-3">
+        @for (tech of imageDetails.tech; track tech) {
+          <mat-chip class="mx-1">{{ tech }}</mat-chip>
+        }
+      </div>
+      <div class="flex-center my-3">
+        @for (category of imageDetails.categories; track category) {
+          <mat-chip class="mx-1">{{ category }}</mat-chip>
+        }
+      </div>
+      <p class="text-center">Created in {{ imageDetails.datePosted | date : 'yyyy' }}</p>
+      <div class="mt-3 w-100 flex-center">
+        <button (click)="goBack()" class="w-85" color="accent" mat-stroked-button>Back</button>
+      </div>
+    </div>
+
+    <ng-template #imageDialog>
+      <shared-ui-image
+        [imageClass]="'gallery-image'"
+        [assetPath]="'assets/images/gallery/'"
+        [imagePath]="selectedImage"
+      ></shared-ui-image>
+    </ng-template>
+  </ng-container>
+</section>

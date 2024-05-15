@@ -44,6 +44,19 @@
       "@project-phoenix/container/container-ui": [
         "libs/container/container-ui/src/index.ts"
       ],
+      "@project-phoenix/gallery-data-access": [
+        "libs/gallery/gallery-data-access/src/index.ts"
+      ],
+      "@project-phoenix/gallery-feature": [
+        "libs/gallery/gallery-feature/src/index.ts"
+      ],
+      "@project-phoenix/gallery-ui": ["libs/gallery/gallery-ui/src/index.ts"],
+      "@project-phoenix/gallery-util": [
+        "libs/gallery/gallery-util/src/index.ts"
+      ],
+      "@project-phoenix/gallery/Routing": [
+        "libs/gallery/gallery-feature/src/lib/gallery.routes.ts"
+      ],
       "@project-phoenix/movies-data-access": [
         "libs/movies/movies-data-access/src/index.ts"
       ],

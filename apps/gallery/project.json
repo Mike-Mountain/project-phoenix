@@ -16,7 +16,15 @@
         "polyfills": ["zone.js"],
         "tsConfig": "apps/gallery/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/gallery/src/favicon.ico", "apps/gallery/src/assets"],
+        "assets": [
+          "apps/gallery/src/favicon.ico",
+          "apps/gallery/src/assets",
+          {
+            "glob": "**/*",
+            "input": "libs/container/assets",
+            "output": "/assets/"
+          }
+        ],
         "styles": ["apps/gallery/src/styles.scss"],
         "scripts": [],
         "customWebpackConfig": {

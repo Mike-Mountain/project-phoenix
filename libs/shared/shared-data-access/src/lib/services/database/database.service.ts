@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IDBPDatabase, openDB } from 'idb';
 import { Budget, BudgetDuration } from '../../models/budget.model';
+import { GalleryImage } from '@project-phoenix/gallery-data-access';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,16 @@ export class DatabaseService<T> {
           expenses: [],
           income: []
         });
+        createStore<GalleryImage>(db, 'gallery', {
+          id: 0,
+          name: '',
+          images: [],
+          tech: [],
+          description: '',
+          datePosted: new Date(),
+          categories: [],
+          isFeatured: false
+        })
       }
     });
   }

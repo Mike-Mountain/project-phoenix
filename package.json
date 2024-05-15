@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "create-data-access-lib": "nx g @nx/angular:lib budgets-data-access --tags=scope:budgets,type:data-access --prefix=budgets-data-access --directory=libs/budgets/budgets-data-access --standalone",
-    "create-feature-lib": "nx g @nx/angular:lib budgets-feature --tags=scope:budgets,type:feature --prefix=budgets-feature --directory=libs/budgets/budgets-feature --standalone",
-    "create-ui-lib": "nx g @nx/angular:lib budgets-ui --tags=scope:budgets,type:ui --prefix=budgets-ui --directory=libs/budgets/budgets-ui --standalone",
-    "create-util-lib": "nx g @nx/angular:lib budgets-util --tags=scope:budgets,type:util --prefix=budgets-util --directory=libs/budgets/budgets-util --standalone",
-    "create-scoped-libs": "npm run create-data-access-lib --scope=budgets && npm run create-feature-lib --scope=budgets && npm run create-ui-lib --scope=budgets && npm run create-util-lib --scope=budgets --directory=libs/budgets/ --standalone"
+    "create-data-access-lib": "nx g @nx/angular:lib gallery-data-access --tags=scope:gallery,type:data-access --prefix=gallery-data-access --directory=libs/gallery/gallery-data-access --standalone",
+    "create-feature-lib": "nx g @nx/angular:lib gallery-feature --tags=scope:gallery,type:feature --prefix=gallery-feature --directory=libs/gallery/gallery-feature --standalone",
+    "create-ui-lib": "nx g @nx/angular:lib gallery-ui --tags=scope:gallery,type:ui --prefix=gallery-ui --directory=libs/gallery/gallery-ui --standalone",
+    "create-util-lib": "nx g @nx/angular:lib gallery-util --tags=scope:gallery,type:util --prefix=gallery-util --directory=libs/gallery/gallery-util --standalone",
+    "create-scoped-libs": "npm run create-data-access-lib --scope=gallery && npm run create-feature-lib --scope=gallery && npm run create-ui-lib --scope=gallery && npm run create-util-lib --scope=gallery --directory=libs/gallery/ --standalone"
   },
   "private": true,
   "dependencies": {

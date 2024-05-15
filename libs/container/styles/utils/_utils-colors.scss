@@ -111,6 +111,10 @@
   color: white !important;
 }
 
+.text-shadow {
+  text-shadow: black 1px 0 10px;
+}
+
 .text-color-dark-blue {
   color: map-get(default-primary.$default-primary, A100);
 }
