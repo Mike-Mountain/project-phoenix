@@ -6,6 +6,9 @@
     <button class="sidebar-item" [class.active]="selectedGallery === 'gaming'" (click)="setActiveGallery('gaming')">
       <img src="assets/images/gallery/logos/gaming.png" alt="gaming">
     </button>
+    <button class="sidebar-item" [class.active]="selectedGallery === 'knitting'" (click)="setActiveGallery('knitting')">
+      <img src="assets/images/gallery/logos/knitting.png" alt="gaming">
+    </button>
   </div>
   <section class="content">
     <div class="slider">
@@ -13,7 +16,7 @@
         <a class="slide-item" [routerLink]="'/details/' + item.id">
           <shared-ui-image
             class="featured-image"
-            [assetPath]="'assets/images/gallery/'"
+            [assetPath]="'assets/images/gallery/' + selectedGallery + '/'"
             [imagePath]="item.images[0].path"
           ></shared-ui-image>
           <div class="flex flex-column flex-between flex-align-start h-100">
@@ -29,7 +32,7 @@
     <div class="custom-tab-group">
       @for (category of categories; track category.path) {
         <button class="custom-tab" (click)="setSelectedCategory(category.name)">
-          <img [src]="'assets/images/gallery/tabs/' + category.path + '.jpg'" alt="" class="tab-img" height="48"
+          <img [src]="'assets/images/gallery/' + selectedGallery + '/tabs/' + category.path + '.jpg'" alt="" class="tab-img" height="48"
                width="48">
           <p class="ml-1">{{ category.name }}</p>
         </button>
@@ -41,7 +44,7 @@
         @for (image of gallery$ | async; track image.name) {
           <a [routerLink]="'/details/' + image.id">
             <shared-ui-image
-              [assetPath]="'assets/images/gallery/'"
+              [assetPath]="'assets/images/gallery/' + selectedGallery + '/'"
               [imageClass]="'gallery-image'"
               [imagePath]="image.images[0].path"
             ></shared-ui-image>

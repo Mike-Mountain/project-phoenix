@@ -12,7 +12,13 @@ export const blenderCategories = [
 
 export const gamingCategories = [
   {name: 'All Images', path: 'featured'},
-  {name: 'Spider-Man', path: 'archviz'},
-  {name: 'Fallen Order', path: 'landscape'},
-  {name: 'God of War', path: 'nature'},
+  {name: 'Spider-Man', path: 'spider_man'},
+  {name: 'Fallen Order', path: 'fallen_order'},
+  {name: 'Horizon: Zero Dawn', path: 'horizon'},
+  {name: 'Lord of the Rings: Shadow of War', path: 'shadow_of_war'},
 ];
+
+export const knittingCategories = [
+  {name: 'All Images', path: 'featured'},
+  {name: 'Beanies', path: 'beanies'}
+]

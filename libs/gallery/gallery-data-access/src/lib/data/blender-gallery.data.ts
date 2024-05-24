@@ -1,6 +1,6 @@
 import { GalleryImage } from '../models/gallery.model';
 
-export const featuredGallery: GalleryImage[] = [
+export const blenderGalleryData: GalleryImage[] = [
   {
     id: 1,
     isFeatured: false,

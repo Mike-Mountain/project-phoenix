@@ -1,6 +1,7 @@
 <ng-container *ngIf="details">
   <div [class]="isHome ? 'home-grid-container' : 'grid-container'">
-    <img [src]="isHome ? 'assets/images/profile.jpg' : 'assets/images/profile_pic.jpg'" [class]="isHome ? 'photo-lg' : 'photo'" [class.mx-auto]="isHome" alt="">
+<!--    <img [src]="isHome ? 'assets/images/profile_2.png' : 'assets/images/profile_3.png'" [class]="isHome ? 'photo-lg' : 'photo'" [class.mx-auto]="isHome" alt="">-->
+    <div [class]="isHome ? 'photo-lg' : 'photo'" [class.mx-auto]="isHome" alt=""></div>
     <div class="introduction w-95">
       <h1 [class.text-center]="isHome">{{ details.name }}</h1>
       <div class="mb-3">

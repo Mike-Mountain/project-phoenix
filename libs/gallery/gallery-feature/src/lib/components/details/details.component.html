@@ -7,7 +7,7 @@
           <button class="invisible-button" (click)="openSelectedImage(image.path, imageDialog)">
             <shared-ui-image
               [imageClass]="'gallery-image'"
-              [assetPath]="'assets/images/gallery/'"
+              [assetPath]="'assets/images/gallery/' + selectedGallery + '/'"
               [imagePath]="image.path"
             ></shared-ui-image>
           </button>

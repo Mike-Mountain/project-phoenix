@@ -1,9 +1,11 @@
 import { inject, Injectable } from '@angular/core';
-import { featuredGallery } from '../../data/gallery-images.data';
+import { blenderGalleryData } from '../../data/blender-gallery.data';
 import { DatabaseService } from '@project-phoenix/shared/shared-data-access';
-import { BehaviorSubject, filter, from, map, Observable, switchMap } from 'rxjs';
+import { BehaviorSubject, filter, from, map, Observable, of, switchMap } from 'rxjs';
 import { GalleryImage } from '../../models/gallery.model';
 import { Params } from '@angular/router';
+import { gamingGalleryData } from '../../data/gaming-gallery.data';
+import { knittingGalleryData } from '../../data/knitting-gallery.data';
 
 @Injectable({
   providedIn: 'root'
@@ -11,19 +13,35 @@ import { Params } from '@angular/router';
 export class GalleryService {
   private databaseService = inject(DatabaseService);
 
-  private localGallery = featuredGallery;
+  private blenderGallery = blenderGalleryData;
+  private gamingGallery = gamingGalleryData;
+  private knittingGallery = knittingGalleryData;
+
   private gallerySrc = new BehaviorSubject<GalleryImage[]>([]);
-  public gallery$ = this.gallerySrc.asObservable();
+
+  public selectedGallery = 'blender';
 
   constructor() {
     this.databaseService.getAll('gallery').then(data => {
       if (data.length === 0) {
-        this.gallerySrc.next(this.localGallery);
-        this.localGallery.forEach(item => this.databaseService.post('gallery', item));
+        const images = this.blenderGallery.concat(this.gamingGallery).concat(this.knittingGallery);
+        images.forEach(item => this.databaseService.post('gallery', item));
       } else {
         this.gallerySrc.next(data);
       }
     });
+  }
+
+  public changeGallery(gallery: string) {
+    return from(this.databaseService.getAll('gallery')).pipe(
+      map((images: GalleryImage[]) => {
+        const selectedGallery = images.filter(image => image.tech.includes(gallery));
+        this.gallerySrc.next(selectedGallery);
+      }),
+      switchMap(() => {
+        return this.gallerySrc.asObservable();
+      })
+    );
   }
 
   public getFeaturedImages(tech: string) {
@@ -33,7 +51,7 @@ export class GalleryService {
     );
   }
 
-  public getGallery(tech: string, category?: string) {
+  public getGalleryImages(tech: string, category?: string) {
     if (category) {
       return this.gallerySrc.asObservable().pipe(
         map(images => images.filter(image => image.tech.includes(tech))),
@@ -41,7 +59,9 @@ export class GalleryService {
       );
     } else {
       return this.gallerySrc.asObservable().pipe(
-        map(images => images.filter(image => image.tech.includes(tech)))
+        map(images => {
+          return images.filter(image => image.tech.includes(tech));
+        })
       );
     }
   }

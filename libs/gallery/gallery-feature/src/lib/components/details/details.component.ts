@@ -2,7 +2,7 @@ import { Component, inject, TemplateRef } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { GalleryImage, GalleryImagePath, GalleryService } from '@project-phoenix/gallery-data-access';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { MatChip } from '@angular/material/chips';
 import { ImageComponent } from '@project-phoenix/shared/shared-ui';
 import { MatButton } from '@angular/material/button';
@@ -21,8 +21,11 @@ export class DetailsComponent {
   private location = inject(Location);
   private dialog = inject(MatDialog);
 
-  public imageDetails$: Observable<GalleryImage> = this.galleryService.getSelectedImage(this.route.params);
   public selectedImage = '';
+  public selectedGallery = '';
+  public imageDetails$: Observable<GalleryImage> = this.galleryService.getSelectedImage(this.route.params).pipe(
+    tap(image => this.selectedGallery = image.tech[0])
+  );
 
   openSelectedImage(selectedImage: string, template: TemplateRef<any>) {
     this.selectedImage = selectedImage;
