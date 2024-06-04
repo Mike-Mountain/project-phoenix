@@ -17,6 +17,7 @@ import { AddEditBudgetComponent } from '../add-edit-budget/add-edit-budget.compo
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
 import { Router } from '@angular/router';
 import { ThemeService } from '@project-phoenix/shared/shared-ui';
+import { BudgetService } from '../../services/budget/budget.service';
 
 @Component({
   selector: 'budgets-feature-budgets-dashboard',
@@ -43,12 +44,12 @@ import { ThemeService } from '@project-phoenix/shared/shared-ui';
   styleUrl: './budgets-dashboard.component.scss'
 })
 export class BudgetsDashboardComponent {
-  private dbService = inject(DatabaseService);
+  private budgetService = inject(BudgetService);
   private dialog = inject(MatDialog);
   private router = inject(Router);
   private themeService = inject(ThemeService);
 
-  public budgets$: Observable<Budget[]>;
+  public budgets$: Observable<Budget[]> | undefined;
   public personalBudgets: Budget[] = [];
   public householdBudgets: Budget[] = [];
   public businessBudgets: Budget[] = [];
@@ -58,13 +59,15 @@ export class BudgetsDashboardComponent {
 
   constructor() {
     this.themeService.updateTheme(Theme.BUDGETS);
-    this.budgets$ = from(this.dbService.getAll('budgets')).pipe(
-      tap(budgets => {
-        this.personalBudgets = budgets.filter(budget => budget.budgetType === 'Personal');
-        this.householdBudgets = budgets.filter(budget => budget.budgetType === 'Household');
-        this.businessBudgets = budgets.filter(budget => budget.budgetType === 'Business');
-      })
-    );
+    this.budgetService.getAllBudgets().then(() => {
+      this.budgets$ = this.budgetService.getBudgets$().pipe(
+        tap(budgets => {
+          this.personalBudgets = budgets.filter(budget => budget.budgetType === 'Personal');
+          this.householdBudgets = budgets.filter(budget => budget.budgetType === 'Household');
+          this.businessBudgets = budgets.filter(budget => budget.budgetType === 'Business');
+        })
+      );
+    });
   }
 
   addBudget(template: TemplateRef<any>) {
@@ -72,15 +75,20 @@ export class BudgetsDashboardComponent {
   }
 
   deleteBudget(id: number) {
-    this.dbService.delete('budgets', id);
+    this.budgetService.deleteBudget(id);
   }
 
   openBudget(id: number) {
-    this.router.navigateByUrl(`/budgets/details/${id}`);
+    this.router.navigateByUrl(`/details/${id}`);
   }
 
   openBudgetDialog(template: TemplateRef<any>, budget: Budget) {
     this.selectedBudget = budget;
     this.dialogRef = this.dialog.open(template);
+    this.dialogRef.afterClosed().subscribe(() => this.selectedBudget = undefined);
+  }
+
+  loadDemoData() {
+    this.budgetService.addDemoData();
   }
 }

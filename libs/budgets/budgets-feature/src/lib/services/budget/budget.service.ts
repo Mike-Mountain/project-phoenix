@@ -2,15 +2,26 @@ import { inject, Injectable, signal } from '@angular/core';
 import { Params } from '@angular/router';
 import { Budget, DatabaseService, Expense, Income } from '@project-phoenix/shared/shared-data-access';
 import { BehaviorSubject, from, Observable, of, switchMap, tap } from 'rxjs';
+import { budgetsDemoData } from '@project-phoenix/budgets-data-access';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BudgetService {
   private databaseService = inject(DatabaseService);
+
+  private budgets$ = new BehaviorSubject<Budget[]>([]);
   private incomeTotal$ = new BehaviorSubject<number>(0);
   private expenseTotal$ = new BehaviorSubject<number>(0);
   private totalBudgetRemaining$ = new BehaviorSubject<number>(0);
+
+  public getBudgets$() {
+    return this.budgets$.asObservable();
+  }
+
+  public getAllBudgets() {
+    return this.databaseService.getAll('budgets').then(budgets => this.budgets$.next(budgets));
+  }
 
   public getSelectedBudget(params: Observable<Params>) {
     return params.pipe(
@@ -25,12 +36,32 @@ export class BudgetService {
     );
   }
 
+  public updateBudget(budget: Budget) {
+    return from(this.databaseService.put('budgets', budget)).pipe(
+      tap(() => {
+        const budgets = this.budgets$.value;
+        const index = budgets.map(item => item.id).indexOf(budget.id);
+        if (index > -1) {
+          budgets[index] = budget;
+          this.budgets$.next(budgets);
+        }
+      })
+    );
+  }
+
+  public deleteBudget(id: number) {
+    return this.databaseService.delete('budgets', id).then(() => {
+      const budgets = this.budgets$.value;
+      this.budgets$.next(budgets.filter(budget => budget.id !== id));
+    });
+  }
+
   public getIncomeTotal() {
     return this.incomeTotal$.asObservable();
   }
 
   public getExpenseTotal() {
-    return this.expenseTotal$.asObservable()
+    return this.expenseTotal$.asObservable();
   }
 
   public getTotalRemaining() {
@@ -39,10 +70,10 @@ export class BudgetService {
 
   public removeIncomeOrExpense(type: 'income' | 'expenses', value: Income | Expense, budget: Budget) {
     const newVal = budget[type]?.filter(item => item.name !== value.name);
-    const totalValue = this.deriveTotalFromArray(newVal as Income[] | Expense[])
+    const totalValue = this.deriveTotalFromArray(newVal as Income[] | Expense[]);
     if (type === 'income') {
       budget.income = newVal as Income[];
-      this.incomeTotal$.next(totalValue)
+      this.incomeTotal$.next(totalValue);
     } else {
       budget.expenses = newVal as Expense[];
       this.expenseTotal$.next(totalValue);
@@ -77,12 +108,19 @@ export class BudgetService {
     );
   }
 
-  public deleteSelectedBudget(id: number) {
-    return from(this.databaseService.delete('budgets', id));
-  }
-
   public deriveBudgetAmountRemaining() {
     return this.incomeTotal$.value - this.expenseTotal$.value;
+  }
+
+  public addDemoData() {
+    const data = budgetsDemoData;
+    this.budgets$.next(data);
+    const promises = [];
+    return new Promise(resolve => {
+      data.forEach(budget => {
+        promises.push(this.databaseService.put('budgets', budget));
+      });
+    });
   }
 
   // TODO: Move to utils

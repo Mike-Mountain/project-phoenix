@@ -33,8 +33,9 @@
       </h3>
     </div>
 
-    <div class="back">
-      <button mat-stroked-button color="warn" (click)="goBack()">Go Back</button>
+    <div class="buttons">
+      <button mat-stroked-button color="accent" (click)="goBack()">Go Back</button>
+      <button mat-stroked-button color="warn" (click)="deleteBudget(budget.id)">Delete budget</button>
     </div>
   </div>
 

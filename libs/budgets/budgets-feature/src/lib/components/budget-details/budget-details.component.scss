@@ -75,10 +75,13 @@ h5 {
   color: var(--warn)
 }
 
-.back {
+.buttons {
   margin: .75rem auto;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  button {
+    width: 45%;
+  }
 }
 
 .touch-menu-trigger {

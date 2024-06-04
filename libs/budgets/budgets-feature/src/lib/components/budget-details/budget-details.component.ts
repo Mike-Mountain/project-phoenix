@@ -31,7 +31,6 @@ export class BudgetDetailsComponent {
   public incomeTotal$ = this.budgetService.getIncomeTotal();
   public expenseTotal$ = this.budgetService.getExpenseTotal();
   public totalBudgetRemaining$ = this.budgetService.getTotalRemaining();
-  public isBalancePositive = false;
 
   public selectedBudget$: Observable<Budget> = this.budgetService.getSelectedBudget(this.route.params);
 
@@ -52,6 +51,12 @@ export class BudgetDetailsComponent {
   public createBudgetItem(item: Income | Expense, budget: Budget) {
     const itemType = 'type' in item ? 'income' : 'expenses';
     this.budgetService.addIncomeOrExpense(itemType, item, budget);
+  }
+
+  public deleteBudget(budgetId: number) {
+    this.budgetService.deleteBudget(budgetId).then(() => {
+      this.goBack();
+    });
   }
 
   public goBack() {

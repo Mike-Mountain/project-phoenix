@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Budget, DatabaseService } from '@project-phoenix/shared/shared-data-access';
@@ -8,6 +8,7 @@ import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
 import { MatOption, MatSelect } from '@angular/material/select';
+import { BudgetService } from '../../services/budget/budget.service';
 
 @Component({
   selector: 'budgets-feature-add-edit-budget',
@@ -16,17 +17,21 @@ import { MatOption, MatSelect } from '@angular/material/select';
   templateUrl: './add-edit-budget.component.html',
   styleUrl: './add-edit-budget.component.scss'
 })
-export class AddEditBudgetComponent {
+export class AddEditBudgetComponent implements OnInit {
   @Input() dialogRef: MatDialogRef<any> | undefined;
   @Input() budget?: Budget;
 
   private formBuilder = inject(FormBuilder);
   private router = inject(Router);
-  private dbService = inject(DatabaseService<Budget>);
+  private budgetService = inject(BudgetService);
 
-  public budgetForm: FormGroup;
+  public budgetForm: FormGroup | undefined;
 
   constructor() {
+
+  }
+
+  ngOnInit() {
     this.budgetForm = this.formBuilder.group({
       name: [this.budget?.name, Validators.required],
       budgetType: [this.budget?.budgetType, Validators.required],
@@ -35,10 +40,11 @@ export class AddEditBudgetComponent {
   }
 
   public addUpdateBudget() {
-    if (!this.budgetForm.hasError('required')) {
-      this.dbService.put('budgets', this.budgetForm.value).then((id) => {
-        this.router.navigateByUrl(`/budgets//details/${id}`);
+    if (this.budgetForm && !this.budgetForm.hasError('required')) {
+      const budget = { ...this.budget, ...this.budgetForm.value };
+      this.budgetService.updateBudget(budget).subscribe((id) => {
         this.closeDialog();
+        this.router.navigateByUrl(`/details/${id}`);
       });
     }
   }
