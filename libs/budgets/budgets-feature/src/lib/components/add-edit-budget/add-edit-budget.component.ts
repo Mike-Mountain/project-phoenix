@@ -44,7 +44,7 @@ export class AddEditBudgetComponent implements OnInit {
       const budget = { ...this.budget, ...this.budgetForm.value };
       this.budgetService.updateBudget(budget).subscribe((id) => {
         this.closeDialog();
-        this.router.navigateByUrl(`/details/${id}`);
+        this.router.navigateByUrl(`/budgets/details/${id}`);
       });
     }
   }

@@ -13,7 +13,7 @@
   <section class="content">
     <div class="slider">
       @for (item of featuredGallery$ | async; track item.name) {
-        <a class="slide-item" [routerLink]="'/details/' + item.id">
+        <a class="slide-item" [routerLink]="'/gallery/details/' + item.id">
           <shared-ui-image
             class="featured-image"
             [assetPath]="'assets/images/gallery/' + selectedGallery + '/'"
@@ -42,7 +42,7 @@
       <h1>{{ selectedCategory }}</h1>
       <div class="image-gallery">
         @for (image of gallery$ | async; track image.name) {
-          <a [routerLink]="'/details/' + image.id">
+          <a [routerLink]="'/gallery/details/' + image.id">
             <shared-ui-image
               [assetPath]="'assets/images/gallery/' + selectedGallery + '/'"
               [imageClass]="'gallery-image'"

@@ -79,7 +79,7 @@ export class BudgetsDashboardComponent {
   }
 
   openBudget(id: number) {
-    this.router.navigateByUrl(`/details/${id}`);
+    this.router.navigateByUrl(`/budgets/details/${id}`);
   }
 
   openBudgetDialog(template: TemplateRef<any>, budget: Budget) {

@@ -34,6 +34,7 @@ export class DashboardComponent implements OnInit {
     this.themeService.updateTheme(Theme.DEFAULT);
     this.gallery$ = this.galleryService.getGalleryImages(this.selectedGallery);
     this.featuredGallery$ = this.galleryService.getFeaturedImages(this.selectedGallery);
+    this.setActiveGallery(this.selectedGallery);
   }
 
   public setSelectedCategory(category: string) {
