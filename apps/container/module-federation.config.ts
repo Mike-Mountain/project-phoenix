@@ -15,6 +15,7 @@ const config: ModuleFederationConfig = {
    *
    */
   remotes: ['code-master', 'resume', 'movies', 'budgets', 'gallery'],
+  // remotes: [],
   // remotes: ['resume'],
   // remotes: ['code-master'],
   // remotes: ['movies'],

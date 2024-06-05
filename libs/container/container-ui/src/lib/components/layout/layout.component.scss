@@ -20,3 +20,10 @@
   height: calc(100% - 56px);
   overflow: auto;
 }
+
+.version {
+  position: absolute;
+  bottom: .5rem;
+  left: .5rem;
+  font-size: .75rem;
+}
