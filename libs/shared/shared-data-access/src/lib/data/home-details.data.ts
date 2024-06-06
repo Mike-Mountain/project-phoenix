@@ -13,11 +13,10 @@ export const homeDetails: PersonalDetails = {
     location: 'Johannesburg, South Africa',
     experience: '14 years experience pretending to be an adult',
     links: [
-      { name: 'email', value: 'mikemountain.dev@gmail.com', link: '' },
-      { name: 'phone', value: '084 972 5103', link: '' },
-      { name: 'email', value: '@mikethemountaingoat', link: 'https://instagram.com/mikethemountaingoat' },
-      { name: 'email', value: 'Artstation', link: 'https://artstation.com/sipredion' },
-      { name: 'email', value: 'Spotify', link: 'https://spotify.com/mike' },
+      { name: 'email', value: 'mikemountain.dev@gmail.com', link: 'mailto:mikemountain.dev+portfolio@gmail.com', icon: 'fa-regular fa-envelope' },
+      { name: 'email', value: '@mikethemountaingoat', link: 'https://instagram.com/mikethemountaingoat', icon: 'fa-brands fa-instagram' },
+      { name: 'email', value: 'Sipredion', link: 'https://artstation.com/sipredion', icon: 'fa-brands fa-artstation' },
+      { name: 'email', value: 'Mike', link: 'https://spotify.com/mike', icon: 'fa-brands fa-spotify' },
     ]
   }
 }

@@ -16,4 +16,5 @@ export interface PersonalLinks {
   name: string;
   value: string;
   link?: string;
+  icon?: string;
 }

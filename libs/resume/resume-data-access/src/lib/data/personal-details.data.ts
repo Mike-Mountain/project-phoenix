@@ -13,10 +13,9 @@ export const resumePersonalDetails: PersonalDetails = {
     location: 'Johannesburg, South Africa',
     experience: '6 years of professional experience',
     links: [
-      { name: 'email', value: 'mikemountain.dev@gmail.com', link: '' },
-      { name: 'phone', value: '084 972 5103', link: '' },
-      { name: 'github', value: 'Github', link: 'https://github.com/Mike-Mountain' },
-      { name: 'linkedin', value: 'LinkedIn', link: 'https://linkedIn.com/Mike-Mountain' }
+      { name: 'email', value: 'mikemountain.dev@gmail.com', link: 'mailTo:mikemountain.dev+portfolio@gmail.com', icon: 'fa-regular fa-envelope' },
+      { name: 'github', value: 'Github', link: 'https://github.com/Mike-Mountain', icon: 'fa-brands fa-github-alt' },
+      { name: 'linkedin', value: 'LinkedIn', link: 'https://linkedIn.com/Mike-Mountain', icon: 'fa-brands fa-linkedin' }
     ]
   }
 };
