@@ -18,7 +18,7 @@
   border-radius: 50%;
   border: 1px solid white;
   grid-area: image;
-  background: url(http://localhost:4200/assets/images/profile_2.png) 100% top/cover;
+  background: url("^assets/images/profile_2.png") 100% top/cover;
 }
 
 .photo-lg {
@@ -27,7 +27,7 @@
   border-radius: 50%;
   border: 1px solid white;
   grid-area: image;
-  background: url(http://localhost:4200/assets/images/profile_3.png) 100% top/cover;
+  background: url("^assets/images/profile_3.png") 100% top/cover;
 }
 
 .introduction {
@@ -47,11 +47,18 @@
 .footer {
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-around;
   border-top: 1px solid white;
   margin-top: 1rem;
   padding-top: .75rem;
+}
+
+.icon {
+  user-select: none;
+  display: inline-block;
+  margin: .25rem;
 }
 
 @media (max-width: 1400px) {
@@ -95,7 +102,7 @@
   .introduction {
     text-align: center;
     ul {
-      text-align: justify;
+      text-align: left;
     }
   }
 }

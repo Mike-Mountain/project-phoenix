@@ -1,6 +1,5 @@
 <ng-container *ngIf="details">
   <div [class]="isHome ? 'home-grid-container' : 'grid-container'">
-<!--    <img [src]="isHome ? 'assets/images/profile_2.png' : 'assets/images/profile_3.png'" [class]="isHome ? 'photo-lg' : 'photo'" [class.mx-auto]="isHome" alt="">-->
     <div [class]="isHome ? 'photo-lg' : 'photo'" [class.mx-auto]="isHome" alt=""></div>
     <div class="introduction w-95">
       <h1 [class.text-center]="isHome">{{ details.name }}</h1>
@@ -21,22 +20,28 @@
     <div class="contact">
       @for (link of details.about.links; track link) {
         <div class="flex-center">
-          <mat-icon class="mr-2">{{ link.name }}</mat-icon>
-          <!--          <a [href]="link.link">-->
-          <small>{{ link.value }}</small>
-          <!--          </a>-->
+          <div class="icon">
+            <i [class]="link.icon"></i>
+          </div>
+          <a [href]="link.link" target="_blank" class="text-color-accent">
+            <small>{{ link.value }}</small>
+          </a>
         </div>
       }
     </div>
   </div>
   <div class="footer">
-    <div class="flex-center">
-      <mat-icon>location_on</mat-icon>
-      <h3>{{ details.about.location }}</h3>
+    <div class="flex-between w-80">
+      <div class="icon">
+        <i class="fa-regular fa-star"></i>
+      </div>
+      <h5 class="flex-wrap">{{ details.about.experience }}</h5>
     </div>
-    <div class="flex-center">
-      <mat-icon>star</mat-icon>
-      <h3>{{ details.about.experience }}</h3>
+    <div class="flex-between w-80">
+      <div class="icon">
+        <i class="fa-solid fa-location-dot"></i>
+      </div>
+      <h5>{{ details.about.location }}</h5>
     </div>
   </div>
 </ng-container>
