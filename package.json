@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "build:all": "nx build container && nx build resume && nx build budgets && nx build code-master && nx build gallery && nx build movies",
     "create-data-access-lib": "nx g @nx/angular:lib gallery-data-access --tags=scope:gallery,type:data-access --prefix=gallery-data-access --directory=libs/gallery/gallery-data-access --standalone",
     "create-feature-lib": "nx g @nx/angular:lib gallery-feature --tags=scope:gallery,type:feature --prefix=gallery-feature --directory=libs/gallery/gallery-feature --standalone",
     "create-ui-lib": "nx g @nx/angular:lib gallery-ui --tags=scope:gallery,type:ui --prefix=gallery-ui --directory=libs/gallery/gallery-ui --standalone",

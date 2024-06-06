@@ -1,0 +1,32 @@
+{
+  "projects": {
+    "default": "honeystone-mountain",
+    "code-master": "phoenix-code-master"
+  },
+  "targets": {
+    "honeystone-mountain": {
+      "hosting": {
+        "container": [
+          "honeystone-mountain"
+        ],
+        "code-master": [
+          "phoenix-code-master"
+        ],
+        "budgets": [
+          "phoenix-budgets"
+        ],
+        "gallery": [
+          "phoenix-gallery"
+        ],
+        "resume": [
+          "phoenix-resume"
+        ],
+        "movies": [
+          "phoenix-movie-app"
+        ]
+      }
+    }
+  },
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}
