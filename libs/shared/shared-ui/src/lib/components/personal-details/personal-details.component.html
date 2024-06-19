@@ -23,7 +23,7 @@
           <div class="icon">
             <i [class]="link.icon"></i>
           </div>
-          <a [href]="link.link" target="_blank" class="text-color-accent">
+          <a [href]="link.link" [target]=" link.icon?.includes('envelope') ? '_self' : '_blank'" class="text-color-accent">
             <small>{{ link.value }}</small>
           </a>
         </div>

@@ -85,6 +85,7 @@ $budgets-theme: mat.define-light-theme((
 
 .default-dark {
   @include mat.all-component-colors($default-dark-theme);
+  @import "../partials/code-master-specific";
 }
 
 .code-master {
