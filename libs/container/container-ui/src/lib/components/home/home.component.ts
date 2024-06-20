@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCard, MatCardContent } from '@angular/material/card';
 import { PersonalDetailsComponent, ThemeService } from '@project-phoenix/shared/shared-ui';
-import { DatabaseService, homeDetails, PersonalDetails, Theme } from '@project-phoenix/shared/shared-data-access';
+import { homeDetails, PersonalDetails, Theme } from '@project-phoenix/shared/shared-data-access';
 import { ToolbarService } from '@project-phoenix/shared/shared-util';
 
 @Component({
