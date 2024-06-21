@@ -1,7 +1,7 @@
 <ng-container *ngIf="details">
   <div [class]="isHome ? 'home-grid-container' : 'grid-container'">
     <div class="photo" [class]="isHome ? 'photo-lg' : 'photo-xs'" [class.mx-auto]="isHome" alt=""></div>
-    <mat-card class="my-2 introduction">
+    <mat-card class="introduction">
       <mat-card-content>
         <div class="w-95">
           <h1 [class.text-center]="isHome">{{ details.name }}</h1>
@@ -21,11 +21,29 @@
         </div>
       </mat-card-content>
     </mat-card>
+    <mat-card class="experience-card">
+      <mat-card-content>
+        <div class="experience">
+          <div class="flex-between w-85">
+            <div class="icon">
+              <i class="fa-regular fa-star"></i>
+            </div>
+            <h5 class="flex-wrap">{{ details.about.experience }}</h5>
+          </div>
+          <div class="flex-between w-85">
+            <div class="icon">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <h5>{{ details.about.location }}</h5>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
     <mat-card class="contact-card">
       <mat-card-content>
         <div class="contact">
           @for (link of details.about.links; track link) {
-            <div class="flex-center">
+            <div class="flex-between w-85">
               <div class="icon">
                 <i [class]="link.icon"></i>
               </div>
@@ -38,19 +56,5 @@
         </div>
       </mat-card-content>
     </mat-card>
-  </div>
-  <div class="footer">
-    <div class="flex-between w-80">
-      <div class="icon">
-        <i class="fa-regular fa-star"></i>
-      </div>
-      <h5 class="flex-wrap">{{ details.about.experience }}</h5>
-    </div>
-    <div class="flex-between w-80">
-      <div class="icon">
-        <i class="fa-solid fa-location-dot"></i>
-      </div>
-      <h5>{{ details.about.location }}</h5>
-    </div>
   </div>
 </ng-container>

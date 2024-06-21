@@ -3,27 +3,36 @@
                [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
                [mode]="(isHandset$ | async) ? 'over' : 'side'"
                [opened]="false">
-    <mat-toolbar>Menu</mat-toolbar>
-      <mat-nav-list>
-        <a mat-list-item routerLink="/" (click)="drawer.close()">Home</a>
-        <a mat-list-item routerLink="resume" (click)="drawer.close()">Resume</a>
-        <a mat-list-item routerLink="code-master" (click)="drawer.close()">Code Master</a>
-        <a mat-list-item routerLink="movies" (click)="drawer.close()">Movies</a>
-        <a mat-list-item routerLink="budgets" (click)="drawer.close()">Budgets</a>
-        <a mat-list-item routerLink="gallery" (click)="drawer.close()">Gallery</a>
-      </mat-nav-list>
-      <small class="version">Version 0.2</small>
+    <mat-toolbar>
+      <p class="text-color-accent">Menu</p>
+    </mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/" (click)="drawer.close()">Home</a>
+      <a mat-list-item routerLink="resume" (click)="drawer.close()">Resume</a>
+      <a mat-list-item routerLink="code-master" (click)="drawer.close()">Code Master</a>
+      <a mat-list-item routerLink="movies" (click)="drawer.close()">Movies</a>
+      <a mat-list-item routerLink="budgets" (click)="drawer.close()">Budgets</a>
+      <a mat-list-item routerLink="gallery" (click)="drawer.close()">Gallery</a>
+    </mat-nav-list>
+    <small class="version">Version 0.2</small>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      @if (isHandset$ | async) {
-        <button
-          type="button"
-          aria-label="Toggle sidenav"
-          mat-icon-button
-          (click)="drawer.toggle()">
-          <mat-icon aria-label="Side nav toggle icon" color="accent">menu</mat-icon>
+      <a routerLink="/" class="ml-2">
+        <button class="logo-button" mat-ripple>
+          <i class="logo fa-solid fa-mountain-city fa-2xl"></i>
         </button>
+      </a>
+      @if (isHandset$ | async) {
+        <div class="w-100 flex-end">
+          <button
+            type="button"
+            aria-label="Toggle sidenav"
+            mat-icon-button
+            (click)="drawer.toggle()">
+            <mat-icon aria-label="Side nav toggle icon" color="accent">menu</mat-icon>
+          </button>
+        </div>
       } @else {
         <div class="flex-end w-100">
           <a routerLink="resume">
@@ -43,9 +52,6 @@
           </a>
         </div>
       }
-      <a routerLink="/" class="ml-2">
-        <button mat-stroked-button color="accent">Project Phoenix</button>
-      </a>
     </mat-toolbar>
     <div class="content">
       <router-outlet></router-outlet>

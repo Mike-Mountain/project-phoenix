@@ -9,7 +9,8 @@
   grid-template-columns: 3fr 1fr;
   grid-template-areas:
     "image contact"
-    "details contact";
+    "details contact"
+    "exp contact";
 }
 
 .image-card {
@@ -45,6 +46,7 @@
 
 .introduction {
   grid-area: details;
+  margin: .75rem;
 }
 
 .contact-card {
@@ -54,20 +56,21 @@
 .contact {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding-left: .5rem;
-  margin: .75rem
+  align-items: center;
+  justify-content: space-around;
 }
 
-.footer {
+.experience-card {
+  grid-area: exp;
+  margin: 0 .75rem;
+}
+
+.experience {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  margin-top: 1rem;
-  padding-top: .75rem;
 }
 
 .icon {
@@ -90,13 +93,12 @@
     grid-template-areas:
       "image"
       "details"
+      "exp"
       "contact";
   }
 
-  .contact {
-    border-left: none;
-    margin: 1rem 0 0 0 !important;
-    padding-top: .75rem;
+  .contact-card {
+    margin: .75rem;
   }
 
   .home-grid-container {
@@ -104,6 +106,7 @@
     grid-template-areas:
       "image"
       "details"
+      "exp"
       "contact";
   }
 

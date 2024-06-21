@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { MatRipple } from '@angular/material/core';
 
 @Component({
   selector: 'container-ui-layout',
@@ -23,7 +24,8 @@ import { RouterLink, RouterOutlet } from '@angular/router';
     MatIconModule,
     AsyncPipe,
     RouterOutlet,
-    RouterLink
+    RouterLink,
+    MatRipple
   ]
 })
 export class LayoutComponent {
