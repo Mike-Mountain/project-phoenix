@@ -13,6 +13,7 @@ export const responseInterceptor: HttpInterceptorFn = (req, next) => {
       }
     }),
     catchError((error: HttpResponse<any>) => {
+      loadingService.setIsLoading(false);
       return throwError(() => error);
     })
   );

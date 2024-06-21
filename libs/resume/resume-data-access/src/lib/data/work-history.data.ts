@@ -16,7 +16,12 @@ export const workHistory: History[] = [
     position: "Senior Angular developer",
     location: "Johannesburg, South Africa",
     type: "Remote",
-    description: "Worked on several different angular apps within the ayo holdings ecosystem.\nProvided benefit to both customers and internal users by developing\nnew features and fixing bugs.\nHelped architect and implement a micro-frontend monorepo system\nto build various business portals.\nHelped architect the monorepo system for the new PWA to make it\neasier to share code among countries.",
+    description: "Worked on several applications, including both in-house and customer facing.\n" +
+      "Led the design and implementation of a micro-frontend monorepo system for the company's in-house portals. This involved creating a unified development environment allowing multiple frontend applications to coexist and interact seamlessly with one another. This allowed for a greater degree of code sharing while reducing overhead amongst the teams and allowing for faster development times.\n" +
+      "Contributed to architecting the monorepo system for the company's PWA. The company operated in multiple countries, and the monorepo allowed us to develop and maintain individual applications for each country while sharing common styling and utility components. This allowed for faster development times.\n" +
+      "Successfully refactored legacy Angular codebases, reducing code complexity and improving maintainability while adhering to best practices and modern design patterns.\n" +
+      "Developed reusable UI components using Angular libraries, standardizing UI elements across projects and significantly reducing development time.\n" +
+      "Proactively stayed updated with industry trends and emerging technologies in front-end development, integrating new strategies to maintain a cutting-edge skillset and drive innovation",
     skills: [
       "HTML",
       "CSS",

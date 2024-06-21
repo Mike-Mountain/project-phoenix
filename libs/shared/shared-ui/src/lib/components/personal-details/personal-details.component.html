@@ -1,7 +1,7 @@
 <ng-container *ngIf="details">
   <div [class]="isHome ? 'home-grid-container' : 'grid-container'">
     <div class="photo" [class]="isHome ? 'photo-lg' : 'photo-xs'" [class.mx-auto]="isHome" alt=""></div>
-    <mat-card class="introduction">
+    <mat-card class="introduction" [class.intro-resume]="!isHome">
       <mat-card-content>
         <div class="w-95">
           <h1 [class.text-center]="isHome">{{ details.name }}</h1>

@@ -1,7 +1,10 @@
 .grid-container {
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
-  grid-template-areas: "image details contact";
+  grid-template-areas:
+    "image details contact"
+    "exp details contact"
+;
 }
 
 .home-grid-container {
@@ -35,6 +38,7 @@
 .photo-xs {
   height: 9rem;
   width: 9rem;
+  margin: auto;
   background: url("^assets/images/profile_2.png") 100% top/cover;
 }
 
@@ -47,6 +51,10 @@
 .introduction {
   grid-area: details;
   margin: .75rem;
+}
+
+.intro-resume {
+  margin: 0 .75rem 0 0 !important;
 }
 
 .contact-card {
@@ -121,5 +129,9 @@
     ul {
       text-align: left;
     }
+  }
+
+  .intro-resume {
+    margin: .75rem !important;
   }
 }
