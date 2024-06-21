@@ -1,6 +1,7 @@
 @import '../theme/palettes/default/default-primary';
 @import '../theme/palettes/default/default-accent';
 @import '../theme/palettes/default/default-warn';
+@import '../theme/palettes/default/default-background';
 @import '../theme/palettes/code-master/cm-primary';
 @import '../theme/palettes/code-master/cm-accent';
 @import '../theme/palettes/code-master/cm-warn';
@@ -14,9 +15,15 @@
     --primary: #{map-get($default-primary, 500)};
     --accent: #{map-get($default-accent, 500)};
     --warn: #{map-get($default-warn, 500)};
+    --background: #{map-get($default-background, 500)};
+    --blocksBackground: #{map-get($default-background, 900)};
+
     --primaryValues: #{$default-primary-values};
     --accentValues: #{$default-accent-values};
     --warnValues: #{$default-warn-values};
+    --backgroundValues: #{$default-background-values};
+    --containerBackgroundValues: #{$default-containerBackground-values};
+    --containerBackground: rgb(var(--containerBackgroundValues));
   }
 
   .code-master {
@@ -26,12 +33,15 @@
     --background: #{map-get($cm-background, 500)};
     --containerBackground: #{map-get($cm-background, 700)};
     --blocksBackground: #{map-get($cm-background, 900)};
+
     --primaryValues: #{$cm-primary-values};
     --accentValues: #{$cm-accent-values};
     --warnValues: #{$cm-warn-values};
     --backgroundValues: #{$cm-background-values};
     --containerBackgroundValues: #{$cm-containerBackground-values};
   }
+
+
 
   .movies {
     --primary: #{map-get($movies-primary, 500)};

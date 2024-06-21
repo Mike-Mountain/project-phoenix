@@ -6,7 +6,7 @@ export const resumePersonalDetails: PersonalDetails = {
   about: {
     description: 'Angular Developer experienced in all stages of advanced frontend web development. Able to effectively self-manage during independent projects, as well as collaborate in a team setting. Passionately curious about all things code related.',
     list: [
-      'Five years experience working with Angular, JavaScript, HTML/CSS to deliver exceptional user experiences.',
+      'Six years experience working with Angular, JavaScript, HTML/CSS to deliver exceptional user experiences.',
       'Adept at contributing to a highly collaborative environment, finding solutions, and delivering customer satisfaction',
       'Enjoys challenges, thrives in teams, hard worker, excellent communicator, and strong writing skills.'
     ],

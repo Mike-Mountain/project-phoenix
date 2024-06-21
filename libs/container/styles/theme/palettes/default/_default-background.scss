@@ -1,0 +1,35 @@
+$default-background-values: 0, 79, 112;
+$default-containerBackground-values: 1, 99, 140;
+
+$default-background: (
+  50 : #e0eaee,
+  100 : #b3cad4,
+  200 : #80a7b8,
+  300 : #4d849b,
+  400 : #266985,
+  500 : #004f70,
+  600 : #004868,
+  700 : #003f5d,
+  800 : #003653,
+  900 : #002641,
+  A100 : #76b9ff,
+  A200 : #439fff,
+  A400 : #1085ff,
+  A700 : #0078f6,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);

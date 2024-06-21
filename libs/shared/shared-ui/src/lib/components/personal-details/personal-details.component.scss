@@ -1,7 +1,10 @@
 .grid-container {
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
-  grid-template-areas: "image details contact";
+  grid-template-areas:
+    "image details contact"
+    "exp details contact"
+;
 }
 
 .home-grid-container {
@@ -9,50 +12,73 @@
   grid-template-columns: 3fr 1fr;
   grid-template-areas:
     "image contact"
-    "details contact";
+    "details contact"
+    "exp contact";
+}
+
+.image-card {
+  height: 16rem;
+  width: 16rem;
+  margin: 0 auto .75rem auto;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .mat-mdc-card-content {
+    padding: 0 !important;
+  }
 }
 
 .photo {
+  border-radius: 50px;
+  border: 4px solid var(--containerBackground);
+  grid-area: image;
+}
+
+.photo-xs {
   height: 9rem;
   width: 9rem;
-  border-radius: 50%;
-  border: 1px solid white;
-  grid-area: image;
+  margin: auto;
   background: url("^assets/images/profile_2.png") 100% top/cover;
 }
 
 .photo-lg {
   height: 15rem;
   width: 15rem;
-  border-radius: 50%;
-  border: 1px solid white;
-  grid-area: image;
   background: url("^assets/images/profile_3.png") 100% top/cover;
 }
 
 .introduction {
   grid-area: details;
+  margin: .75rem;
+}
+
+.intro-resume {
+  margin: 0 .75rem 0 0 !important;
+}
+
+.contact-card {
+  grid-area: contact;
 }
 
 .contact {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  border-left: 1px solid white;
-  padding-left: .5rem;
-  grid-area: contact;
+  align-items: center;
+  justify-content: space-around;
 }
 
-.footer {
+.experience-card {
+  grid-area: exp;
+  margin: 0 .75rem;
+}
+
+.experience {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  border-top: 1px solid white;
-  margin-top: 1rem;
-  padding-top: .75rem;
 }
 
 .icon {
@@ -62,7 +88,7 @@
 }
 
 @media (max-width: 1400px) {
-  .photo {
+  .photo-xs {
     height: 6rem;
     width: 6rem;
   }
@@ -75,14 +101,12 @@
     grid-template-areas:
       "image"
       "details"
+      "exp"
       "contact";
   }
 
-  .contact {
-    border-left: none;
-    border-top: 1px solid white;
-    margin-top: 1rem;
-    padding-top: .75rem;
+  .contact-card {
+    margin: .75rem;
   }
 
   .home-grid-container {
@@ -90,10 +114,11 @@
     grid-template-areas:
       "image"
       "details"
+      "exp"
       "contact";
   }
 
-  .photo {
+  .photo-xs {
     margin: auto;
     height: 9rem;
     width: 9rem;
@@ -104,5 +129,9 @@
     ul {
       text-align: left;
     }
+  }
+
+  .intro-resume {
+    margin: .75rem !important;
   }
 }

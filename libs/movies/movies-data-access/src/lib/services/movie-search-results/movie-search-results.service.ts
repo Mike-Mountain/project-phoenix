@@ -29,7 +29,6 @@ export class MovieSearchResultsService extends BaseHttpService<ResultsList> {
         return new ResultsList(results as unknown as ApiResultsModel);
       }),
       catchError(err => {
-        console.log(err);
         throw new Error();
       })
     );

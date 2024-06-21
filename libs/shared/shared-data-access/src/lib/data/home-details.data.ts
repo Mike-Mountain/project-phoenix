@@ -2,9 +2,9 @@ import { PersonalDetails } from '../models/personal-details.model';
 
 export const homeDetails: PersonalDetails = {
   name: 'Michael Mountain',
-  title: ['Front End Developer', 'Knitter', 'Terrible Guitarist'],
+  title: ['Knitter', 'Front End Developer', 'Tattoo Enthusiast'],
   about: {
-    description: 'Hey there! I\'m a laid-back software developer who finds joy in coding, knitting, diving into a good book, and getting lost in movie marathons. you\'ll often catch me gaming, tinkering with code, or vibing to some tunes.',
+    description: 'I\'m Mike, a lover of tattoos, music, video games, and knitting. Whether it\'s getting lost in music, diving into virtual worlds, exploring a secret waterfall, or crafting something cozy with my needles, I thrive on new experiences and creative pursuits',
     list: [
       'I have more yarn than I will probably ever be able to use',
       'I fantasize about being the kind of person that fantasizes about going skydiving',
