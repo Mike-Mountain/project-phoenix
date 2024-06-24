@@ -11,8 +11,7 @@ export class BaseHttpService<T> {
 
   private configService = inject(ConfigService);
   private http = inject(HttpClient);
-  // TODO: Firgure out why the config service is not acting as a singleton
-  private readonly apiUrl = this.configService.config?.apiUrl || 'http://www.omdbapi.com/?apikey=a55e2dd8';
+  private readonly apiUrl = this.configService.config?.apiUrl;
 
   public setMovieUrl(type: SearchType, query: string, page?: number): string {
     let url = `${this.apiUrl}&${type}=${query}`;
