@@ -33,6 +33,13 @@
       },
       "configurations": {
         "production": {
+          "assets": [
+            {
+              "glob": "**/*",
+              "input": "../../config/dev.config.ts",
+              "output": "config/dev.config.ts"
+            }
+          ],
           "budgets": [
             {
               "type": "initial",
@@ -62,11 +69,6 @@
               "glob": "**/*",
               "input": "../../config/dev.config.ts",
               "output": "config/dev.config.ts"
-            },
-            {
-              "glob": "**/*",
-              "input": "libs/container/assets",
-              "output": "/assets/"
             }
           ]
         }
