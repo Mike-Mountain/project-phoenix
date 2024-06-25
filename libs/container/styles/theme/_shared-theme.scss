@@ -26,21 +26,21 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
-$default-primary: mat.define-palette(default-primary.$default-primary);
-$default-accent: mat.define-palette(default-accent.$default-accent);
+$default-primary: mat.m2-define-palette(default-primary.$default-primary);
+$default-accent: mat.m2-define-palette(default-accent.$default-accent);
 
-$cm-primary: mat.define-palette(cm-primary.$cm-primary);
-$cm-accent: mat.define-palette(cm-accent.$cm-accent);
+$cm-primary: mat.m2-define-palette(cm-primary.$cm-primary);
+$cm-accent: mat.m2-define-palette(cm-accent.$cm-accent);
 
-$movies-primary: mat.define-palette(movies-primary.$movies-primary);
+$movies-primary: mat.m2-define-palette(movies-primary.$movies-primary);
 
-$budgets-primary: mat.define-palette(budgets-primary.$budgets-primary);
-$budgets-accent: mat.define-palette(budgets-accent.$budgets-accent);
+$budgets-primary: mat.m2-define-palette(budgets-primary.$budgets-primary);
+$budgets-accent: mat.m2-define-palette(budgets-accent.$budgets-accent);
 
-$shared-warn: mat.define-palette(default-warn.$default-warn);
+$shared-warn: mat.m2-define-palette(default-warn.$default-warn);
 
 // Create the theme object for each theme:
-$default-light-theme: mat.define-light-theme((
+$default-light-theme: mat.m2-define-light-theme((
   color: (
     primary: $default-primary,
     accent: $default-accent,
@@ -48,7 +48,7 @@ $default-light-theme: mat.define-light-theme((
   )
 ));
 
-$default-dark-theme: mat.define-dark-theme((
+$default-dark-theme: mat.m2-define-dark-theme((
   color: (
     primary: $default-primary,
     accent: $default-accent,
@@ -56,7 +56,7 @@ $default-dark-theme: mat.define-dark-theme((
   )
 ));
 
-$code-master-theme: mat.define-dark-theme((
+$code-master-theme: mat.m2-define-dark-theme((
   color: (
     primary: $cm-primary,
     accent: $cm-accent,
@@ -64,7 +64,7 @@ $code-master-theme: mat.define-dark-theme((
   )
 ));
 
-$movies-theme: mat.define-dark-theme((
+$movies-theme: mat.m2-define-dark-theme((
   color: (
     primary: $movies-primary,
     accent: $cm-accent,
@@ -72,7 +72,7 @@ $movies-theme: mat.define-dark-theme((
   )
 ));
 
-$budgets-theme: mat.define-light-theme((
+$budgets-theme: mat.m2-define-light-theme((
   color: (
     primary: $budgets-primary,
     accent: $budgets-accent,

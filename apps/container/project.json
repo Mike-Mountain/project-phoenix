@@ -38,6 +38,11 @@
               "glob": "**/*",
               "input": "../../config/dev.config.ts",
               "output": "config/dev.config.ts"
+            },
+            {
+              "glob": "**/*",
+              "input": "libs/container/assets",
+              "output": "/assets/"
             }
           ],
           "budgets": [
@@ -69,6 +74,11 @@
               "glob": "**/*",
               "input": "../../config/dev.config.ts",
               "output": "config/dev.config.ts"
+            },
+            {
+              "glob": "**/*",
+              "input": "libs/container/assets",
+              "output": "/assets/"
             }
           ]
         }
