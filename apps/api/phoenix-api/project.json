@@ -1,5 +1,5 @@
 {
-  "name": "api--phoenix-api",
+  "name": "phoenix-api",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/api/phoenix-api/src",
   "projectType": "application",
@@ -8,14 +8,14 @@
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "api--phoenix-api:build"
+        "buildTarget": "phoenix-api:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "api--phoenix-api:build:development"
+          "buildTarget": "phoenix-api:build:development"
         },
         "production": {
-          "buildTarget": "api--phoenix-api:build:production"
+          "buildTarget": "phoenix-api:build:production"
         }
       }
     },
