@@ -12,27 +12,12 @@ export class UsersService {
               private dataSource: DataSource) {
   }
 
-  async createUser(user: User) {
-    const test = new User();
-    Object.assign(test, user);
+  async createUser(userDto: CreateUserDto) {
     await this.dataSource.transaction(async manager => {
-      await manager.save(test);
+      const user = new User();
+      Object.assign(user, userDto);
+      await manager.save(user);
     });
-  }
-
-  async create(createUserDto: CreateUserDto) {
-    const queryRunner = this.dataSource.createQueryRunner();
-    await queryRunner.connect();
-    await queryRunner.startTransaction();
-    try {
-      await queryRunner.manager.save(createUserDto);
-      await queryRunner.commitTransaction();
-    } catch (err) {
-      console.log(err);
-      await queryRunner.rollbackTransaction();
-    } finally {
-      await queryRunner.release();
-    }
   }
 
   findAll(): Promise<User[]> {
@@ -43,8 +28,12 @@ export class UsersService {
     return this.usersRepository.findOneBy({ id });
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: number, updateUserDto: UpdateUserDto) {
+    const newUser = new User();
+    Object.assign(newUser, updateUserDto);
+    await this.dataSource.transaction((async manager => {
+      await manager.update(User, id, newUser)
+    }))
   }
 
   async remove(id: number) {
