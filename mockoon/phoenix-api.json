@@ -1,0 +1,128 @@
+{
+  "uuid": "02316559-3962-4867-a91c-3db4d4556685",
+  "lastMigration": 32,
+  "name": "Phoenix api",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3002,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "df9ccaeb-e6c9-4f72-824c-0e1d6f91caf3",
+      "type": "crud",
+      "documentation": "",
+      "method": "",
+      "endpoint": "users",
+      "responses": [
+        {
+          "uuid": "d15861db-34dd-4838-a7fc-c83eceeb890e",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "1tph",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "560b4e3c-7e64-4930-8dee-ae4a0d3b7b58",
+      "type": "crud",
+      "documentation": "",
+      "method": "",
+      "endpoint": "groups",
+      "responses": [
+        {
+          "uuid": "cb54b2df-86e7-44ee-8cea-e9900bab5062",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "skm9",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "df9ccaeb-e6c9-4f72-824c-0e1d6f91caf3"
+    },
+    {
+      "type": "route",
+      "uuid": "560b4e3c-7e64-4930-8dee-ae4a0d3b7b58"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [
+    {
+      "uuid": "2831927a-f0df-45b3-bc68-ee6c06d50e3c",
+      "id": "1tph",
+      "name": "users",
+      "documentation": "",
+      "value": "{\n  \"users\": [\n    {\n      \"id\": 1,\n      \"username\": \"Mike\",\n      \"email\": \"mikemountain.dev@gmail.com\",\n      \"groups\": \"{{dataRaw 'skm9'}}\"\n    },\n    {\n      \"id\": 2,\n      \"username\": \"Test\",\n      \"email\": \"test@gmail.com\",\n      \"groups\": \"{{dataRaw 'skm9'}}\"\n    }\n  ]\n}"
+    },
+    {
+      "uuid": "0bc59884-930e-4a27-bbde-9f7201f863bc",
+      "id": "skm9",
+      "name": "groups",
+      "documentation": "",
+      "value": "{\n  \"groups\": [\n    {\n      \"id\": 1,\n      \"name\": \"Family\",\n      \"members\": \"{{dataRaw '1tph'}}\"\n    }  \n  ]\n}"
+    }
+  ],
+  "callbacks": []
+}

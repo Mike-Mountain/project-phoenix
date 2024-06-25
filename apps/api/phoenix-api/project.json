@@ -1,0 +1,31 @@
+{
+  "name": "api--phoenix-api",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/api/phoenix-api/src",
+  "projectType": "application",
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "api--phoenix-api:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "api--phoenix-api:build:development"
+        },
+        "production": {
+          "buildTarget": "api--phoenix-api:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/api/phoenix-api/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}
