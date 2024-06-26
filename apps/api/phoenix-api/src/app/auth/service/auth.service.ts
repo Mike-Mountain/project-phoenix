@@ -9,18 +9,19 @@ export class AuthService {
               private jwtService: JwtService) {
   }
 
-  async signIn(username: string, hash: string) {
+  async signIn(username: string, password: string) {
     const user = await this.usersService.findOne(username);
     if (!user) {
       throw new NotFoundException('User does not exist');
     }
-    const isMatched = await bcrypt.compare(user.password, hash);
+    const isMatched = await bcrypt.compare(password, user.password);
     if (!isMatched) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException('Incorrect Password!');
     }
     const payload = { sub: user.id, user };
-    return {
+    const token = {
       access_token: await this.jwtService.signAsync(payload)
     };
+    return token;
   }
 }

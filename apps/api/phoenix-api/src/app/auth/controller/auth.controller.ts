@@ -16,21 +16,12 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @Post('login')
   async signIn(@Body() signInDto: SignInDto) {
-    const hash = await bcrypt.hash(signInDto.password, 10);
-    return this.authService.signIn(signInDto.username, hash);
+    return this.authService.signIn(signInDto.username, signInDto.password);
   }
 
   @HttpCode(HttpStatus.OK)
   @Post('register')
   async signUp(@Body() createUserDto: CreateUserDto) {
-    const hash = await bcrypt.hash(createUserDto.password, 10);
-    createUserDto.password = hash;
     return this.usersService.createUser(createUserDto);
-  }
-
-  @UseGuards(AuthGuard)
-  @Get('profile')
-  getProfile(@Request() req: any) {
-    return req.user;
   }
 }
