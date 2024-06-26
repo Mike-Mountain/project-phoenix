@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
 import { GroupsModule } from './groups/groups.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot(
@@ -19,7 +20,8 @@ import { GroupsModule } from './groups/groups.module';
       synchronize: true
     }),
     UsersModule,
-    GroupsModule
+    GroupsModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService]

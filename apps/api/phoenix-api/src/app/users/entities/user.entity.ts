@@ -6,6 +6,7 @@ export class User {
   lastName: string;
   username: string;
   email: string;
+  password: string;
 }
 
 export const UserSchema = new EntitySchema<User>({
@@ -27,6 +28,9 @@ export const UserSchema = new EntitySchema<User>({
       type: String
     },
     username: {
+      type: String
+    },
+    password: {
       type: String
     }
   },
