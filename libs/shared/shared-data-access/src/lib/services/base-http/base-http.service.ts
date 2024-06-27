@@ -11,10 +11,11 @@ export class BaseHttpService<T> {
 
   private configService = inject(ConfigService);
   private http = inject(HttpClient);
+  private readonly omdbApiUrl = this.configService.config?.omdbApiUrl;
   private readonly apiUrl = this.configService.config?.apiUrl;
 
   public setMovieUrl(type: SearchType, query: string, page?: number): string {
-    let url = `${this.apiUrl}&${type}=${query}`;
+    let url = `${this.omdbApiUrl}&${type}=${query}`;
     if (page) {
       url += `&page=${page}`;
     }

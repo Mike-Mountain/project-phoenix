@@ -3,12 +3,13 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build:all": "nx build container && nx build resume && nx build budgets && nx build code-master && nx build gallery && nx build movies",
-    "create-data-access-lib": "nx g @nx/angular:lib gallery-data-access --tags=scope:gallery,type:data-access --prefix=gallery-data-access --directory=libs/gallery/gallery-data-access --standalone",
-    "create-feature-lib": "nx g @nx/angular:lib gallery-feature --tags=scope:gallery,type:feature --prefix=gallery-feature --directory=libs/gallery/gallery-feature --standalone",
-    "create-ui-lib": "nx g @nx/angular:lib gallery-ui --tags=scope:gallery,type:ui --prefix=gallery-ui --directory=libs/gallery/gallery-ui --standalone",
-    "create-util-lib": "nx g @nx/angular:lib gallery-util --tags=scope:gallery,type:util --prefix=gallery-util --directory=libs/gallery/gallery-util --standalone",
-    "create-scoped-libs": "npm run create-data-access-lib --scope=gallery && npm run create-feature-lib --scope=gallery && npm run create-ui-lib --scope=gallery && npm run create-util-lib --scope=gallery --directory=libs/gallery/ --standalone"
+    "build:all": "nx build container && nx build resume && nx build budgets && nx build code-master && nx build auth && nx build movies",
+    "create-data-access-lib": "nx g @nx/angular:lib auth-data-access --tags=scope:auth,type:data-access --prefix=auth-data-access --directory=libs/auth/auth-data-access --standalone",
+    "create-feature-lib": "nx g @nx/angular:lib auth-feature --tags=scope:auth,type:feature --prefix=auth-feature --directory=libs/auth/auth-feature --standalone",
+    "create-ui-lib": "nx g @nx/angular:lib auth-ui --tags=scope:auth,type:ui --prefix=auth-ui --directory=libs/auth/auth-ui --standalone",
+    "create-util-lib": "nx g @nx/angular:lib auth-util --tags=scope:auth,type:util --prefix=auth-util --directory=libs/auth/auth-util --standalone",
+    "create-scoped-libs": "npm run create-data-access-lib --scope=auth && npm run create-feature-lib --scope=auth && npm run create-ui-lib --scope=auth && npm run create-util-lib --scope=auth --directory=libs/auth/ --standalone",
+    "create-auth-libs": "npm run create-data-access-lib --scope=auth && npm run create-ui-lib --scope=auth --directory=libs/auth/ --standalone"
   },
   "private": true,
   "dependencies": {

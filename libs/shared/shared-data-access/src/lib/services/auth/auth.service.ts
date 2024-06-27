@@ -1,48 +1,35 @@
-import { inject, Injectable } from '@angular/core';
-// import {
-//   Auth,
-//   createUserWithEmailAndPassword,
-//   signInWithEmailAndPassword,
-//   User,
-//   user,
-//   UserCredential
-// } from '@angular/fire/auth';
-import { from, map, Observable, of, switchMap } from 'rxjs';
+import { Inject, Injectable } from '@angular/core';
+import { ConfigService } from '../../config/config/config.service';
+import { BaseHttpService } from '../base-http/base-http.service';
+import { UserRegistration } from '../../models/auth.model';
+import { BehaviorSubject, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
-  // private auth: Auth = inject(Auth);
-  // private user$: Observable<User | null> = user(this.auth);
+export class AuthService extends BaseHttpService<any>{
 
-  // public createUserWithEmailAndPassword(email: string, password: string): Observable<User> {
-  //   return from(createUserWithEmailAndPassword(this.auth, email, password))
-  //     .pipe(map((credentials: UserCredential) => credentials.user));
-  // }
+  private userSrc = new BehaviorSubject({});
 
-  public createTestAccount() {
-    // const randomNumber = Math.floor(Math.random() * 100);
-    // const testEmail = `test.${randomNumber}@test.com`;
-    // const testPassword = btoa('test account' + randomNumber.toString());
-    // let successText = '';
-    // return this.createUserWithEmailAndPassword(testEmail, testPassword)
-    //   .pipe(
-    //     switchMap(() => {
-    //       successText = `Your test account has been created successfully and will be active for 24 hours. Please store this email/password combination if you wish to log in with this account again`;
-    //       return of({ email: testEmail, password: testPassword, successText });
-    //     })
-    //   );
+  public signIn(username: string, password: string) {
+    const url = super.setStandardUrl('/auth/login');
+    return super._post(url, {username, password}).pipe(
+      tap(token => {
+        // Save the token and extract the user
+        const payload = this.parseJwt(token)
+        this.userSrc.next(payload);
+      })
+    );
   }
 
-  // public signInWithEmailAndPassword(email: string, password: string): Observable<User> {
-    // return from(signInWithEmailAndPassword(this.auth, email, password))
-    //   .pipe(map((credentials: UserCredential) => credentials.user));
-  // }
+  public signUp(user: UserRegistration) {
+    const url = super.setStandardUrl('/auth/register');
+    return super._post(url, user);
+  }
 
-  // public getUser(): Observable<User | null> {
-  //   return this.user$;
-  // }
+  public getUser() {
+    return this.userSrc.asObservable();
+  }
 
   public isLoggedIn() {
     // return !!this.auth.currentUser;
@@ -50,6 +37,16 @@ export class AuthService {
 
   public signOut() {
     // this.auth.signOut();
+  }
+
+  private parseJwt (token: string) {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
   }
 
 

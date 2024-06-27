@@ -15,6 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@project-phoenix/auth-data-access": [
+        "libs/auth/auth-data-access/src/index.ts"
+      ],
+      "@project-phoenix/auth-ui": ["libs/auth/auth-ui/src/index.ts"],
       "@project-phoenix/budgets-data-access": [
         "libs/budgets/budgets-data-access/src/index.ts"
       ],

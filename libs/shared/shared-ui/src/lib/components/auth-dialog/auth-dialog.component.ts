@@ -21,23 +21,22 @@ export class AuthDialogComponent implements OnInit {
   public testPassword = '';
 
   public dialogRef = inject(MatDialogRef<AuthDialogComponent>);
+  private data = inject<AuthDialogOptions>(MAT_DIALOG_DATA);
   private authService = inject(AuthService);
   private formBuilder = inject(FormBuilder);
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { options: AuthDialogOptions }) {
-  }
 
   ngOnInit() {
     this.dialogRef.updateSize('90%');
     this.form = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
-      confirmPassword: ['', this.data.options.process === 'register' ? Validators.required : undefined]
+      confirmPassword: ['', this.data.process === 'register' ? Validators.required : undefined]
     });
   }
 
   public createPermanentAccount() {
-    this.data.options.process = 'register';
+    this.data.process = 'register';
   }
 
   public createTestAccount() {
@@ -55,7 +54,7 @@ export class AuthDialogComponent implements OnInit {
   public authAction() {
     if (this.form) {
       const response = this.form.value;
-      if (this.data.options.process === 'signIn') {
+      if (this.data.process === 'signIn') {
         this.signInUser(response.email, response.password);
       } else {
         this.registerUser(response.email, response.password, response.confirmPassword);
