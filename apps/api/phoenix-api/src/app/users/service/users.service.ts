@@ -32,6 +32,10 @@ export class UsersService {
     return this.usersRepository.findOneBy({ username });
   }
 
+  findById(id: number) {
+    return this.usersRepository.findOneBy({id});
+  }
+
   async update(id: number, updateUserDto: UpdateUserDto) {
     const newUser = new User();
     Object.assign(newUser, updateUserDto);

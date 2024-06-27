@@ -1,44 +1,21 @@
-import { EntitySchema } from 'typeorm';
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Group } from '../../groups/entities/group.entity';
+import { group } from '@angular/animations';
 
+@Entity('User')
 export class User {
+  @PrimaryGeneratedColumn()
   id: number;
+  @Column()
   firstName: string;
+  @Column()
   lastName: string;
+  @Column()
   username: string;
+  @Column()
   email: string;
+  @Column()
   password: string;
+  @ManyToMany(type => Group, group => group.members)
   groups: string[];
 }
-
-export const UserSchema = new EntitySchema<User>({
-  name: 'User',
-  target: User,
-  columns: {
-    id: {
-      type: Number,
-      primary: true,
-      generated: true
-    },
-    firstName: {
-      type: String
-    },
-    lastName: {
-      type: String
-    },
-    email: {
-      type: String
-    },
-    username: {
-      type: String
-    },
-    password: {
-      type: String
-    }
-  },
-  relations: {
-    groups: {
-      type: 'one-to-many',
-      target: 'Group'
-    }
-  }
-});
