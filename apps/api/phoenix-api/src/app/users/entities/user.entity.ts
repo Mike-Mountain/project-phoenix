@@ -7,6 +7,7 @@ export class User {
   username: string;
   email: string;
   password: string;
+  groups: string[];
 }
 
 export const UserSchema = new EntitySchema<User>({
@@ -34,10 +35,10 @@ export const UserSchema = new EntitySchema<User>({
       type: String
     }
   },
-  // relations: {
-  //   photos: {
-  //     type: 'one-to-many',
-  //     target: 'Photo'
-  //   }
-  // }
+  relations: {
+    groups: {
+      type: 'one-to-many',
+      target: 'Group'
+    }
+  }
 });
