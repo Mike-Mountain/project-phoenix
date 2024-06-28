@@ -21,56 +21,55 @@ export class AuthDialogComponent implements OnInit {
   public testPassword = '';
 
   public dialogRef = inject(MatDialogRef<AuthDialogComponent>);
-  private data = inject<AuthDialogOptions>(MAT_DIALOG_DATA);
+  public data = inject<AuthDialogOptions>(MAT_DIALOG_DATA);
   private authService = inject(AuthService);
   private formBuilder = inject(FormBuilder);
 
-
   ngOnInit() {
     this.dialogRef.updateSize('90%');
+    this.data.process === 'signUp' ? this.createRegisterForm() : this.createSignInForm();
+  }
+
+  private createSignInForm() {
     this.form = this.formBuilder.group({
-      email: ['', Validators.required],
+      username: ['', Validators.required],
       password: ['', Validators.required],
-      confirmPassword: ['', this.data.process === 'register' ? Validators.required : undefined]
     });
   }
 
-  public createPermanentAccount() {
-    this.data.process = 'register';
-  }
-
-  public createTestAccount() {
-    // this.authService.createTestAccount().subscribe((details: {
-    //   email: string,
-    //   password: string,
-    //   successText: string
-    // }) => {
-    //   this.testEmail = details.email;
-    //   this.testPassword = details.password;
-    //   this.successText = details.successText;
-    // });
+  private createRegisterForm() {
+    this.form = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', Validators.required],
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required]
+    });
   }
 
   public authAction() {
     if (this.form) {
-      const response = this.form.value;
       if (this.data.process === 'signIn') {
-        this.signInUser(response.email, response.password);
+        this.signInUser();
       } else {
-        this.registerUser(response.email, response.password, response.confirmPassword);
+        this.registerUser();
       }
     }
   }
 
-  private registerUser(email: string, password: string, confirmPassword: string) {
-    // if (password === confirmPassword) {
-    //   this.authService.createUserWithEmailAndPassword(email, password)
-    //     .subscribe(() => this.dialogRef.close());
-    // }
+  private registerUser() {
+    const user = this.form?.value;
+    console.log(user);
   }
 
-  private signInUser(email: string, password: string) {
-    // this.authService.signInWithEmailAndPassword(email, password)
-    //   .subscribe(() => this.dialogRef.close());
+  private signInUser() {
+    if (this.form) {
+      const { username, password } = this.form.value;
+      this.authService.signIn(username, password).subscribe((data) => {
+        console.log(data);
+        this.dialogRef.close();
+      });
+    }
   }
 }

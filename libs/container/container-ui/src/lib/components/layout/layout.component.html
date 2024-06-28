@@ -25,6 +25,12 @@
       </a>
       @if (isHandset$ | async) {
         <div class="w-100 flex-end">
+          @if (isLoggedIn) {
+
+          } @else {
+            <button mat-stroked-button color="accent" (click)="openAuthDialog('signIn')">Sign In</button>
+            <button mat-raised-button color="accent" (click)="openAuthDialog('signUp')">Sign Up</button>
+          }
           <button
             type="button"
             aria-label="Toggle sidenav"

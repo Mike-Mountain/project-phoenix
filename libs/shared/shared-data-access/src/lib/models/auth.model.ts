@@ -1,5 +1,5 @@
 export interface AuthDialogOptions {
-  process: 'signUp' | 'signIn' | 'test' | 'register';
+  process: 'signUp' | 'signIn';
 }
 
 export interface UserRegistration {

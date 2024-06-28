@@ -10,20 +10,23 @@ import { BehaviorSubject, tap } from 'rxjs';
 export class AuthService extends BaseHttpService<any>{
 
   private userSrc = new BehaviorSubject({});
+  private token: string | undefined;
 
   public signIn(username: string, password: string) {
-    const url = super.setStandardUrl('/auth/login');
+    const url = super.setStandardUrl('auth/login');
+    console.log('URL', url);
     return super._post(url, {username, password}).pipe(
       tap(token => {
+        this.token = token.access_token;
         // Save the token and extract the user
-        const payload = this.parseJwt(token)
+        const payload = this.parseJwt(token.access_token)
         this.userSrc.next(payload);
       })
     );
   }
 
   public signUp(user: UserRegistration) {
-    const url = super.setStandardUrl('/auth/register');
+    const url = super.setStandardUrl('auth/register');
     return super._post(url, user);
   }
 
@@ -32,7 +35,7 @@ export class AuthService extends BaseHttpService<any>{
   }
 
   public isLoggedIn() {
-    // return !!this.auth.currentUser;
+    return !!this.token;
   }
 
   public signOut() {

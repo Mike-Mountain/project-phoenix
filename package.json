@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "serve": "nx serve container",
+    "serve:api": "nx serve phoenix-api",
     "build:all": "nx build container && nx build resume && nx build budgets && nx build code-master && nx build auth && nx build movies",
     "create-data-access-lib": "nx g @nx/angular:lib auth-data-access --tags=scope:auth,type:data-access --prefix=auth-data-access --directory=libs/auth/auth-data-access --standalone",
     "create-feature-lib": "nx g @nx/angular:lib auth-feature --tags=scope:auth,type:feature --prefix=auth-feature --directory=libs/auth/auth-feature --standalone",
