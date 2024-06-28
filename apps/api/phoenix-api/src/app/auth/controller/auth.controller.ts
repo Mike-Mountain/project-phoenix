@@ -1,9 +1,6 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post, UseGuards, Request } from '@nestjs/common';
+import { Body, Controller, HttpCode, HttpStatus, Post, } from '@nestjs/common';
 import { AuthService } from '../service/auth.service';
-import { AuthGuard } from '../guard/auth.guard';
 import { SignInDto } from '../dto/sign-in.dto';
-import * as bcrypt from 'bcrypt';
-import { SignUpDto } from '../dto/sign-up.dto';
 import { UsersService } from '../../users/service/users.service';
 import { CreateUserDto } from '../../users/dto/create-user.dto';
 
@@ -23,5 +20,11 @@ export class AuthController {
   @Post('register')
   async signUp(@Body() createUserDto: CreateUserDto) {
     return this.usersService.createUser(createUserDto);
+  }
+
+  @HttpCode(HttpStatus.OK)
+  @Post('username')
+  async checkUsername(@Body() data: {username: string}) {
+    return this.authService.checkUsernameAvailability(data.username);
   }
 }

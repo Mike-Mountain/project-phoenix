@@ -25,11 +25,11 @@
       </a>
       @if (isHandset$ | async) {
         <div class="w-100 flex-end">
-          @if (isLoggedIn) {
-
+          @if (user$ | async) {
+            <button class="mr-2" mat-stroked-button color="accent" (click)="signOut()">Sign Out</button>
           } @else {
-            <button mat-stroked-button color="accent" (click)="openAuthDialog('signIn')">Sign In</button>
-            <button mat-raised-button color="accent" (click)="openAuthDialog('signUp')">Sign Up</button>
+            <button class="ml-2" mat-stroked-button color="accent" (click)="openAuthDialog('signIn')">Sign In</button>
+            <button class="mx-2" mat-raised-button color="accent" (click)="openAuthDialog('signUp')">Sign Up</button>
           }
           <button
             type="button"
@@ -56,6 +56,12 @@
           <a routerLink="gallery">
             <button class="ml-2" mat-stroked-button color="accent">Gallery</button>
           </a>
+          @if (user$ | async) {
+            <button class="ml-2" mat-raised-button color="accent" (click)="signOut()">Sign Out</button>
+          } @else {
+            <button class="ml-2" mat-stroked-button color="accent" (click)="openAuthDialog('signIn')">Sign In</button>
+            <button class="ml-2" mat-raised-button color="accent" (click)="openAuthDialog('signUp')">Sign Up</button>
+          }
         </div>
       }
     </mat-toolbar>

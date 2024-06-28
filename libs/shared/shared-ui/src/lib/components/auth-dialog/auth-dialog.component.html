@@ -19,6 +19,9 @@
         <mat-form-field>
           <mat-label>Username</mat-label>
           <input matInput type="text" required formControlName="username">
+          @if (!isUsernameAvailable) {
+            <mat-error>Username is not available!</mat-error>
+          }
         </mat-form-field>
         @if (data.process === 'signUp') {
           <mat-form-field>
@@ -54,6 +57,7 @@
           Sign In
         }
       </button>
+      <button class="w-60 mx-auto mt-2" mat-stroked-button color="accent" (click)="cancelAuthAction()">Cancel</button>
     }
   }
 </section>

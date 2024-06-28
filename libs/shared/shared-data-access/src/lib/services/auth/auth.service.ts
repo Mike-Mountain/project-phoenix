@@ -7,20 +7,27 @@ import { BehaviorSubject, tap } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService extends BaseHttpService<any>{
+export class AuthService extends BaseHttpService<any> {
 
-  private userSrc = new BehaviorSubject({});
-  private token: string | undefined;
+  private userSrc = new BehaviorSubject(undefined);
+  public token: string | undefined;
+
+  public setUser() {
+    const authCookie = document.cookie.match('(^|;)\\s*' + 'hsmauth' + '\\s*=\\s*([^;]+)')?.pop();
+    if (authCookie) {
+      this.token = authCookie;
+      this.userSrc.next(this.parseJwt(authCookie));
+    }
+  }
 
   public signIn(username: string, password: string) {
     const url = super.setStandardUrl('auth/login');
-    console.log('URL', url);
-    return super._post(url, {username, password}).pipe(
+    return super._post(url, { username, password }).pipe(
       tap(token => {
-        this.token = token.access_token;
         // Save the token and extract the user
-        const payload = this.parseJwt(token.access_token)
-        this.userSrc.next(payload);
+        this.token = token.access_token;
+        document.cookie = `hsmauth=${this.token}; expires=${new Date().setTime(new Date().getTime() + (7 * 24 * 60 * 60 * 1000))}`;
+        this.userSrc.next(this.parseJwt(token.access_token));
       })
     );
   }
@@ -34,15 +41,19 @@ export class AuthService extends BaseHttpService<any>{
     return this.userSrc.asObservable();
   }
 
-  public isLoggedIn() {
-    return !!this.token;
+  public isUsernameAvailable(username: string) {
+    const url = super.setStandardUrl('auth/username');
+    return super._post(url, { username });
   }
 
   public signOut() {
-    // this.auth.signOut();
+    this.token = undefined;
+    this.userSrc.next(undefined);
+    // Expire the token
+    document.cookie = `hsmauth=${this.token}; expires=${new Date().setTime(new Date().getTime() - 1)}`;
   }
 
-  private parseJwt (token: string) {
+  private parseJwt(token: string) {
     const base64Url = token.split('.')[1];
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
     const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {

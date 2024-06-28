@@ -19,9 +19,13 @@ export class AuthService {
       throw new UnauthorizedException('Incorrect Password!');
     }
     const payload = { sub: user.id, user };
-    const token = {
+    return {
       access_token: await this.jwtService.signAsync(payload)
     };
-    return token;
+  }
+
+  async checkUsernameAvailability(username: string) {
+    const user = await this.usersService.findOne(username);
+    return user === null;
   }
 }

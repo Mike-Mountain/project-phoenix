@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../entities/user.entity';
 import { DataSource, Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class UsersService {
@@ -12,7 +13,8 @@ export class UsersService {
   salt = bcrypt.genSalt();
 
   constructor(@InjectRepository(User) private usersRepository: Repository<User>,
-              private dataSource: DataSource) {
+              private dataSource: DataSource,
+              private jwtService: JwtService) {
   }
 
   async createUser(userDto: CreateUserDto) {
@@ -22,6 +24,10 @@ export class UsersService {
       Object.assign(user, userDto);
       await manager.save(user);
     });
+    const savedUser = await this.findOne(userDto.username);
+    const payload = {sub: savedUser.id, user: savedUser};
+    return {
+      access_token: await this.jwtService.signAsync(payload) };
   }
 
   findAll(): Promise<User[]> {
