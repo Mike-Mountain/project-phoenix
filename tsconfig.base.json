@@ -57,6 +57,14 @@
       "@project-phoenix/gallery/Routing": [
         "libs/gallery/gallery-feature/src/lib/gallery.routes.ts"
       ],
+      "@project-phoenix/groups-data-access": [
+        "libs/groups/groups-data-access/src/index.ts"
+      ],
+      "@project-phoenix/groups-feature": [
+        "libs/groups/groups-feature/src/index.ts"
+      ],
+      "@project-phoenix/groups-ui": ["libs/groups/groups-ui/src/index.ts"],
+      "@project-phoenix/groups-util": ["libs/groups/groups-util/src/index.ts"],
       "@project-phoenix/movies-data-access": [
         "libs/movies/movies-data-access/src/index.ts"
       ],
@@ -93,6 +101,7 @@
         "apps/code-master/src/app/remote-entry/entry.routes.ts"
       ],
       "gallery/Routes": ["apps/gallery/src/app/remote-entry/entry.routes.ts"],
+      "groups/Routes": ["apps/groups/src/app/remote-entry/entry.routes.ts"],
       "movies/Routes": ["apps/movies/src/app/remote-entry/entry.routes.ts"],
       "resume/Routes": ["apps/resume/src/app/remote-entry/entry.routes.ts"]
     }
