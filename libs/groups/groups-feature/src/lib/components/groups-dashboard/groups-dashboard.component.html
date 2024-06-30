@@ -1,0 +1,25 @@
+<section class="groups">
+  <mat-card class="m-2">
+    <mat-card-content>
+      <h1>{{ (user$ | async)?.username }}'s Groups</h1>
+    </mat-card-content>
+  </mat-card>
+  <ng-container *ngIf="user$ | async as user">
+    @if (user.groups.length > 0) {
+      <div class="flex-around w-100">
+        @for (group of user.groups; track group.id) {
+          <a>
+            <div class="group"><h3>{{ group.name }}</h3></div>
+          </a>
+        }
+      </div>
+    } @else {
+      <h1 class="text-center">You have no groups!</h1>
+    }
+  </ng-container>
+  <a class="create-group" routerLink="create-group">
+    <button mat-fab color="accent">
+      <mat-icon>add</mat-icon>
+    </button>
+  </a>
+</section>

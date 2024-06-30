@@ -11,7 +11,7 @@ export const authGuard: CanActivateFn = (route, state) => {
   return authService.getUser().pipe(
     switchMap(user => {
       if (!user) {
-        return dialog.open(AuthDialogComponent, {data: {options: {process: 'signIn'}}}).afterClosed()
+        return dialog.open(AuthDialogComponent, {data: {process: 'signIn'}}).afterClosed()
       } else {
         return of(true);
       }

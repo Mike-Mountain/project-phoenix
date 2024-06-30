@@ -5,7 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Group } from '../entities/group.entity';
 import { DataSource, Repository } from 'typeorm';
 import { UsersService } from '../../users/service/users.service';
-import { Request } from 'express';
+import { User } from '../../users/entities/user.entity';
 
 @Injectable()
 export class GroupsService {
@@ -16,13 +16,16 @@ export class GroupsService {
   }
 
   async create(createGroupDto: CreateGroupDto) {
-    await this.dataSource.transaction(async manager => {
-      const group = new Group();
-      Object.assign(group, createGroupDto);
-      const user = await this.usersService.findOne(createGroupDto.createdBy);
-      group.members = [user];
-      await manager.save(group)
-    })
+    const group = new Group();
+    Object.assign(group, createGroupDto);
+    group.members = [];
+    for (const member of createGroupDto.members) {
+      const user = await this.usersService.getUser(member);
+      group.members.push(user);
+      user.groups ? user.groups.push(group) : user.groups = [group];
+      await this.dataSource.manager.save(user);
+    }
+    await this.dataSource.manager.save(group);
   }
 
   findAll() {

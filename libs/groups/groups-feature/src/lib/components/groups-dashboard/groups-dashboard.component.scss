@@ -1,0 +1,15 @@
+.group {
+  width: 10.75rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid var(--containerBackground);
+  border-radius: 8px;
+}
+
+.create-group {
+  position: absolute;
+  bottom: .75rem;
+  right: .75rem;
+}

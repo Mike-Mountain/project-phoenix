@@ -65,6 +65,9 @@
       ],
       "@project-phoenix/groups-ui": ["libs/groups/groups-ui/src/index.ts"],
       "@project-phoenix/groups-util": ["libs/groups/groups-util/src/index.ts"],
+      "@project-phoenix/groups/Routing": [
+        "libs/groups/groups-feature/src/lib/groups.routes.ts"
+      ],
       "@project-phoenix/movies-data-access": [
         "libs/movies/movies-data-access/src/index.ts"
       ],

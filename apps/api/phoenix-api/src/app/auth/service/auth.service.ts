@@ -10,7 +10,7 @@ export class AuthService {
   }
 
   async signIn(username: string, password: string) {
-    const user = await this.usersService.findOne(username);
+    const user = await this.usersService.findOneWithPassword(username);
     if (!user) {
       throw new NotFoundException('User does not exist');
     }
@@ -18,7 +18,7 @@ export class AuthService {
     if (!isMatched) {
       throw new UnauthorizedException('Incorrect Password!');
     }
-    const payload = { sub: user.id, user };
+    const payload = { sub: user.id, username };
     return {
       access_token: await this.jwtService.signAsync(payload)
     };

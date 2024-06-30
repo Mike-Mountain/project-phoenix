@@ -5,11 +5,14 @@ import { User } from '../../users/entities/user.entity';
 export class Group {
   @PrimaryGeneratedColumn()
   id: number;
+
   @Column()
   name: string;
+
   @Column()
   createdBy: string;
-  @ManyToMany(type => User, user => user.groups, { cascade: true })
+
+  @ManyToMany(() => User, user => user.groups)
   @JoinTable()
   members: User[];
 }
