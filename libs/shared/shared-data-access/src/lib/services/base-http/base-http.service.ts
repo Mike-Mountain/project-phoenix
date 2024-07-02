@@ -7,7 +7,7 @@ import { ConfigService } from '../../config/config/config.service';
 @Injectable({
   providedIn: 'root'
 })
-export class BaseHttpService<T> {
+export class BaseHttpService<T = any> {
 
   private configService = inject(ConfigService);
   private http = inject(HttpClient);
@@ -26,16 +26,16 @@ export class BaseHttpService<T> {
     return `${this.apiUrl}/${fragment}`;
   }
 
-  public _get(url: string, headers?: HttpHeaders): Observable<T> {
-    return this.http.get<T>(url, { headers });
+  public _get<O>(url: string, headers?: HttpHeaders): Observable<T | O> {
+    return this.http.get<T | O>(url, { headers });
   }
 
   public _put(url: string, item: T, headers?: HttpHeaders): Observable<T> {
     return this.http.put<T>(url, item, { headers });
   }
 
-  public _post(url: string, item: T, headers?: HttpHeaders): Observable<T> {
-    return this.http.post<T>(url, item, { headers });
+  public _post<O>(url: string, item: T, headers?: HttpHeaders): Observable<T | O> {
+    return this.http.post<T | O>(url, item, { headers });
   }
 
   public _delete(url: string): Observable<T | undefined> {

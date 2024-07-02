@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "nx serve container",
     "serve:api": "nx serve phoenix-api",
+    "serve:indiv-groups": "nx serve groups",
     "build:all": "nx build container && nx build resume && nx build budgets && nx build code-master && nx build groups && nx build movies",
     "create-data-access-lib": "nx g @nx/angular:lib groups-data-access --tags=scope:groups,type:data-access --prefix=groups-data-access --directory=libs/groups/groups-data-access --standalone",
     "create-feature-lib": "nx g @nx/angular:lib groups-feature --tags=scope:groups,type:feature --prefix=groups-feature --directory=libs/groups/groups-feature --standalone",

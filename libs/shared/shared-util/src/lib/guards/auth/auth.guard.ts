@@ -10,11 +10,34 @@ export const authGuard: CanActivateFn = (route, state) => {
   const dialog = inject(MatDialog);
   return authService.getUser().pipe(
     switchMap(user => {
+      const authCookie = document.cookie.match('(^|;)\\s*' + 'hsmauth' + '\\s*=\\s*([^;]+)')?.pop();
+      if (authCookie) {
+        const cookieExp = new Date(authService.parseJwt(authCookie).exp);
+        const currentDate = new Date();
+        if (getTimeFromDate(cookieExp) < getTimeFromDate(currentDate)) {
+          console.log('OPEN DIALOG COOKIE EXPIRED')
+          return dialog.open(AuthDialogComponent, { data: { process: 'signIn' } }).afterClosed();
+        }
+      }
       if (!user) {
-        return dialog.open(AuthDialogComponent, {data: {process: 'signIn'}}).afterClosed()
+        const authCookie = document.cookie.match('(^|;)\\s*' + 'hsmauth' + '\\s*=\\s*([^;]+)')?.pop();
+        if (!authCookie) {
+          console.log('OPEN DIALOG NO USER OR COOKIE')
+          return dialog.open(AuthDialogComponent, { data: { process: 'signIn' } }).afterClosed();
+        } else {
+          const username = authService.parseJwt(authCookie).username;
+          return authService.fetchUser(username);
+        }
       } else {
         return of(true);
       }
     })
-  )
+  );
 };
+
+function getTimeFromDate(date: Date) {
+  const hours = date.getHours();
+  const minutes = "0" + date.getMinutes();
+  const seconds = "0" + date.getSeconds();
+  return hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+}

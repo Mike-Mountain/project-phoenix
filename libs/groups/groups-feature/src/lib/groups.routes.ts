@@ -5,4 +5,5 @@ import { EditGroupComponent } from './components/edit-group/edit-group.component
 export const groupsRoutes: Routes = [
   { path: '', component: GroupsDashboardComponent },
   {path: 'create-group', component: EditGroupComponent},
+  {path: 'edit-group/:id', component: EditGroupComponent},
 ];

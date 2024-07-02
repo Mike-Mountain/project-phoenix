@@ -1,1 +1,2 @@
-export * from './lib/groups-data-access/groups-data-access.component';
+export * from './lib/models/groups.model';
+export * from './lib/services/groups/groups.service';

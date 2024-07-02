@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Put } from '@nestjs/common';
 import { GroupsService } from '../service/groups.service';
 import { CreateGroupDto } from '../dto/create-group.dto';
 import { UpdateGroupDto } from '../dto/update-group.dto';
@@ -15,6 +15,12 @@ export class GroupsController {
   }
 
   @UseGuards(AuthGuard)
+  @Post('leave/:id')
+  leaveGroup(@Body() username: string, @Param('id') id: number) {
+    return this.groupsService.leaveGroup(username, id);
+  }
+
+  @UseGuards(AuthGuard)
   @Get()
   findAll() {
     return this.groupsService.findAll();
@@ -27,9 +33,9 @@ export class GroupsController {
   }
 
   @UseGuards(AuthGuard)
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateGroupDto: UpdateGroupDto) {
-    return this.groupsService.update(+id, updateGroupDto);
+  @Put(':id')
+  update(@Param('id') id: string, @Body() updateGroupDto: CreateGroupDto) {
+    return this.groupsService.create(updateGroupDto);
   }
 
   @UseGuards(AuthGuard)

@@ -1,1 +1,27 @@
-<p>edit-group works!</p>
+<section class="create-group">
+  <mat-toolbar color="primary" class="flex-center mb-2">
+    <p class="text-color-accent">
+      @if (groupId) {
+        Edit
+      } @else {
+        Create a
+      }
+      group</p>
+  </mat-toolbar>
+  @if (groupForm) {
+    <form [formGroup]="groupForm" class="flex-center flex-column" *ngIf="user$ | async as user">
+      <mat-form-field class="w-80">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+      <button mat-raised-button class="w-60 mx-auto" color="accent" (click)="createOrEdit(user)">
+        @if (groupId) {
+          Edit
+        } @else {
+          Create
+        }
+         Group
+      </button>
+    </form>
+  }
+</section>

@@ -6,13 +6,23 @@
   </mat-card>
   <ng-container *ngIf="user$ | async as user">
     @if (user.groups.length > 0) {
-      <div class="flex-around w-100">
+      @if (user.groups.length > 1) {
+      <mat-tab-group>
         @for (group of user.groups; track group.id) {
-          <a>
-            <div class="group"><h3>{{ group.name }}</h3></div>
-          </a>
+          <mat-tab [label]="group.name">
+            <groups-feature-group-summary
+              [groupSummary]="group"
+              (exit)="exitGroup(group.id, user.username)"
+            ></groups-feature-group-summary>
+          </mat-tab>
         }
-      </div>
+      </mat-tab-group>
+      } @else {
+        <groups-feature-group-summary
+          [groupSummary]="user.groups[0]"
+          (exit)="exitGroup(user.groups[0].id, user.username)"
+        ></groups-feature-group-summary>
+      }
     } @else {
       <h1 class="text-center">You have no groups!</h1>
     }

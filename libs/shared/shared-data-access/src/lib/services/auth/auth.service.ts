@@ -14,13 +14,10 @@ export class AuthService extends BaseHttpService<any> {
   public setUser() {
     const authCookie = document.cookie.match('(^|;)\\s*' + 'hsmauth' + '\\s*=\\s*([^;]+)')?.pop();
     if (authCookie) {
-      const exp = this.parseJwt(authCookie).exp;
-      if (new Date() < new Date(exp)) {
-        this.token = authCookie;
-        this.fetchUser(this.parseJwt(authCookie).username).subscribe(user => {
-          this.userSrc.next(user);
-        })
-      }
+      this.token = authCookie;
+      this.fetchUser(this.parseJwt(authCookie).username).subscribe(user => {
+        this.userSrc.next(user);
+      });
     }
   }
 
@@ -42,7 +39,7 @@ export class AuthService extends BaseHttpService<any> {
       switchMap(token => {
         this.token = token.access_token;
         this.setCookie(token.access_token);
-        return this.fetchUser(user.username)
+        return this.fetchUser(user.username);
       }),
       tap(user => this.userSrc.next(user))
     );
@@ -64,16 +61,14 @@ export class AuthService extends BaseHttpService<any> {
     document.cookie = `hsmauth=${this.token}; expires=${new Date().setTime(new Date().getTime() - 1)}`;
   }
 
-  private fetchUser(username: string): Observable<User> {
+  public fetchUser(username: string): Observable<User> {
     const url = super.setStandardUrl(`users/${username}`);
-    return super._get(url);
+    return super._get(url).pipe(
+      tap(user => this.userSrc.next(user))
+    );
   }
 
-  private setCookie(token: string) {
-    document.cookie = `hsmauth=${token}; expires=${new Date().setTime(new Date().getTime() + (7 * 24 * 60 * 60 * 1000))}`;
-  }
-
-  private parseJwt(token: string) {
+  public parseJwt(token: string) {
     const base64Url = token.split('.')[1];
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
     const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
@@ -83,5 +78,7 @@ export class AuthService extends BaseHttpService<any> {
     return JSON.parse(jsonPayload);
   }
 
-
+  private setCookie(token: string) {
+    document.cookie = `hsmauth=${token}; expires=${new Date().setTime(new Date().getTime() + (7 * 24 * 60 * 60 * 1000))}`;
+  }
 }

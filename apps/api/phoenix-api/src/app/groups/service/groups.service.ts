@@ -5,27 +5,31 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Group } from '../entities/group.entity';
 import { DataSource, Repository } from 'typeorm';
 import { UsersService } from '../../users/service/users.service';
-import { User } from '../../users/entities/user.entity';
 
 @Injectable()
 export class GroupsService {
 
   constructor(@InjectRepository(Group) private groupsRepository: Repository<Group>,
               private usersService: UsersService,
-              private dataSource: DataSource) {
+              private datasource: DataSource) {
   }
 
-  async create(createGroupDto: CreateGroupDto) {
+  async create(createGroupDto: CreateGroupDto, id?: number) {
     const group = new Group();
     Object.assign(group, createGroupDto);
     group.members = [];
     for (const member of createGroupDto.members) {
       const user = await this.usersService.getUser(member);
+      console.log(user);
       group.members.push(user);
       user.groups ? user.groups.push(group) : user.groups = [group];
-      await this.dataSource.manager.save(user);
+      await this.datasource.manager.save(user);
     }
-    await this.dataSource.manager.save(group);
+    if (id) {
+      await this.groupsRepository.update(id, group)
+    } else {
+      await this.groupsRepository.save(group)
+    }
   }
 
   findAll() {
@@ -41,6 +45,14 @@ export class GroupsService {
   }
 
   remove(id: number) {
-    return `This action removes a #${id} group`;
+    return '';
+  }
+
+  async leaveGroup(username: string, id: number) {
+    const group = await this.groupsRepository.findOne({where: {id}, relations: {members: true}});
+    group.members = group.members.filter(member => member.username === username);
+    if (group.members.length === 0) {
+      await this.datasource.manager.remove(group);
+    }
   }
 }

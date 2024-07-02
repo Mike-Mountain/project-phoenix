@@ -69,8 +69,8 @@
   background-color: #00000033;
 }
 
-.bg-dark-blue {
-  background-color: map-get(default-primary.$default-primary, A100) !important;
+.bg-dark-primary {
+  background-color: map-get(default-primary.$default-primary, 800) !important;
 }
 
 .bg-dark-blue2 {
@@ -176,7 +176,7 @@
 }
 
 .border-color-primary-dark {
-  border-color: map-get(map-get(default-primary.$default-primary, contrast), A800) !important;
+  border-color: map-get(default-primary.$default-primary, 800) !important;
 }
 
 .bottom-border-yellow {

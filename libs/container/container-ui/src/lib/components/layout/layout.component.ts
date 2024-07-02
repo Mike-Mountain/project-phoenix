@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { AsyncPipe, JsonPipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -38,6 +38,8 @@ export class LayoutComponent {
   private dialog = inject(MatDialog);
   private router = inject(Router);
 
+  @Input() public individual = false;
+
   public user$ = this.authService.getUser();
 
   public isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -47,6 +49,7 @@ export class LayoutComponent {
     );
 
   public openAuthDialog(process: 'signIn' | 'signUp') {
+    console.log('OPEN DIALOG LAYOUT')
     this.dialog.open(AuthDialogComponent, {data: {process}})
   }
 

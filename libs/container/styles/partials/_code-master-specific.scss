@@ -31,3 +31,11 @@
 .mat-mdc-card {
   background-color: var(--containerBackground) !important;
 }
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: var(--containerBackground) !important;
+}
+
+.mat-mdc-tab.mdc-tab {
+  background-color: var(--containerBackground) !important;
+}

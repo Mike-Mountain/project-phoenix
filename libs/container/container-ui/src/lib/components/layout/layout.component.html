@@ -26,7 +26,7 @@
           <i class="logo fa-solid fa-mountain-city fa-2xl"></i>
         </button>
       </a>
-      @if (isHandset$ | async) {
+      @if (individual) {
         <div class="w-100 flex-end">
           @if (user$ | async) {
             <button class="mr-2" mat-stroked-button color="accent" (click)="signOut()">Sign Out</button>
@@ -34,41 +34,53 @@
             <button class="ml-2" mat-stroked-button color="accent" (click)="openAuthDialog('signIn')">Sign In</button>
             <button class="mx-2" mat-raised-button color="accent" (click)="openAuthDialog('signUp')">Sign Up</button>
           }
-          <button
-            type="button"
-            aria-label="Toggle sidenav"
-            mat-icon-button
-            (click)="drawer.toggle()">
-            <mat-icon aria-label="Side nav toggle icon" color="accent">menu</mat-icon>
-          </button>
         </div>
-      } @else {
-        <div class="flex-end w-100">
-          <a routerLink="resume">
-            <button class="ml-2" mat-stroked-button color="accent">Resume</button>
-          </a>
-          <a routerLink="code-master">
-            <button class="ml-2" mat-stroked-button color="accent">Code Master</button>
-          </a>
-          <a routerLink="movies">
-            <button class="ml-2" mat-stroked-button color="accent">Movies</button>
-          </a>
-          <a routerLink="gallery">
-            <button class="ml-2" mat-stroked-button color="accent">Gallery</button>
-          </a>
-          @if (user$ | async) {
-            <a routerLink="budgets">
-              <button class="ml-2" mat-stroked-button color="accent">Budgets</button>
+      }
+      @if (!individual) {
+        @if (isHandset$ | async) {
+          <div class="w-100 flex-end">
+            @if (user$ | async) {
+              <button class="mr-2" mat-stroked-button color="accent" (click)="signOut()">Sign Out</button>
+            } @else {
+              <button class="ml-2" mat-stroked-button color="accent" (click)="openAuthDialog('signIn')">Sign In</button>
+              <button class="mx-2" mat-raised-button color="accent" (click)="openAuthDialog('signUp')">Sign Up</button>
+            }
+            <button
+              type="button"
+              aria-label="Toggle sidenav"
+              mat-icon-button
+              (click)="drawer.toggle()">
+              <mat-icon aria-label="Side nav toggle icon" color="accent">menu</mat-icon>
+            </button>
+          </div>
+        } @else {
+          <div class="flex-end w-100">
+            <a routerLink="resume">
+              <button class="ml-2" mat-stroked-button color="accent">Resume</button>
             </a>
-            <a routerLink="groups">
-              <button class="ml-2" mat-stroked-button color="accent">Groups</button>
+            <a routerLink="code-master">
+              <button class="ml-2" mat-stroked-button color="accent">Code Master</button>
             </a>
-            <button class="ml-2" mat-raised-button color="accent" (click)="signOut()">Sign Out</button>
-          } @else {
-            <button class="ml-2" mat-stroked-button color="accent" (click)="openAuthDialog('signIn')">Sign In</button>
-            <button class="ml-2" mat-raised-button color="accent" (click)="openAuthDialog('signUp')">Sign Up</button>
-          }
-        </div>
+            <a routerLink="movies">
+              <button class="ml-2" mat-stroked-button color="accent">Movies</button>
+            </a>
+            <a routerLink="gallery">
+              <button class="ml-2" mat-stroked-button color="accent">Gallery</button>
+            </a>
+            @if (user$ | async) {
+              <a routerLink="budgets">
+                <button class="ml-2" mat-stroked-button color="accent">Budgets</button>
+              </a>
+              <a routerLink="groups">
+                <button class="ml-2" mat-stroked-button color="accent">Groups</button>
+              </a>
+              <button class="ml-2" mat-raised-button color="accent" (click)="signOut()">Sign Out</button>
+            } @else {
+              <button class="ml-2" mat-stroked-button color="accent" (click)="openAuthDialog('signIn')">Sign In</button>
+              <button class="ml-2" mat-raised-button color="accent" (click)="openAuthDialog('signUp')">Sign Up</button>
+            }
+          </div>
+        }
       }
     </mat-toolbar>
     <div class="content">
