@@ -20,7 +20,6 @@ export class GroupsService {
     group.members = [];
     for (const member of createGroupDto.members) {
       const user = await this.usersService.getUser(member);
-      console.log(user);
       group.members.push(user);
       user.groups ? user.groups.push(group) : user.groups = [group];
       await this.datasource.manager.save(user);
@@ -37,7 +36,7 @@ export class GroupsService {
   }
 
   findOne(id: number) {
-    return this.groupsRepository.findOne({where: {id}, relations: {members: true}})
+    return this.groupsRepository.findOne({where: {id}, relations: {members: true, lists: true}})
   }
 
   update(id: number, updateGroupDto: UpdateGroupDto) {

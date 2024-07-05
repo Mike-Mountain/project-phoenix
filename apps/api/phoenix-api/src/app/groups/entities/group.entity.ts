@@ -1,5 +1,6 @@
 import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { User } from '../../users/entities/user.entity';
+import { List } from '../../lists/entities/list.entity';
 
 @Entity('Group')
 export class Group {
@@ -15,4 +16,7 @@ export class Group {
   @ManyToMany(() => User, user => user.groups)
   @JoinTable()
   members: User[];
+
+  @OneToMany(() => List, list => list.group)
+  lists: List[];
 }
