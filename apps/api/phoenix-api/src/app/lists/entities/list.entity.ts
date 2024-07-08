@@ -1,6 +1,7 @@
 import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Group } from '../../groups/entities/group.entity';
 import { ListItem } from '../../list-items/entities/list-item.entity';
+import { CreateListDto } from '../dto/create-list.dto';
 
 @Entity('List')
 export class List {

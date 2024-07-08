@@ -1,11 +1,27 @@
 import { Injectable } from '@nestjs/common';
 import { CreateListItemDto } from '../dto/create-list-item.dto';
 import { UpdateListItemDto } from '../dto/update-list-item.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { ListItem } from '../entities/list-item.entity';
+import { CategoryService } from '../../category/service/category.service';
 
 @Injectable()
 export class ListItemsService {
-  create(createListItemDto: CreateListItemDto) {
-    return 'This action adds a new listItem';
+
+  constructor(@InjectRepository(ListItem) private listItemRepository: Repository<ListItem>,
+              private categoryService: CategoryService) {
+  }
+
+  async create(createListItemDto: CreateListItemDto) {
+    const listItem = new ListItem();
+    Object.assign(listItem, createListItemDto);
+    let category = await this.categoryService.findOne(createListItemDto.category);
+    if (!category) {
+      category = await this.categoryService.create({name: createListItemDto.category});
+    }
+    listItem.category = category;
+    return this.listItemRepository.save(listItem);
   }
 
   findAll() {
@@ -13,7 +29,7 @@ export class ListItemsService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} listItem`;
+    return this.listItemRepository.findOne({where: {id}, relations: {category: true}});
   }
 
   update(id: number, updateListItemDto: UpdateListItemDto) {

@@ -39,6 +39,12 @@ export class GroupsController {
   }
 
   @UseGuards(AuthGuard)
+  @Patch(':id')
+  addMembers(@Param('id') id: string, @Body() members: string[]) {
+    return this.groupsService.addMembers(+id, members)
+  }
+
+  @UseGuards(AuthGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.groupsService.remove(+id);

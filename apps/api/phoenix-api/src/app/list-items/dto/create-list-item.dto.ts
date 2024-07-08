@@ -1,1 +1,5 @@
-export class CreateListItemDto {}
+export class CreateListItemDto {
+  name: string;
+  list: number;
+  category: string;
+}

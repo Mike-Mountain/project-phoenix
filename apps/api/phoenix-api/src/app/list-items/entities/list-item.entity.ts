@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { List } from '../../lists/entities/list.entity';
 import { Category } from '../../category/entities/category.entity';
 
@@ -10,6 +10,16 @@ export class ListItem {
   @Column()
   name: string;
 
-  @ManyToOne(() => List, list => list.items)
+  @Column()
+  createdBy: string;
+
+  @Column()
+  isComplete: boolean;
+
+  @ManyToOne(() => List, list => list.items, {cascade: true})
   list: List;
+
+  @ManyToOne(() => Category, category => category.items, { cascade: true })
+  @JoinTable()
+  category: Category;
 }

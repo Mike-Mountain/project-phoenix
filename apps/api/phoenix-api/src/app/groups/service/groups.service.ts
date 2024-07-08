@@ -43,6 +43,17 @@ export class GroupsService {
     return `This action updates a #${id} group`;
   }
 
+  async addMembers(id: number, members: string[]) {
+    const group = await this.findOne(id);
+    for(const member of members) {
+      const user = await this.usersService.getUser(member);
+      user.groups.push(group);
+      await this.datasource.manager.save(user);
+      group.members.push(user);
+    }
+    return await this.groupsRepository.update(id, group);
+  }
+
   remove(id: number) {
     return '';
   }
