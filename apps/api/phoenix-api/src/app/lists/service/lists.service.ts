@@ -18,7 +18,7 @@ export class ListsService {
   async create(createListDto: CreateListDto) {
     const list = new List();
     Object.assign(list, createListDto);
-    // list.group = await this.groupsService.findOne(createListDto.group);
+       // list.group = await this.groupsService.findOne(createListDto.group);
     list.items.forEach((listItem: ListItem) => {
       const item = new ListItem();
       Object.assign(item, listItem);
