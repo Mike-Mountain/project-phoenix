@@ -1,10 +1,24 @@
-<mat-card class="m-4">
-  <mat-card-content>
-    <h2>{{groupSummary.name}}</h2>
-    <hr class="w-80 mb-2">
-    <div class="w-100 flex-around">
-      <a [routerLink]="'edit-group/' + groupSummary.id"><button mat-raised-button color="accent">Manage group</button></a>
-      <button mat-raised-button color="warn" (click)="exitGroup()">Exit group</button>
-    </div>
-  </mat-card-content>
-</mat-card>
+@if (group$) {
+  <mat-card class="m-4" *ngIf="group$ | async as group">
+    <mat-card-content>
+      <h2>{{ group.name }}</h2>
+      <hr class="w-80 mb-2">
+      <div class="w-100 flex-between my-2">
+        @for (list of group.lists; track list.id) {
+          <a class="w-100 flex-between my-2" [routerLink]="'/list/' + list.id">
+            <div class="list-summary">
+              <h3>{{ list.name }}</h3>
+              <p>{{ list.createdBy }}</p>
+            </div>
+          </a>
+        }
+      </div>
+      <div class="w-100 flex-around mt-2">
+        <a [routerLink]="'edit-group/' + group.id">
+          <button mat-raised-button color="accent">Manage group</button>
+        </a>
+        <button mat-raised-button color="warn" (click)="exitGroup()">Exit group</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+}

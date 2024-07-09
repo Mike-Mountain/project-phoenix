@@ -6,12 +6,12 @@
     "serve": "nx serve container",
     "serve:api": "nx serve phoenix-api",
     "serve:indiv-groups": "nx serve groups",
-    "build:all": "nx build container && nx build resume && nx build budgets && nx build code-master && nx build groups && nx build movies",
-    "create-data-access-lib": "nx g @nx/angular:lib groups-data-access --tags=scope:groups,type:data-access --prefix=groups-data-access --directory=libs/groups/groups-data-access --standalone",
-    "create-feature-lib": "nx g @nx/angular:lib groups-feature --tags=scope:groups,type:feature --prefix=groups-feature --directory=libs/groups/groups-feature --standalone",
-    "create-ui-lib": "nx g @nx/angular:lib groups-ui --tags=scope:groups,type:ui --prefix=groups-ui --directory=libs/groups/groups-ui --standalone",
-    "create-util-lib": "nx g @nx/angular:lib groups-util --tags=scope:groups,type:util --prefix=groups-util --directory=libs/groups/groups-util --standalone",
-    "create-scoped-libs": "npm run create-data-access-lib --scope=groups && npm run create-feature-lib --scope=groups && npm run create-ui-lib --scope=groups && npm run create-util-lib --scope=groups --directory=libs/groups/ --standalone"
+    "build:all": "nx build container && nx build resume && nx build budgets && nx build code-master && nx build lists && nx build movies",
+    "create-data-access-lib": "nx g @nx/angular:lib lists-data-access --tags=scope:lists,type:data-access --prefix=lists-data-access --directory=libs/lists/lists-data-access --standalone",
+    "create-feature-lib": "nx g @nx/angular:lib lists-feature --tags=scope:lists,type:feature --prefix=lists-feature --directory=libs/lists/lists-feature --standalone",
+    "create-ui-lib": "nx g @nx/angular:lib lists-ui --tags=scope:lists,type:ui --prefix=lists-ui --directory=libs/lists/lists-ui --standalone",
+    "create-util-lib": "nx g @nx/angular:lib lists-util --tags=scope:lists,type:util --prefix=lists-util --directory=libs/lists/lists-util --standalone",
+    "create-scoped-libs": "npm run create-data-access-lib --scope=lists && npm run create-feature-lib --scope=lists && npm run create-ui-lib --scope=lists && npm run create-util-lib --scope=lists --directory=libs/lists/ --standalone"
   },
   "private": true,
   "dependencies": {

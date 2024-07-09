@@ -8,6 +8,7 @@ import { RouterLink } from '@angular/router';
 import { MatTab, MatTabGroup } from '@angular/material/tabs';
 import { GroupSummaryComponent } from '../group-summary/group-summary.component';
 import { GroupsService } from '@project-phoenix/groups-data-access';
+import { group } from '@angular/animations';
 
 @Component({
   selector: 'groups-feature-groups-dashboard',
@@ -27,4 +28,6 @@ export class GroupsDashboardComponent {
       this.authService.fetchUser(username).subscribe();
     });
   }
+
+  protected readonly group = group;
 }

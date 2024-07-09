@@ -34,6 +34,10 @@ export class BaseHttpService<T = any> {
     return this.http.put<T>(url, item, { headers });
   }
 
+  public _patch(url: string, item: T, headers?: HttpHeaders): Observable<T> {
+    return this.http.patch<T>(url, item, { headers });
+  }
+
   public _post<O>(url: string, item: T, headers?: HttpHeaders): Observable<T | O> {
     return this.http.post<T | O>(url, item, { headers });
   }

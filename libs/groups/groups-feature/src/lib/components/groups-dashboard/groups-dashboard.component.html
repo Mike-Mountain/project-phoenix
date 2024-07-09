@@ -11,7 +11,7 @@
         @for (group of user.groups; track group.id) {
           <mat-tab [label]="group.name">
             <groups-feature-group-summary
-              [groupSummary]="group"
+              [groupId]="group.id"
               (exit)="exitGroup(group.id, user.username)"
             ></groups-feature-group-summary>
           </mat-tab>
@@ -19,7 +19,7 @@
       </mat-tab-group>
       } @else {
         <groups-feature-group-summary
-          [groupSummary]="user.groups[0]"
+          [groupId]="user.groups[0].id"
           (exit)="exitGroup(user.groups[0].id, user.username)"
         ></groups-feature-group-summary>
       }

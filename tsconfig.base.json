@@ -68,6 +68,14 @@
       "@project-phoenix/groups/Routing": [
         "libs/groups/groups-feature/src/lib/groups.routes.ts"
       ],
+      "@project-phoenix/lists-data-access": [
+        "libs/lists/lists-data-access/src/index.ts"
+      ],
+      "@project-phoenix/lists-feature": [
+        "libs/lists/lists-feature/src/index.ts"
+      ],
+      "@project-phoenix/lists-ui": ["libs/lists/lists-ui/src/index.ts"],
+      "@project-phoenix/lists-util": ["libs/lists/lists-util/src/index.ts"],
       "@project-phoenix/movies-data-access": [
         "libs/movies/movies-data-access/src/index.ts"
       ],

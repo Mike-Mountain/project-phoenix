@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { AuthService, BaseHttpService } from '@project-phoenix/shared/shared-data-access';
 import { Group } from '../../models/groups.model';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, Observable, of, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,11 +20,13 @@ export class GroupsService extends BaseHttpService {
     );
   }
 
-  public getSelectedGroup(groupId: number) {
-    const url = super.setStandardUrl(`groups/${groupId}`);
-    return super._get<Group>(url).pipe(
-      tap(group => this.selectedGroupSrc.next(group))
-    );
+  public getSelectedGroup(groupId?: number): Observable<Group> {
+    if (groupId) {
+      const url = super.setStandardUrl(`groups/${groupId}`);
+      return super._get<Group>(url).pipe(
+        tap(group => this.selectedGroupSrc.next(group))
+      );
+    } else return of({} as Group);
   }
 
   public createGroup(group: Group) {

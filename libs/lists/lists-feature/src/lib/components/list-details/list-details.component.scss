@@ -1,0 +1,19 @@
+.user-icon {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--containerBackground);
+}
+
+.list-item {
+  width: calc(100% - 2.75rem);
+}
+
+.add-item-button {
+  position: absolute;
+  bottom: .75rem;
+  right: .75rem;
+}

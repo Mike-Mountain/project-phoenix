@@ -42,8 +42,8 @@ export class EditGroupComponent implements OnInit {
           return of({});
         }
       })
-    ).subscribe(group => {
-      this.createGroupForm(group);
+    ).subscribe((group: Group | {}) => {
+      this.createGroupForm(group as Group);
     });
   }
 

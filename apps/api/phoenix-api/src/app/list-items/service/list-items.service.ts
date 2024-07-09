@@ -16,6 +16,7 @@ export class ListItemsService {
   async create(createListItemDto: CreateListItemDto) {
     const listItem = new ListItem();
     Object.assign(listItem, createListItemDto);
+    listItem.isComplete = false;
     let category = await this.categoryService.findOne(createListItemDto.category);
     if (!category) {
       category = await this.categoryService.create({name: createListItemDto.category});
@@ -32,8 +33,10 @@ export class ListItemsService {
     return this.listItemRepository.findOne({where: {id}, relations: {category: true}});
   }
 
-  update(id: number, updateListItemDto: UpdateListItemDto) {
-    return `This action updates a #${id} listItem`;
+  async update(id: number, updateListItemDto: UpdateListItemDto) {
+    const item = await this.findOne(id);
+    const listItem: ListItem = { ...item, ...updateListItemDto } as ListItem;
+    return await this.listItemRepository.update(id, listItem);
   }
 
   remove(id: number) {

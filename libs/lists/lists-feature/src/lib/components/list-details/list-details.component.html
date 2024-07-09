@@ -1,0 +1,22 @@
+@if (list$) {
+  <section class="list-details" *ngIf="list$ | async as list">
+    <mat-toolbar color="primary" class="flex-between mat-elevation-z2 border-radius-8">
+      <h1 class="fs-1">{{ list.name }}</h1>
+      <p>{{ list.createdBy }}</p>
+    </mat-toolbar>
+    @for (item of list.items; track item.id) {
+      <div class="w-100 flex-between">
+        <div class="user-icon mat-elevation-z3">{{ item.createdBy | userIcon }}</div>
+        <mat-card class="list-item pl-2 my-2" [class.bg-color-accent]="item.isComplete">
+          <div class="w-100 flex-between">
+            <h3 [class.strikethrough]="item.isComplete">{{ item.name }}</h3>
+            <mat-checkbox [checked]="item.isComplete" (change)="toggleIsComplete(item, $event)"></mat-checkbox>
+          </div>
+        </mat-card>
+      </div>
+    }
+    <button mat-fab class="add-item-button" (click)="openListItemDialog()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </section>
+}
