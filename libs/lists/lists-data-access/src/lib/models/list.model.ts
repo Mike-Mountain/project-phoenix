@@ -14,6 +14,14 @@ export interface ListItem {
   category: Category;
 }
 
+export interface CreateListItem {
+  name: string;
+  createdBy: string;
+  isComplete: boolean;
+  list: number;
+  category: string;
+}
+
 export interface Category {
   id: number;
   name: string;

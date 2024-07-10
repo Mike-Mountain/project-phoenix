@@ -27,6 +27,12 @@ export class CategoryController {
   }
 
   @UseGuards(AuthGuard)
+  @Get('search/:name')
+  search(@Param('name') name: string) {
+    return this.categoryService.search(name);
+  }
+
+  @UseGuards(AuthGuard)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateCategoryDto: UpdateCategoryDto) {
     return this.categoryService.update(+id, updateCategoryDto);

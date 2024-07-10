@@ -10,12 +10,14 @@ export class AuthService extends BaseHttpService<any> {
 
   private userSrc: BehaviorSubject<User | undefined> = new BehaviorSubject<User | undefined>(undefined);
   public token: string | undefined;
+  public username: string | undefined;
 
   public setUser() {
     const authCookie = document.cookie.match('(^|;)\\s*' + 'hsmauth' + '\\s*=\\s*([^;]+)')?.pop();
     if (authCookie) {
       this.token = authCookie;
       this.fetchUser(this.parseJwt(authCookie).username).subscribe(user => {
+        this.username = user.username;
         this.userSrc.next(user);
       });
     }
@@ -29,7 +31,10 @@ export class AuthService extends BaseHttpService<any> {
         this.setCookie(token.access_token);
         return this.fetchUser(username);
       }),
-      tap(user => this.userSrc.next(user))
+      tap(user => {
+        this.username = user.username;
+        this.userSrc.next(user);
+      })
     );
   }
 
@@ -41,7 +46,10 @@ export class AuthService extends BaseHttpService<any> {
         this.setCookie(token.access_token);
         return this.fetchUser(user.username);
       }),
-      tap(user => this.userSrc.next(user))
+      tap(user => {
+        this.username = user.username;
+        this.userSrc.next(user);
+      })
     );
   }
 
@@ -64,7 +72,10 @@ export class AuthService extends BaseHttpService<any> {
   public fetchUser(username: string): Observable<User> {
     const url = super.setStandardUrl(`users/${username}`);
     return super._get(url).pipe(
-      tap(user => this.userSrc.next(user))
+      tap(user => {
+        this.username = user.username;
+        this.userSrc.next(user);
+      })
     );
   }
 

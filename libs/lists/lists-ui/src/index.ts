@@ -1,1 +1,1 @@
-export * from './lib/lists-ui/lists-ui.component';
+export * from './lib/components/list-item-dialog/list-item-dialog.component';

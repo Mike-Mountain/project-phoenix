@@ -10,6 +10,8 @@ import { UserIconPipe } from '@project-phoenix/shared/shared-util';
 import { MatFabButton } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
+import { ListItemDialogComponent } from '@project-phoenix/lists-ui';
+import { AuthService } from '@project-phoenix/shared/shared-data-access';
 
 @Component({
   selector: 'lists-feature-list-details',
@@ -21,6 +23,7 @@ import { MatIcon } from '@angular/material/icon';
 export class ListDetailsComponent {
   private route = inject(ActivatedRoute);
   private listService = inject(ListService);
+  private userService = inject(AuthService);
   private dialog = inject(MatDialog);
 
   public list$: Observable<List> | undefined;
@@ -38,7 +41,7 @@ export class ListDetailsComponent {
     this.listService.toggleIsComplete(item.id, change.checked).subscribe();
   }
 
-  openListItemDialog() {
-
+  openListItemDialog(listId: number) {
+    this.dialog.open(ListItemDialogComponent, {data: {listId, username: this.userService.username}})
   }
 }

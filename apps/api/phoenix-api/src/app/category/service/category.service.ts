@@ -22,7 +22,7 @@ export class CategoryService {
   }
 
   findOne(name: string) {
-    return this.categoryRepository.findOne({where: {name}});
+    return this.categoryRepository.findOne({ where: { name } });
   }
 
   update(id: number, updateCategoryDto: UpdateCategoryDto) {
@@ -31,5 +31,13 @@ export class CategoryService {
 
   remove(id: number) {
     return `This action removes a #${id} category`;
+  }
+
+  search(name: string) {
+    console.log('hello');
+    return this.categoryRepository
+      .createQueryBuilder('category')
+      .where('category.name like :name', { name })
+      .getMany();
   }
 }

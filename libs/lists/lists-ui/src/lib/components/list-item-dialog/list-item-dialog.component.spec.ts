@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ListsUiComponent } from './lists-ui.component';
+import { ListItemDialogComponent } from './list-item-dialog.component';
 
-describe('ListsUiComponent', () => {
-  let component: ListsUiComponent;
-  let fixture: ComponentFixture<ListsUiComponent>;
+describe('ListItemDialogComponent', () => {
+  let component: ListItemDialogComponent;
+  let fixture: ComponentFixture<ListItemDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ListsUiComponent],
+      imports: [ListItemDialogComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ListsUiComponent);
+    fixture = TestBed.createComponent(ListItemDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
