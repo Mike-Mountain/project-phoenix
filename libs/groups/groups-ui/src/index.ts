@@ -1,1 +1,1 @@
-export * from './lib/groups-ui/groups-ui.component';
+export * from './lib/components/list-dialog/list-dialog.component';

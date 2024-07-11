@@ -1,0 +1,18 @@
+<section class="manage-group" *ngIf="group$ | async as group">
+  <mat-toolbar color="primary" class="flex-between">
+    <h1 class="fs-1">{{group.name}}</h1>
+    <p>{{group.createdBy}}</p>
+  </mat-toolbar>
+  <mat-card class="m-2">
+    <mat-card-content>
+      @if (group.lists.length > 0) {
+        @for (list of group.lists; track list.id) {
+          <pre>{{list | json}}</pre>
+        }
+      } @else {
+        <button mat-raised-button color="accent" (click)="openCreateListDialog(group.id)">Create a list</button>
+      }
+    </mat-card-content>
+  </mat-card>
+  <pre>{{group | json}}</pre>
+</section>

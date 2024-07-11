@@ -1,0 +1,40 @@
+<section class="add-list-item">
+  <h1 class="text-center">Add List</h1>
+  <hr class="w-80 mx-auto my-2">
+
+  <form [formGroup]="listForm" class="flex-center flex-column">
+    <mat-form-field class="w-90">
+      <mat-label>List Name:</mat-label>
+      <input matInput type="text" formControlName="name">
+    </mat-form-field>
+    @if (!addingItems) {
+      <button mat-raised-button color="accent" (click)="addingItems = true">Add List Items</button>
+    } @else {
+      <mat-label>List Items:</mat-label>
+      <form [formGroup]="listItemForm" class="flex-center flex-column">
+        <mat-form-field class="w-90">
+          <mat-label>Item:</mat-label>
+          <input matInput type="text" formControlName="name">
+        </mat-form-field>
+        <mat-form-field class="w-90">
+          <mat-label>Category</mat-label>
+          <input matInput type="text" formControlName="category" [matAutocomplete]="options">
+        </mat-form-field>
+      </form>
+      <button mat-raised-button color="accent" class="w-40" (click)="addListItem()">Add Item</button>
+      @for (listItem of (listForm.controls['items'].value); track listItem) {
+        <p class="m-1">{{listItem.name}}</p>
+      }
+    }
+  </form>
+  <div class="w-100 flex-center mt-2">
+    <button mat-stroked-button color="warn" class="w-40" [mat-dialog-close]="">Cancel</button>
+    <!--    <button mat-raised-button color="accent" class="w-40" (click)="addListItem()">Submit</button>-->
+  </div>
+</section>
+
+<mat-autocomplete #options="matAutocomplete">
+  @for (category of categories; track category.id) {
+    <mat-option [value]="category.name">{{ category.name }}</mat-option>
+  }
+</mat-autocomplete>

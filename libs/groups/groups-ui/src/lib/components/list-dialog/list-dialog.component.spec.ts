@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { GroupsUiComponent } from './groups-ui.component';
+import { ListDialogComponent } from './list-dialog.component';
 
-describe('GroupsUiComponent', () => {
-  let component: GroupsUiComponent;
-  let fixture: ComponentFixture<GroupsUiComponent>;
+describe('ListDialogComponent', () => {
+  let component: ListDialogComponent;
+  let fixture: ComponentFixture<ListDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GroupsUiComponent],
+      imports: [ListDialogComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(GroupsUiComponent);
+    fixture = TestBed.createComponent(ListDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
