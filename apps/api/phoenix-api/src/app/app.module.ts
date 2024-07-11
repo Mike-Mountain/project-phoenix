@@ -15,7 +15,7 @@ import { AuthModule } from './auth/auth.module';
       port: 5432,
       username: 'postgres',
       password: 'Redant09',
-      database: 'users',
+      database: 'project-phoenix',
       autoLoadEntities: true,
       synchronize: true
     }),

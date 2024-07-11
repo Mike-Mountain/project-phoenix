@@ -41,6 +41,17 @@ export class AuthDialogComponent implements OnInit {
     }
   }
 
+  public switchProcessType(process: 'signIn' | 'signUp') {
+    console.log('switching process to:', process);
+    this.data.process = process;
+    if (process === 'signUp') {
+      this.createRegisterForm();
+      this.watchUsername();
+    } else {
+      this.createSignInForm();
+    }
+  }
+
   private createSignInForm() {
     this.form = this.formBuilder.group({
       username: ['', Validators.required],

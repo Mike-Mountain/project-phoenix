@@ -58,6 +58,11 @@
         }
       </button>
       <button class="w-60 mx-auto mt-2" mat-stroked-button color="accent" (click)="cancelAuthAction()">Cancel</button>
+      @if (data.process === 'signIn') {
+        <button class="invisible-button mx-auto" (click)="switchProcessType('signUp')">Sign Up</button>
+      } @else {
+        <button class="invisible-button mx-auto" (click)="switchProcessType('signIn')">Sign In</button>
+      }
     }
   }
 </section>
