@@ -58,7 +58,7 @@ export class EditGroupComponent implements OnInit {
           });
         })
       } else {
-        const group: Group = { ...this.groupForm.value, members: [user.username], createdBy: user.id };
+        const group: Group = { ...this.groupForm.value, members: [user.username], createdBy: user.username };
         this.groupsService.createGroup(group).subscribe(() => {
           this.router.navigateByUrl('').then(() => {
             this.authService.fetchUser(user.username).subscribe();
