@@ -31,7 +31,14 @@ export class UsersService {
   }
 
   findOne(username: string): Promise<User> {
-    return this.usersRepository.findOne({ where: { username }});
+    return this.usersRepository.findOne({ where: { username }, relations: {groups: true}});
+  }
+
+  findByUsername(username: string) {
+    return this.usersRepository
+      .createQueryBuilder('user')
+      .where('user.username like :username', { username })
+      .getMany();
   }
 
   findOneWithPassword(username: string): Promise<User> {

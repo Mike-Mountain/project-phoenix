@@ -9,12 +9,24 @@
         <div class="user-icon mat-elevation-z3">{{ item.createdBy | userIcon }}</div>
         <mat-card class="list-item pl-2 my-2" [class.bg-color-accent]="item.isComplete">
           <div class="w-100 flex-between">
-            <h3 [class.strikethrough]="item.isComplete">{{ item.name }}</h3>
-            <mat-checkbox [checked]="item.isComplete" (change)="toggleIsComplete(item, $event)"></mat-checkbox>
+            <div class="flex-start">
+              <h3 [class.strikethrough]="item.isComplete">{{ item.name }}</h3>
+              <p class="ml-3" [class.strikethrough]="item.isComplete">{{ item.category.name }}</p>
+            </div>
+            <div class="flex-end">
+              @if (item.isComplete) {
+                <!--// Add field 'completedBy' to listItem-->
+                <p>{{ item.createdBy }}</p>
+              }
+              <mat-checkbox [checked]="item.isComplete" (change)="toggleIsComplete(item, $event)"></mat-checkbox>
+            </div>
           </div>
         </mat-card>
       </div>
     }
+    <div class="w-100 flex-center">
+      <button mat-raised-button color="accent" class="mt-3 w-85 mx-auto" (click)="goBack()">Go Back</button>
+    </div>
     <button mat-fab class="add-item-button" (click)="openListItemDialog(list.id)">
       <mat-icon>add</mat-icon>
     </button>

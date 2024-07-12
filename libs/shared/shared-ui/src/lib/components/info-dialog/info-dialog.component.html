@@ -1,0 +1,9 @@
+<section class="info-dialog">
+  <h3 class="text-center">{{data.content}}</h3>
+  @if (data.buttons) {
+    <div class="w-100 flex-around mt-3">
+      <button mat-stroked-button color="warn" class="w-40" [mat-dialog-close]="false">Cancel</button>
+      <button mat-raised-button color="accent" class="w-40" [mat-dialog-close]="true">Delete List</button>
+    </div>
+  }
+</section>

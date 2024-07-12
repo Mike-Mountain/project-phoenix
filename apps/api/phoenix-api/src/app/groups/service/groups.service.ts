@@ -47,8 +47,11 @@ export class GroupsService {
     const group = await this.findOne(id);
     for(const member of members) {
       const user = await this.usersService.getUser(member);
-      user.groups.push(group);
-      await this.datasource.manager.save(user);
+      console.log(user.groups.find(group => group.id === id));
+      if (!(user.groups.find(group => group.id === id))) {
+        user.groups.push(group);
+        await this.datasource.manager.save(user);
+      }
       group.members.push(user);
     }
     return await this.groupsRepository.update(id, group);
@@ -58,11 +61,16 @@ export class GroupsService {
     return '';
   }
 
-  async leaveGroup(username: string, id: number) {
+  async leaveGroup(user: {username: string}, id: number) {
     const group = await this.groupsRepository.findOne({where: {id}, relations: {members: true}});
-    group.members = group.members.filter(member => member.username === username);
+    const storedUser = await this.usersService.findOne(user.username);
+    group.members = group.members.filter(member => member.username !== user.username)
+    storedUser.groups = storedUser.groups.filter(group => group.id !== id);
+    await this.datasource.manager.save(storedUser);
     if (group.members.length === 0) {
-      await this.datasource.manager.remove(group);
+      return await this.datasource.manager.remove(group);
+    } else {
+      return await this.datasource.manager.save(group);
     }
   }
 }

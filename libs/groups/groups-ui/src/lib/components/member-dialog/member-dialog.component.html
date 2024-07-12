@@ -1,1 +1,27 @@
-<p>member-dialog works!</p>
+<section class="add-member">
+  <h1 class="text-center">Add Member</h1>
+  <hr class="w-80 mx-auto my-2">
+
+  <!--  <form [formGroup]="memberForm" class="flex-center flex-column">-->
+  <mat-form-field class="w-90">
+    <mat-label>Username:</mat-label>
+    <input matInput type="text" [formControl]="usernameControl" [matAutocomplete]="options">
+  </mat-form-field>
+  @if (selectedMembers.length > 0) {
+    <div class="member-box">
+      @for (member of selectedMembers; track member) {
+        <p class="member-preview">{{ member }}</p>
+      }
+    </div>
+  }
+  <div class="w-100 flex-around mt-3">
+    <button mat-stroked-button color="warn" class="w-40" [mat-dialog-close]="">Cancel</button>
+    <button mat-raised-button color="accent" class="w-40" (click)="saveMembers()">Save Members</button>
+  </div>
+</section>
+
+<mat-autocomplete #options="matAutocomplete">
+    @for (member of memberOptions; track member.id) {
+      <mat-option [value]="member.username" (onSelectionChange)="addMember($event.source.value)">{{ member.username }}</mat-option>
+    }
+</mat-autocomplete>

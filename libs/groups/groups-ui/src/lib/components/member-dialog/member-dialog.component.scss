@@ -1,0 +1,25 @@
+.member-box {
+  width: 90%;
+  border: 1px solid white;
+  max-height: 6rem;
+  overflow-x: auto;
+  padding: .25rem;
+  border-radius: 8px;
+  margin-top: .75rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.member-preview {
+  margin: .5rem;
+  border: 1px solid white;
+  padding: .25rem;
+  min-width: 3.5rem;
+  max-width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+}

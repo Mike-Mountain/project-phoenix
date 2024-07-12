@@ -34,7 +34,6 @@ export class CategoryService {
   }
 
   search(name: string) {
-    console.log('hello');
     return this.categoryRepository
       .createQueryBuilder('category')
       .where('category.name like :name', { name })

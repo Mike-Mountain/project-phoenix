@@ -25,6 +25,12 @@ export class UsersController {
   }
 
   @UseGuards(AuthGuard)
+  @Get('find/:username')
+  findUsers(@Param('username') username: string) {
+    return this.usersService.findByUsername(username);
+  }
+
+  @UseGuards(AuthGuard)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(+id, updateUserDto);

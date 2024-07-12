@@ -8,7 +8,6 @@
           <a class="w-100 flex-between my-2" [routerLink]="'/list/' + list.id">
             <div class="list-summary">
               <h3>{{ list.name }}</h3>
-              <p>{{ list.createdBy }}</p>
             </div>
           </a>
         }
@@ -17,7 +16,7 @@
         <a [routerLink]="'manage-group/' + group.id">
           <button mat-raised-button color="accent">Manage group</button>
         </a>
-        <button mat-raised-button color="warn" (click)="exitGroup()">Exit group</button>
+        <button mat-raised-button color="warn" (click)="openConfirmDialog()">Exit group</button>
       </div>
     </mat-card-content>
   </mat-card>

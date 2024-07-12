@@ -62,6 +62,11 @@ export class AuthService extends BaseHttpService<any> {
     return super._post(url, { username });
   }
 
+  public findUsers(username: string) {
+    const url = super.setStandardUrl(`users/find/${username}`);
+    return super._get(url);
+  }
+
   public signOut() {
     this.token = undefined;
     this.userSrc.next(undefined);

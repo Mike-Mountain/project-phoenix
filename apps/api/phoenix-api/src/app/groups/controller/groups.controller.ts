@@ -16,8 +16,8 @@ export class GroupsController {
 
   @UseGuards(AuthGuard)
   @Post('leave/:id')
-  leaveGroup(@Body() username: string, @Param('id') id: number) {
-    return this.groupsService.leaveGroup(username, id);
+  leaveGroup(@Body() user: { username: string }, @Param('id') id: number) {
+    return this.groupsService.leaveGroup(user, id);
   }
 
   @UseGuards(AuthGuard)
@@ -39,7 +39,7 @@ export class GroupsController {
   }
 
   @UseGuards(AuthGuard)
-  @Patch(':id')
+  @Patch('members/:id')
   addMembers(@Param('id') id: string, @Body() members: string[]) {
     return this.groupsService.addMembers(+id, members)
   }
