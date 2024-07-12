@@ -22,14 +22,18 @@
         </mat-form-field>
       </form>
       <button mat-raised-button color="accent" class="w-40" (click)="addListItem()">Add Item</button>
-      @for (listItem of (listForm.controls['items'].value); track listItem) {
-        <p class="m-1">{{listItem.name}}</p>
+      @if (listForm.controls['items'].value.length > 0) {
+        <div class="list-items-box">
+          @for ((listItem of (listForm.controls['items'].value) | as :'ListItem'); track listItem) {
+            <p class="list-item-preview">{{ listItem.name }}</p>
+          }
+        </div>
       }
     }
   </form>
-  <div class="w-100 flex-center mt-2">
+  <div class="w-100 flex-around mt-3">
     <button mat-stroked-button color="warn" class="w-40" [mat-dialog-close]="">Cancel</button>
-    <!--    <button mat-raised-button color="accent" class="w-40" (click)="addListItem()">Submit</button>-->
+    <button mat-raised-button color="accent" class="w-40" (click)="saveList()">Save list</button>
   </div>
 </section>
 

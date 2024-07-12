@@ -14,10 +14,12 @@ export const authGuard: CanActivateFn = (route, state) => {
       if (authCookie) {
         const cookieExp = new Date(authService.parseJwt(authCookie).exp);
         const currentDate = new Date();
-        if (getTimeFromDate(cookieExp) < getTimeFromDate(currentDate)) {
-          console.log('OPEN DIALOG COOKIE EXPIRED')
-          return dialog.open(AuthDialogComponent, { data: { process: 'signIn' } }).afterClosed();
-        }
+        console.log(getTimeFromDate(cookieExp));
+        console.log(getTimeFromDate(currentDate));
+        // if (getTimeFromDate(cookieExp) < getTimeFromDate(currentDate)) {
+        //   console.log('OPEN DIALOG COOKIE EXPIRED')
+        //   return dialog.open(AuthDialogComponent, { data: { process: 'signIn' } }).afterClosed();
+        // }
       }
       if (!user) {
         const authCookie = document.cookie.match('(^|;)\\s*' + 'hsmauth' + '\\s*=\\s*([^;]+)')?.pop();

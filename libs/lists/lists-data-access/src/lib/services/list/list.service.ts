@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BaseHttpService } from '@project-phoenix/shared/shared-data-access';
 import { BehaviorSubject } from 'rxjs';
-import { Category, CreateListItem, List, ListItem } from '../../models/list.model';
+import { Category, CreateList, CreateListItem, List, ListItem } from '../../models/list.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +27,23 @@ export class ListService extends BaseHttpService {
   public addListItem(listId: number, listItem: CreateListItem) {
     const url = super.setStandardUrl(`lists/add/${listId}`);
     return super._patch(url, [listItem]);
+  }
+
+  public createList(listDetails: CreateList, username: string, groupId: number) {
+    const list: CreateList = {
+      name: listDetails.name,
+      createdBy: username,
+      group: groupId,
+      items: listDetails.items.map((item: CreateListItem) => {
+        return {
+          name: item.name,
+          category: item.category,
+          isComplete: false,
+          createdBy: username,
+        }
+      })
+    }
+    const url = super.setStandardUrl('lists');
+    return super._post<List>(url, list);
   }
 }

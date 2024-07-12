@@ -45,6 +45,10 @@ export class GroupsService extends BaseHttpService {
     );
   }
 
+  public addGroupMembers(members: any[]) {
+    console.log(members);
+  }
+
   public exitGroup(groupId: number, username: string) {
     const url = super.setStandardUrl(`groups/leave/${groupId}`);
     return super._post(url, username)

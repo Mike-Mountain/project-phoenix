@@ -6,6 +6,13 @@ export interface List {
   items: ListItem[]
 }
 
+export interface CreateList {
+  name: string;
+  createdBy: string;
+  group: number;
+  items: CreateListItem[];
+}
+
 export interface ListItem {
   id: number;
   name: string;
@@ -18,8 +25,8 @@ export interface CreateListItem {
   name: string;
   createdBy: string;
   isComplete: boolean;
-  list: number;
   category: string;
+  list?: number;
 }
 
 export interface Category {
