@@ -11,7 +11,7 @@ import { AuthService, User } from '@project-phoenix/shared/shared-data-access';
 import { ListDialogComponent } from '@project-phoenix/groups-ui';
 import { MatIcon } from '@angular/material/icon';
 import { MemberDialogComponent } from '@project-phoenix/groups-ui';
-import { List } from '@project-phoenix/lists-data-access';
+import { List, ListService } from '@project-phoenix/lists-data-access';
 import { InfoDialogComponent } from '@project-phoenix/shared/shared-ui';
 
 @Component({
@@ -26,6 +26,7 @@ export class ManageGroupComponent {
   private location = inject(Location);
   private groupService = inject(GroupsService);
   private authService = inject(AuthService);
+  private listsService = inject(ListService);
   private dialog = inject(MatDialog);
 
   public username = this.authService.username;
@@ -91,7 +92,7 @@ export class ManageGroupComponent {
   }
 
   deleteList(list: Partial<List>) {
-
+    this.listsService.deleteList(list.id!).subscribe(data => console.log(data));
   }
 
   goBack() {

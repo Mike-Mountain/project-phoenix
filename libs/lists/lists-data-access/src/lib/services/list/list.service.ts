@@ -46,4 +46,9 @@ export class ListService extends BaseHttpService {
     const url = super.setStandardUrl('lists');
     return super._post<List>(url, list);
   }
+
+  public deleteList(listId: number) {
+    const url = super.setStandardUrl(`lists/${listId}`);
+    return super._delete(url);
+  }
 }

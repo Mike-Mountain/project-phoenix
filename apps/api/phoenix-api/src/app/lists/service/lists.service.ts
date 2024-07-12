@@ -26,7 +26,7 @@ export class ListsService {
   }
 
   findAll() {
-    return this.listRepository.find({relations: {group: true}});
+    return this.listRepository.find({ relations: { group: true } });
   }
 
   async findOne(id: number) {
@@ -38,7 +38,7 @@ export class ListsService {
           category: true
         }
       }
-    })
+    });
   }
 
   async addItems(items: CreateListItemDto[], id: number) {
@@ -54,7 +54,8 @@ export class ListsService {
     return `This action updates a #${id} list`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} list`;
+  async remove(id: number) {
+    const list = await this.findOne(id);
+    return await this.listRepository.delete(list.id);
   }
 }
