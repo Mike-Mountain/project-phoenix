@@ -4,7 +4,7 @@
     <p>{{ group.createdBy }}</p>
   </mat-toolbar>
   <h2 class="ml-2 mt-3 mb-0">Lists</h2>
-  @if (group.lists.length > 0) {
+  @if (group?.lists && group.lists.length > 0) {
     @for (list of group.lists; track list.id) {
       <mat-card class="mx-2 mb-2 mt-0">
         <mat-card-content>
@@ -14,7 +14,7 @@
               <small>Created by {{ list.createdBy }}</small>
             </div>
             <div class="flex-end">
-              <a [routerLink]="'/list/' + list.id">
+              <a (click)="routeToList(list.id)">
                 <button mat-mini-fab color="accent">
                   <mat-icon>visibility</mat-icon>
                 </button>
@@ -51,7 +51,7 @@
               <mat-icon>visibility</mat-icon>
             </button>
             <!--</a>-->
-            <button mat-mini-fab color="warn" class="ml-2" (click)="openConfirmMemberDialog(member)">
+            <button mat-mini-fab color="warn" class="ml-2" (click)="openConfirmMemberDialog(member.username, group.id)">
               @if (member.username === username) {
                 <mat-icon>logout</mat-icon>
               } @else {

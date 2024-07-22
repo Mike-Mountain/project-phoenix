@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
   styleUrl: './auth-dialog.component.scss'
 })
 export class AuthDialogComponent implements OnInit {
-  public form: FormGroup<any> | undefined;
+  public form: FormGroup | undefined;
   public successText: string | undefined;
   public testEmail = '';
   public testPassword = '';
@@ -98,18 +98,15 @@ export class AuthDialogComponent implements OnInit {
   private registerUser() {
     if (this.form) {
       const user = this.form.value;
-      this.authService.signUp(user).subscribe((data) => {
-        this.signInUser();
-      });
+      this.authService.signUp(user);
     }
   }
 
   private signInUser() {
     if (this.form) {
       const { username, password } = this.form.value;
-      this.authService.signIn(username, password).subscribe((data) => {
-        this.dialogRef.close();
-      });
+      this.authService.signIn(username, password);
+      this.dialogRef.close();
     }
   }
 }

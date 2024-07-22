@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { GroupsService } from '@project-phoenix/groups-data-access';
-import { switchMap, take, tap } from 'rxjs';
+import { of, switchMap, take, tap } from 'rxjs';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatCard, MatCardContent } from '@angular/material/card';
 import { MatButton, MatFabButton, MatIconButton, MatMiniFabButton } from '@angular/material/button';
@@ -22,7 +22,7 @@ import { InfoDialogComponent } from '@project-phoenix/shared/shared-ui';
   styleUrl: './manage-group.component.scss'
 })
 export class ManageGroupComponent {
-  private route = inject(ActivatedRoute);
+  private router = inject(Router);
   private location = inject(Location);
   private groupService = inject(GroupsService);
   private authService = inject(AuthService);
@@ -30,12 +30,7 @@ export class ManageGroupComponent {
   private dialog = inject(MatDialog);
 
   public username = this.authService.username;
-  public group$ = this.route.params
-    .pipe(
-      switchMap(params => {
-        return this.groupService.getSelectedGroup(params['id']);
-      })
-    );
+  public group$ = this.groupService.getSelectedGroup();
 
   public openCreateListDialog(groupId: number) {
     const data = {
@@ -46,7 +41,7 @@ export class ManageGroupComponent {
       .pipe(take(1))
       .subscribe(response => {
         if (response) {
-          this.group$ = this.groupService.getSelectedGroup(groupId);
+          this.groupService.fetchGroupById(groupId);
         }
       });
   }
@@ -65,37 +60,45 @@ export class ManageGroupComponent {
     const data = {
       content: 'Are you sure you want to delete this list?',
       buttons: true
-    }
-    this.dialog.open(InfoDialogComponent, {data})
+    };
+    this.dialog.open(InfoDialogComponent, { data })
       .afterClosed()
       .pipe(take(1))
       .subscribe(confirmed => {
         if (confirmed) {
-          this.deleteList(list)
+          this.deleteList(list);
         }
-      })
+      });
   }
 
-  openConfirmMemberDialog(member: Partial<User>) {
+  routeToList(id: number | undefined) {
+    if (id) {
+      this.listsService.fetchListById(id);
+      this.router.navigateByUrl('/list');
+    }
+  }
+
+  openConfirmMemberDialog(username: string, groupId: number) {
     const data = {
       content: 'Are you sure you want to remove this member?',
       buttons: true
-    }
-    this.dialog.open(InfoDialogComponent, {data})
+    };
+    this.dialog.open(InfoDialogComponent, { data })
       .afterClosed()
       .pipe(take(1))
       .subscribe(confirmed => {
         if (confirmed) {
-          console.log("removing member!");
+          this.groupService.exitGroup(groupId, username);
         }
-      })
+      });
   }
 
   deleteList(list: Partial<List>) {
-    this.listsService.deleteList(list.id!).subscribe(data => console.log(data));
+    this.listsService.deleteList(list.id!);
   }
 
   goBack() {
     this.location.back();
   }
+
 }

@@ -18,7 +18,7 @@
 </section>
 
 <mat-autocomplete #options="matAutocomplete">
-  @for (category of categories; track category.id) {
+  @for (category of (categories | async); track category.id) {
     <mat-option [value]="category.name">{{ category.name }}</mat-option>
   }
 </mat-autocomplete>

@@ -5,7 +5,7 @@
       <hr class="w-80 mb-2">
       <div class="w-100 flex-between my-2">
         @for (list of group.lists; track list.id) {
-          <a class="w-100 flex-between my-2" [routerLink]="'/list/' + list.id">
+          <a class="w-100 flex-between my-2" (click)="routeToList(list.id)">
             <div class="list-summary">
               <h3>{{ list.name }}</h3>
             </div>
@@ -13,7 +13,7 @@
         }
       </div>
       <div class="w-100 flex-around mt-2">
-        <a [routerLink]="'manage-group/' + group.id">
+        <a (click)="routeToManageGroup(group.id)">
           <button mat-raised-button color="accent">Manage group</button>
         </a>
         <button mat-raised-button color="warn" (click)="openConfirmDialog()">Exit group</button>

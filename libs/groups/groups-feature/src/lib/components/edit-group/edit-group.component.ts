@@ -8,7 +8,7 @@ import { MatToolbar } from '@angular/material/toolbar';
 import { MatButton } from '@angular/material/button';
 import { AuthService, User } from '@project-phoenix/shared/shared-data-access';
 import { ActivatedRoute, Router } from '@angular/router';
-import { of, switchMap, tap } from 'rxjs';
+import { of, switchMap, take, tap } from 'rxjs';
 
 @Component({
   selector: 'groups-feature-edit-group',
@@ -17,54 +17,34 @@ import { of, switchMap, tap } from 'rxjs';
   templateUrl: './edit-group.component.html',
   styleUrl: './edit-group.component.scss'
 })
-export class EditGroupComponent implements OnInit {
+export class EditGroupComponent {
   private groupsService = inject(GroupsService);
   private authService = inject(AuthService);
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
   private formBuilder = inject(FormBuilder);
 
-  public groupId?: number;
-  public group?: Group;
+  public groupId = 0;
+  public group$ = this.groupsService.getSelectedGroup()
+    .pipe(tap(group => {
+      this.groupId = group.id;
+      this.createGroupForm(group);
+    }));
 
   public groupForm: FormGroup | undefined;
   public user$ = this.authService.getUser();
 
-  ngOnInit() {
-    this.activatedRoute.params.pipe(
-      switchMap((params) => {
-        if (params['id']) {
-          this.groupId = params['id'];
-          return this.groupsService.getSelectedGroup(this.groupId!).pipe(
-            tap(group => this.group = group)
-          );
-        } else {
-          return of({});
-        }
-      })
-    ).subscribe((group: Group | {}) => {
-      this.createGroupForm(group as Group);
-    });
-  }
-
-  public createOrEdit(user: User) {
+  public createOrEdit(user: User, group: Group) {
     if (this.groupForm) {
-      if (this.groupId && this.group) {
-        const group = {...this.group, ...this.groupForm.value};
-        group.members = this.group.members.map(member => member.username);
-        this.groupsService.editGroup(this.groupId, group).subscribe(() => {
-          this.router.navigateByUrl('').then(() => {
-            this.authService.fetchUser(user.username).subscribe();
-          });
-        })
+      if (this.groupId && group) {
+        const tmpGroup = { ...group, ...this.groupForm.value };
+        tmpGroup.members = group.members.map(member => member.username);
+        this.groupsService.editGroup(this.groupId, tmpGroup, user.username);
       } else {
         const group: Group = { ...this.groupForm.value, members: [user.username], createdBy: user.username };
-        this.groupsService.createGroup(group).subscribe(() => {
-          this.router.navigateByUrl('').then(() => {
-            this.authService.fetchUser(user.username).subscribe();
-          });
-        });
+        this.groupsService.createGroup(group, user.username);
       }
+      this.router.navigateByUrl('');
     }
   }
 

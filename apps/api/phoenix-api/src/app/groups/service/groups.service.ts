@@ -25,9 +25,9 @@ export class GroupsService {
       await this.datasource.manager.save(user);
     }
     if (id) {
-      await this.groupsRepository.update(id, group)
+      return await this.groupsRepository.update(id, group)
     } else {
-      await this.groupsRepository.save(group)
+      return await this.groupsRepository.save(group)
     }
   }
 

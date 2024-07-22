@@ -2,11 +2,11 @@ import { Component, EventEmitter, inject, Input, OnChanges, OnInit, Output, Simp
 import { CommonModule } from '@angular/common';
 import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 import { MatButton } from '@angular/material/button';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Group, GroupsService } from '@project-phoenix/groups-data-access';
 import { Observable, take } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { List } from '@project-phoenix/lists-data-access';
+import { List, ListService } from '@project-phoenix/lists-data-access';
 import { InfoDialogComponent } from '@project-phoenix/shared/shared-ui';
 
 @Component({
@@ -17,16 +17,18 @@ import { InfoDialogComponent } from '@project-phoenix/shared/shared-ui';
   styleUrl: './group-summary.component.scss'
 })
 export class GroupSummaryComponent implements OnChanges {
-  @Input() groupId: number | undefined;
+  @Input() groupId = 0;
   @Output() exit = new EventEmitter();
 
   private groupsService = inject(GroupsService);
+  private listService = inject(ListService);
+  private router = inject(Router);
   private dialog = inject(MatDialog);
 
-  public group$: Observable<Group> | undefined;
+  public group$ = this.groupsService.getSelectedGroup();
 
   ngOnChanges() {
-    this.group$ = this.groupsService.getSelectedGroup(this.groupId);
+    this.groupsService.fetchGroupById(this.groupId);
   }
 
   openConfirmDialog() {
@@ -42,5 +44,17 @@ export class GroupSummaryComponent implements OnChanges {
           this.exit.emit();
         }
       });
+  }
+
+  routeToList(id?: number) {
+    if (id) {
+      this.listService.fetchListById(id);
+      this.router.navigateByUrl('/list');
+    }
+  }
+
+  routeToManageGroup(id: number) {
+    this.groupsService.fetchGroupById(id);
+    this.router.navigateByUrl('/manage-group');
   }
 }

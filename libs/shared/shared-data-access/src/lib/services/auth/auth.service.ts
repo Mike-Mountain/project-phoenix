@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BaseHttpService } from '../base-http/base-http.service';
 import { User, UserRegistration } from '../../models/auth.model';
-import { BehaviorSubject, Observable, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService extends BaseHttpService<any> {
+export class AuthService extends BaseHttpService {
 
   private userSrc: BehaviorSubject<User | undefined> = new BehaviorSubject<User | undefined>(undefined);
   public token: string | undefined;
@@ -16,41 +16,25 @@ export class AuthService extends BaseHttpService<any> {
     const authCookie = document.cookie.match('(^|;)\\s*' + 'hsmauth' + '\\s*=\\s*([^;]+)')?.pop();
     if (authCookie) {
       this.token = authCookie;
-      this.fetchUser(this.parseJwt(authCookie).username).subscribe(user => {
-        this.username = user.username;
-        this.userSrc.next(user);
-      });
+      this.fetchUser(this.parseJwt(authCookie).username);
     }
   }
 
-  public signIn(username: string, password: string): Observable<User> {
+  public signIn(username: string, password: string) {
     const url = super.setStandardUrl('auth/login');
-    return super._post(url, { username, password }).pipe(
-      switchMap(token => {
-        this.token = token.access_token;
-        this.setCookie(token.access_token);
-        return this.fetchUser(username);
-      }),
-      tap(user => {
-        this.username = user.username;
-        this.userSrc.next(user);
-      })
-    );
+    super._post(url, { username, password }).subscribe(token => {
+      this.token = token.access_token;
+      this.username = username;
+      this.setCookie(token.access_token);
+      this.fetchUser(username);
+    });
   }
 
   public signUp(user: UserRegistration) {
     const url = super.setStandardUrl('auth/register');
-    return super._post(url, user).pipe(
-      switchMap(token => {
-        this.token = token.access_token;
-        this.setCookie(token.access_token);
-        return this.fetchUser(user.username);
-      }),
-      tap(user => {
-        this.username = user.username;
-        this.userSrc.next(user);
-      })
-    );
+    super._post(url, user).subscribe(() => {
+      this.signIn(user.username, user.password);
+    });
   }
 
   public getUser(): Observable<User> {
@@ -62,11 +46,6 @@ export class AuthService extends BaseHttpService<any> {
     return super._post(url, { username });
   }
 
-  public findUsers(username: string) {
-    const url = super.setStandardUrl(`users/find/${username}`);
-    return super._get(url);
-  }
-
   public signOut() {
     this.token = undefined;
     this.userSrc.next(undefined);
@@ -74,14 +53,13 @@ export class AuthService extends BaseHttpService<any> {
     document.cookie = `hsmauth=${this.token}; expires=${new Date().setTime(new Date().getTime() - 1)}`;
   }
 
-  public fetchUser(username: string): Observable<User> {
+  public fetchUser(username: string) {
     const url = super.setStandardUrl(`users/${username}`);
-    return super._get(url).pipe(
-      tap(user => {
+    super._get(url).subscribe(
+      user => {
         this.username = user.username;
         this.userSrc.next(user);
-      })
-    );
+      });
   }
 
   public parseJwt(token: string) {

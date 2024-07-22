@@ -64,12 +64,12 @@ export class UsersService {
   async update(id: number, updateUserDto: UpdateUserDto) {
     const newUser = new User();
     Object.assign(newUser, updateUserDto);
-    await this.dataSource.transaction((async manager => {
-      await manager.update(User, id, newUser);
+    return await this.dataSource.transaction((async manager => {
+      return await manager.update(User, id, newUser);
     }));
   }
 
   async remove(id: number) {
-    await this.usersRepository.delete(id);
+    return await this.usersRepository.delete(id);
   }
 }

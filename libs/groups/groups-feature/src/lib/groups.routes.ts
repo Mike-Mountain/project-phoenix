@@ -7,7 +7,7 @@ import { ManageGroupComponent } from './components/manage-group/manage-group.com
 export const groupsRoutes: Routes = [
   { path: '', component: GroupsDashboardComponent },
   {path: 'create-group', component: EditGroupComponent},
-  {path: 'manage-group/:id', component: ManageGroupComponent},
-  {path: 'edit-group/:id', component: EditGroupComponent},
-  {path: 'list/:id', component: ListDetailsComponent}
+  {path: 'manage-group', component: ManageGroupComponent},
+  {path: 'edit-group', component: EditGroupComponent},
+  {path: 'list', component: ListDetailsComponent}
 ];

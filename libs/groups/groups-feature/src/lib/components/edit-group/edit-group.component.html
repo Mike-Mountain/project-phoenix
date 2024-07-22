@@ -9,19 +9,21 @@
       group</p>
   </mat-toolbar>
   @if (groupForm) {
-    <form [formGroup]="groupForm" class="flex-center flex-column" *ngIf="user$ | async as user">
-      <mat-form-field class="w-80">
-        <mat-label>Name</mat-label>
-        <input matInput formControlName="name">
-      </mat-form-field>
-      <button mat-raised-button class="w-60 mx-auto" color="accent" (click)="createOrEdit(user)">
-        @if (groupId) {
-          Edit
-        } @else {
-          Create
-        }
-         Group
-      </button>
-    </form>
+    <ng-container *ngIf="group$ | async as group">
+      <form [formGroup]="groupForm" class="flex-center flex-column" *ngIf="user$ | async as user">
+        <mat-form-field class="w-80">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name">
+        </mat-form-field>
+        <button mat-raised-button class="w-60 mx-auto" color="accent" (click)="createOrEdit(user, group)">
+          @if (groupId) {
+            Edit
+          } @else {
+            Create
+          }
+          Group
+        </button>
+      </form>
+    </ng-container>
   }
 </section>

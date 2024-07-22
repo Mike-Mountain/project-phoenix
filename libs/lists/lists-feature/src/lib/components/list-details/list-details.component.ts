@@ -27,19 +27,11 @@ export class ListDetailsComponent {
   private userService = inject(AuthService);
   private dialog = inject(MatDialog);
 
-  public list$: Observable<List> | undefined;
-
-  constructor() {
-    this.list$ = this.route.params.pipe(
-      switchMap(params => {
-        return this.listService.getList(params['id']);
-      })
-    );
-  }
+  public list$: Observable<List> = this.listService.getSelectedList();
 
   toggleIsComplete(item: ListItem, change: MatCheckboxChange) {
     item.isComplete = change.checked;
-    this.listService.toggleIsComplete(item.id, change.checked).subscribe();
+    this.listService.toggleIsComplete(item.id, change.checked);
   }
 
   openListItemDialog(listId: number) {

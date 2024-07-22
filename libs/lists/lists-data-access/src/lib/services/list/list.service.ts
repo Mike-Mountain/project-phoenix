@@ -1,32 +1,41 @@
 import { Injectable } from '@angular/core';
 import { BaseHttpService } from '@project-phoenix/shared/shared-data-access';
 import { BehaviorSubject } from 'rxjs';
-import { Category, CreateList, CreateListItem, List, ListItem } from '../../models/list.model';
+import { Category, CreateList, CreateListItem, List } from '../../models/list.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListService extends BaseHttpService {
   private listSrc = new BehaviorSubject<List>({} as List);
+  private categoriesSrc = new BehaviorSubject<Category[]>([]);
 
-  public getList(listId: number) {
+  public getSelectedList() {
+    return this.listSrc.asObservable();
+  }
+
+  public getCategories() {
+    return this.categoriesSrc.asObservable();
+  }
+
+  public fetchListById(listId: number) {
     const url = super.setStandardUrl(`lists/${listId}`);
-    return super._get<List>(url);
+    super._get<List>(url).subscribe(list => this.listSrc.next(list));
   }
 
   public toggleIsComplete(itemId: number, isComplete: boolean) {
     const url = super.setStandardUrl(`list-items/${itemId}`);
-    return super._patch(url, { isComplete });
+    super._patch(url, { isComplete }).subscribe(list => this.listSrc.next(list));
   }
 
-  public getCategories(categoryName: string) {
+  public fetchCategories(categoryName: string) {
     const url = super.setStandardUrl(`category/search/${categoryName}`);
-    return super._get<Category[]>(url);
+    super._get<Category[]>(url).subscribe(categories => this.categoriesSrc.next(categories));
   }
 
   public addListItem(listId: number, listItem: CreateListItem) {
     const url = super.setStandardUrl(`lists/add/${listId}`);
-    return super._patch(url, [listItem]);
+    super._patch(url, [listItem]).subscribe(list => this.listSrc.next(list));
   }
 
   public createList(listDetails: CreateList, username: string, groupId: number) {
@@ -44,11 +53,11 @@ export class ListService extends BaseHttpService {
       })
     }
     const url = super.setStandardUrl('lists');
-    return super._post<List>(url, list);
+    super._post<List>(url, list).subscribe(list => this.listSrc.next(list));
   }
 
   public deleteList(listId: number) {
     const url = super.setStandardUrl(`lists/${listId}`);
-    return super._delete(url);
+    super._delete(url).subscribe(() => this.listSrc.next({} as List));
   }
 }

@@ -44,9 +44,8 @@ export class ListDialogComponent {
   }
 
   public saveList() {
-    this.listService.createList((this.listForm.value as CreateList), this.data.username, this.data.groupId).subscribe(list => {
-      this.dialogRef.close(list);
-    });
+    this.listService.createList((this.listForm.value as CreateList), this.data.username, this.data.groupId);
+    this.dialogRef.close();
   }
 
   private createListItemForm(): FormGroup {

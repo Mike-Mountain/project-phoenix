@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormField, MatHint, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
-import { debounce, interval, of, switchMap } from 'rxjs';
+import { debounce, interval, Observable, of, switchMap } from 'rxjs';
 import { Category, CreateListItem, List, ListItem, ListService } from '@project-phoenix/lists-data-access';
 import { MatCard, MatCardContent } from '@angular/material/card';
 import { MatOption, MatSelect } from '@angular/material/select';
@@ -24,7 +24,7 @@ export class ListItemDialogComponent implements OnInit {
   private formBuilder = inject(FormBuilder);
   private listService = inject(ListService);
 
-  public categories: Category[] = [];
+  public categories: Observable<Category[]> = this.listService.getCategories();
   public listItemForm = this.formBuilder.group({
     name: ['', Validators.required],
     category: ['', Validators.required]
@@ -32,18 +32,11 @@ export class ListItemDialogComponent implements OnInit {
 
   ngOnInit() {
     this.listItemForm.get('category')?.valueChanges
-      .pipe(
-        debounce(() => interval(1500)),
-        switchMap((categoryName) => {
-          if (categoryName) {
-            return this.listService.getCategories(categoryName);
-          } else {
-            return of([]);
-          }
-        })
-      )
-      .subscribe(categories => {
-        this.categories = categories;
+      .pipe(debounce(() => interval(1500)))
+      .subscribe(categoryName => {
+        if (categoryName) {
+          this.listService.fetchCategories(categoryName);
+        }
       });
   }
 
@@ -57,10 +50,8 @@ export class ListItemDialogComponent implements OnInit {
         list: this.data.listId,
         category: this.listItemForm.value.category!
       };
-      this.listService.addListItem(this.data.listId, listItem).subscribe(data => {
-        console.log(data);
-        this.dialog.close(data);
-      });
+      this.listService.addListItem(this.data.listId, listItem);
+      this.dialog.close();
     }
   }
 }

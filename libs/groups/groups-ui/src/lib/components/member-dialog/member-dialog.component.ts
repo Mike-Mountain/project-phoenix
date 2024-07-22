@@ -19,43 +19,21 @@ import { GroupsService } from '@project-phoenix/groups-data-access';
   styleUrl: './member-dialog.component.scss'
 })
 export class MemberDialogComponent {
-  private authService = inject(AuthService);
   private groupsService = inject(GroupsService);
   private dialogRef = inject(MatDialogRef);
   public data = inject(MAT_DIALOG_DATA);
 
   public usernameControl = new FormControl('');
-  public memberOptions: User[] = [];
   public selectedMembers: string[] = [];
 
   constructor() {
     this.dialogRef.updateSize('90%');
-    this.getMembers();
-  }
-
-  getMembers() {
-    this.usernameControl.valueChanges
-      .pipe(
-        debounce(() => interval(1500)),
-        switchMap((username) => {
-          if (username) {
-            return this.authService.findUsers(username);
-          } else return of(undefined);
-        })
-      )
-      .subscribe(members => {
-        console.log(members);
-        this.memberOptions = members;
-      });
-  }
-
-  addMember(username: string) {
-    this.selectedMembers.push(username);
   }
 
   saveMembers() {
-    if (this.selectedMembers.length > 0) {
-      this.groupsService.addGroupMembers(this.selectedMembers, this.data.groupId).subscribe(data => console.log(data))
+    if (this.usernameControl.value) {
+      // TODO: Add batch member add
+      this.groupsService.addGroupMembers([this.usernameControl.value], this.data.groupId);
     }
   }
 }
