@@ -2,7 +2,7 @@ import { Component, EventEmitter, inject, Input, OnChanges, OnInit, Output, Simp
 import { CommonModule } from '@angular/common';
 import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 import { MatButton } from '@angular/material/button';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Group, GroupsService } from '@project-phoenix/groups-data-access';
 import { Observable, take } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
@@ -23,6 +23,7 @@ export class GroupSummaryComponent implements OnChanges {
   private groupsService = inject(GroupsService);
   private listService = inject(ListService);
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
   private dialog = inject(MatDialog);
 
   public group$ = this.groupsService.getSelectedGroup();
@@ -49,12 +50,12 @@ export class GroupSummaryComponent implements OnChanges {
   routeToList(id?: number) {
     if (id) {
       this.listService.fetchListById(id);
-      this.router.navigateByUrl('/list');
+      this.router.navigate(['list'], { relativeTo: this.route });
     }
   }
 
   routeToManageGroup(id: number) {
     this.groupsService.fetchGroupById(id);
-    this.router.navigateByUrl('/manage-group');
+    this.router.navigate(['manage-group'], { relativeTo: this.route });
   }
 }

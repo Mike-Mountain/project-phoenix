@@ -23,6 +23,7 @@ import { InfoDialogComponent } from '@project-phoenix/shared/shared-ui';
 })
 export class ManageGroupComponent {
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
   private location = inject(Location);
   private groupService = inject(GroupsService);
   private authService = inject(AuthService);
@@ -74,7 +75,7 @@ export class ManageGroupComponent {
   routeToList(id: number | undefined) {
     if (id) {
       this.listsService.fetchListById(id);
-      this.router.navigateByUrl('/list');
+      this.router.navigate(['list'], { relativeTo: this.route.parent });
     }
   }
 
