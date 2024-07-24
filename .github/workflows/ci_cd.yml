@@ -23,4 +23,5 @@ jobs:
       - name: Build
         run: |
           npm install --legacy-peer-deps
+          npm i -g nx
           npm run nx build:container
