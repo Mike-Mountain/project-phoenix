@@ -20,11 +20,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       #
-      - name: Build
-        run: |
-          npm install --legacy-peer-deps
-          npx nx build container
-      #
+#      - name: Build
+#        run: |
+#          npm install --legacy-peer-deps
+#          npx nx build container
+#      #
       - name: Install SSH Key
         uses: shimataro/ssh-key-action@v2
         with:
