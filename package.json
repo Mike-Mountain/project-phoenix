@@ -6,6 +6,7 @@
     "serve": "nx serve container",
     "serve:api": "nx serve phoenix-api",
     "serve:indiv-groups": "nx serve groups",
+    "build:container": "nx build container",
     "build:all": "nx build container && nx build resume && nx build budgets && nx build code-master && nx build lists && nx build movies",
     "create-data-access-lib": "nx g @nx/angular:lib lists-data-access --tags=scope:lists,type:data-access --prefix=lists-data-access --directory=libs/lists/lists-data-access --standalone",
     "create-feature-lib": "nx g @nx/angular:lib lists-feature --tags=scope:lists,type:feature --prefix=lists-feature --directory=libs/lists/lists-feature --standalone",
