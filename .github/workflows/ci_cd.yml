@@ -24,3 +24,16 @@ jobs:
         run: |
           npm install --legacy-peer-deps
           npx nx build container
+      #
+      - name: Install SSH Key
+        run: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          known_hosts: 'a-random-placeholder-value'
+      #
+      - name: Adding Known Hosts
+        run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+      #
+      - name: Deploy with rsync
+        run: rsync -avz ./dist/apps/container ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/honeystone/html/
+
