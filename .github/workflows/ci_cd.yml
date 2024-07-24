@@ -2,7 +2,7 @@ name: Build and deploy
 
 on:
   push:
-    branches: [ "github-actions" ]
+    branches: [ "feature/github-actions" ]
 
 jobs:
   build:
