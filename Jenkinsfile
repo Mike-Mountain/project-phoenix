@@ -13,6 +13,7 @@ pipeline {
       steps {
         echo 'Installing dependencies'
         sh 'node --version'
+        sh 'cat package.json'
       }
     }
   }
