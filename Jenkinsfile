@@ -9,10 +9,16 @@ pipeline {
   }
 
   stages {
+    stage('Install') {
+      steps {
+        echo 'Installing dependencies'
+        sh 'npm ci'
+      }
+    }
     stage('Build') {
       steps {
         echo 'Building files'
-        sh 'npx nx build container'
+        sh 'npm run build:container'
       }
     }
   }
