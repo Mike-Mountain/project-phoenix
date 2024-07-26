@@ -12,8 +12,13 @@ pipeline {
     stage('Install') {
       steps {
         echo 'Installing dependencies'
-        sh 'node --version'
-        sh 'cat package-lock.json'
+        sh 'npm install'
+      }
+    }
+    stage('Build') {
+      steps {
+        echo 'Building files'
+        sh 'npm run build:container'
       }
     }
   }
