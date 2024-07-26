@@ -12,7 +12,8 @@ pipeline {
     stage('Install') {
       steps {
         echo 'Installing dependencies'
-        sh 'npm install --legacy-peer-deps'
+        sh 'echo "legacy-peer-deps=true" >> .npmrc'
+        sh 'npm install'
       }
     }
     stage('Build') {
