@@ -12,7 +12,7 @@ pipeline {
     stage('Install') {
       steps {
         echo 'Installing dependencies'
-        sh 'npm install'
+        sh 'npm install --legacy-peer-deps'
       }
     }
     stage('Build') {
