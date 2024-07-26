@@ -9,17 +9,10 @@ pipeline {
   }
 
   stages {
-    stage('Install') {
-      steps {
-        echo 'Installing dependencies'
-        sh 'echo "legacy-peer-deps=true" >> .npmrc'
-        sh 'npm install'
-      }
-    }
     stage('Build') {
       steps {
         echo 'Building files'
-        sh 'npm run build:container'
+        sh 'npx nx build container'
       }
     }
   }
