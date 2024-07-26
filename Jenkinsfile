@@ -12,7 +12,7 @@ pipeline {
     stage('Install') {
       steps {
         echo 'Installing dependencies'
-        sh node --version
+        sh 'node --version'
       }
     }
   }
