@@ -18,6 +18,7 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Building files'
+        sj 'npm config set registry http://registry.npmjs.org/'
         sh 'npm run build:container'
       }
     }
