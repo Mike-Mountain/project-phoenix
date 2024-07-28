@@ -16,6 +16,7 @@ pipeline {
         sh 'npm config rm proxy'
         sh 'npm config rm https-proxy'
         sh 'npm install -g npm@latest'
+        sh 'npm install'
       }
     }
     stage('Build') {
