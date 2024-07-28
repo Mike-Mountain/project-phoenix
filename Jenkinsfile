@@ -12,13 +12,13 @@ pipeline {
     stage('Install') {
       steps {
         echo 'Installing dependencies'
+        sh 'npm config set registry http://registry.npmjs.org/'
         sh 'npm i'
       }
     }
     stage('Build') {
       steps {
         echo 'Building files'
-        sj 'npm config set registry http://registry.npmjs.org/'
         sh 'npm run build:container'
       }
     }
