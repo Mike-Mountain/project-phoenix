@@ -13,8 +13,8 @@ pipeline {
       steps {
         echo 'Installing dependencies'
 //         sh 'npm config set registry http://registry.npmjs.org/'
-        sh 'sudo npm config rm proxy'
-        sh 'sudo npm config rm https-proxy'
+        sh 'npm config rm proxy'
+        sh 'npm config rm https-proxy'
       }
     }
     stage('Build') {
