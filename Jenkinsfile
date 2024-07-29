@@ -13,8 +13,8 @@ pipeline {
       steps {
         echo 'Installing dependencies'
         sh 'npm config ls -l | grep prox'
-        sh 'npm config set proxy http://jenkins.honeystonemountain.com:8080'
-        sh 'npm config set https-proxy https://jenkins.honeystonemountain.com:8080'
+        sh 'npm config set proxy http://localhost:8080'
+        sh 'npm config set https-proxy https://jenkins.honeystonemountain.com'
         sh 'npm config set strict-ssl false'
         sh 'npm config set registry http://registry.npmjs.org/'
 //         sh 'npm config rm proxy'
