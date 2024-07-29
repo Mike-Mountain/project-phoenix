@@ -12,7 +12,7 @@ pipeline {
     stage('Install') {
       steps {
         echo 'Installing dependencies'
-        sh 'cat ~/.npmrc'
+        sh 'cat .npmrc'
 //         sh 'npm config set registry http://registry.npmjs.org/'
 //         sh 'npm config rm proxy'
 //         sh 'npm config rm https-proxy'
