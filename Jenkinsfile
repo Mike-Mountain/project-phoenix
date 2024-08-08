@@ -22,7 +22,7 @@ pipeline {
 //         sh 'npm config ls -l | grep prox'
         sh 'npm install -g npm@latest'
 //         sh 'rm -rf /var/lib/jenkins/workspace/Container/node_modules'
-        sh 'npm install'
+        sh 'npm install --legacy-peer-deps'
       }
     }
     stage('Build') {
