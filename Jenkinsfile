@@ -14,7 +14,7 @@ pipeline {
         echo 'Installing dependencies'
         sh 'rm package-lock.json'
         sh 'npm cache clean --force'
-        sh "sed -i 's/10.255.255.254/8.8.8.8' /etc/resolv.conf"
+        sh "sed -i 's/10.255.255.254/8.8.8.8/' /etc/resolv.conf"
         sh 'cat /etc/resolv.conf'
 //         sh 'npm install --verbose'
       }
