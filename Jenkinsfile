@@ -14,7 +14,8 @@ pipeline {
         echo 'Installing dependencies'
         sh 'rm package-lock.json'
         sh 'npm cache clean --force'
-        sh 'npm install --verbose'
+        sh 'cat /etc/resolv.conf'
+//         sh 'npm install --verbose'
       }
     }
     stage('Build') {
