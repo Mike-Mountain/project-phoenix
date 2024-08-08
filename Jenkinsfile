@@ -14,7 +14,8 @@ pipeline {
         echo 'Installing dependencies'
         sh 'npm config rm proxy'
         sh 'npm config rm https-proxy'
-        sh 'npm install --legacy-peer-deps'
+        sh 'rm package-lock.json'
+        sh 'npm install'
       }
     }
     stage('Build') {
