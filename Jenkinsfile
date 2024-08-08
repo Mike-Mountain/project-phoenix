@@ -12,10 +12,10 @@ pipeline {
     stage('Install') {
       steps {
         echo 'Installing dependencies'
+        sh 'cat /etc/resolv.conf'
+        sh 'touch /etc/resolv.conf'
         sh 'rm package-lock.json'
         sh 'npm cache clean --force'
-        sh 'sed "s/10.255.255.254/8.8.8.8" /etc/resolv.conf'
-        sh 'cat /etc/resolv.conf'
 //         sh 'npm install --verbose'
       }
     }
