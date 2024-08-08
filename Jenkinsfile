@@ -15,7 +15,8 @@ pipeline {
         sh 'npm config rm proxy'
         sh 'npm config rm https-proxy'
         sh 'rm package-lock.json'
-        sh 'npm install'
+        sh 'cat ~/.npmrc'
+//         sh 'npm install'
       }
     }
     stage('Build') {
