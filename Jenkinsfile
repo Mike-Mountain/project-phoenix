@@ -16,6 +16,9 @@ pipeline {
         sh 'npm config rm https-proxy'
         sh 'rm package-lock.json'
         sh 'node --version'
+        sh 'node --version'
+        sh 'npm --version'
+        sh 'npm config ls -l'
 //         sh 'npm install'
       }
     }
