@@ -12,8 +12,8 @@ pipeline {
     stage('Install') {
       steps {
         echo 'Installing dependencies'
-        sh 'rm package-lock.json'
-        sh 'npm cache clean --force'
+        sh 'npm config set proxy http://localhost:8080'
+        sh 'npm config set https-proxy http://localhost:8080'
         sh 'npm install --verbose'
       }
     }
