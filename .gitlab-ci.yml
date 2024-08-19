@@ -88,6 +88,3 @@ release:
   environment:
     name: production
     url: https://honeystonemountain.com
-  only:
-    - ^release\/.*
-    - ^feature\/gitlab-ci
