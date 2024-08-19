@@ -30,7 +30,7 @@ lint:
   stage: lint
   needs: [ "install" ]
   script:
-    - npm run lint
+    - npm run lint:container
   cache:
     key:
       files:
