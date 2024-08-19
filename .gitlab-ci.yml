@@ -8,7 +8,7 @@ stages:
   - test
   - build
   - publish
-  - deploy
+  - release
 
 variables:
   TAG_LATEST: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:latest
@@ -73,9 +73,9 @@ publish:
     - docker push $TAG_COMMIT
     - docker push $TAG_LATEST
 
-deploy:
+release:
   image: alpine:latest
-  stage: deploy
+  stage: release
   tags:
     - deployment
   script:
