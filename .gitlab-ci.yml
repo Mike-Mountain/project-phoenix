@@ -1,10 +1,62 @@
 stages:
+  - install
+  - lint
+  - test
+  - build
   - publish
   - deploy
 
 variables:
   TAG_LATEST: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:latest
   TAG_COMMIT: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:$CI_COMMIT_SHORT_SHA
+
+install:
+  stage: install
+  script:
+    - echo "Installing dependencies"
+    - npm install --legacy-peer-deps --prefer-offline
+  cache:
+    key:
+      files:
+        - package.json
+    paths:
+      - node_modules
+
+lint:
+  stage: lint
+  needs: [ "install" ]
+  script:
+    - npm run lint
+  cache:
+    key:
+      files:
+        - package.json
+    paths:
+      - node_modules
+    policy: pull
+
+test:
+  stage: test
+  needs: [ "install" ]
+  script:
+    - echo "Add tests!"
+
+build:
+  stage: build
+  needs: [ "lint", "test" ]
+  script:
+    - npm run build:container
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/dist/apps
+  cache:
+    key:
+      files:
+        - package.json
+    paths:
+      - node_modules
+    policy: pull
+
 
 publish:
   image: docker:latest
@@ -33,4 +85,5 @@ deploy:
     name: production
     url: https://honeystonemountain.com
   only:
-    - master
+    - ^release\/.*
+    - ^feature\/gitlab-ci
