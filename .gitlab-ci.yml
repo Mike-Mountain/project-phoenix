@@ -62,7 +62,6 @@ install:
 
 build-container:
   stage: build-container
-  needs: [ "lint", "test" ]
   script:
     - npm run build:container
   artifacts:
