@@ -77,7 +77,6 @@ build-container:
 
 build-budgets:
   stage: build-budgets
-  needs: [ "lint", "test" ]
   script:
     - npm run build:budgets
   artifacts:
@@ -93,7 +92,6 @@ build-budgets:
 
 build-code-master:
   stage: build-code-master
-  needs: [ "lint", "test" ]
   script:
     - npm run build:code-master
   artifacts:
@@ -109,7 +107,6 @@ build-code-master:
 
 build-gallery:
   stage: build-gallery
-  needs: [ "lint", "test" ]
   script:
     - npm run build:gallery
   artifacts:
@@ -125,7 +122,6 @@ build-gallery:
 
 build-groups:
   stage: build-groups
-  needs: [ "lint", "test" ]
   script:
     - npm run build:groups
   artifacts:
@@ -141,7 +137,6 @@ build-groups:
 
 build-movies:
   stage: build-movies
-  needs: [ "lint", "test" ]
   script:
     - npm run build:movies
   artifacts:
@@ -157,7 +152,6 @@ build-movies:
 
 build-resume:
   stage: build-resume
-  needs: [ "lint", "test" ]
   script:
     - npm run build:resume
   artifacts:
