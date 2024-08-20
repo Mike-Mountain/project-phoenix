@@ -33,8 +33,8 @@ lint:
     - apk update && apk add git
     - NX_HEAD=$CI_COMMIT_SHA
     - NX_BASE=${CI_MERGE_REQUEST_DIFF_BASE_SHA:-$CI_COMMIT_BEFORE_SHA}
-    - nx show projects --affected --base=$NX_BASE --head=$NX_HEAD
-    - echo "AFFECTED_APPS=npm run list:affected" >> affected.env
+    - npm run list:affected --base=$NX_BASE --head=$NX_HEAD
+    - echo "AFFECTED_APPS=npm run list:affected --base=$NX_BASE --head=$NX_HEAD" >> affected.env
 #    - npm run lint:affected
   artifacts:
     reports:
