@@ -30,6 +30,7 @@ lint:
   stage: lint
   needs: [ "install" ]
   script:
+    - apk update && apk add git
     - npm run list:affected
     - echo "AFFECTED_APPS=npm run list:affected" >> affected.env
     - npm run lint:affected
