@@ -26,17 +26,17 @@ variables:
   TAG_LATEST: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME
   TAG_COMMIT: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:$CI_COMMIT_SHORT_SHA
 
-install:
-  stage: install
-  script:
-    - echo "Installing dependencies"
-    - npm install --legacy-peer-deps --prefer-offline
-  cache:
-    key:
-      files:
-        - package.json
-    paths:
-      - node_modules
+#install:
+#  stage: install
+#  script:
+#    - echo "Installing dependencies"
+#    - npm install --legacy-peer-deps --prefer-offline
+#  cache:
+#    key:
+#      files:
+#        - package.json
+#    paths:
+#      - node_modules
 
 #lint:
 #  stage: lint
@@ -177,12 +177,12 @@ publish-container:
   services:
     - docker:dind
   script:
-    - echo "${TAG_LATEST}-container:latest"
-    - echo $TAG_LATEST
-#    - docker build -t $TAG_COMMIT -t ${TAG_LATEST}-container:latest .
-#    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-#    - docker push $TAG_COMMIT
-#    - docker push $TAG_LATEST-container:latest
+    - TAG_LATEST_CONTAINER = ${TAG_LATEST}-container:latest
+    - echo $TAG_LATEST_CONTAINER
+    - docker build -t $TAG_COMMIT -t $TAG_LATEST_CONTAINER .
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker push $TAG_COMMIT
+    - docker push $TAG_LATEST_CONTAINER
 #
 #release:
 #  image: alpine:latest
