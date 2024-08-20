@@ -6,7 +6,7 @@
     "serve": "nx serve container",
     "serve:api": "nx serve phoenix-api",
     "serve:indiv-groups": "nx serve groups",
-    "list:all": "nx run-many --target=lint --all",
+    "lint:all": "nx run-many --target=lint --all",
     "build:container": "nx build container",
     "build:budgets": "nx build budgets",
     "build:code-master": "nx build code-master",
