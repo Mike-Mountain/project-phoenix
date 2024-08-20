@@ -75,95 +75,95 @@ build-container:
       - node_modules
     policy: pull
 
-#build-budgets:
-#  stage: build-budgets
-#  script:
-#    - npm run build:budgets
-#  artifacts:
-#    paths:
-#      - $CI_PROJECT_DIR/dist/apps
-#  cache:
-#    key:
-#      files:
-#        - package.json
-#    paths:
-#      - node_modules
-#    policy: pull
-#
-#build-code-master:
-#  stage: build-code-master
-#  script:
-#    - npm run build:code-master
-#  artifacts:
-#    paths:
-#      - $CI_PROJECT_DIR/dist/apps
-#  cache:
-#    key:
-#      files:
-#        - package.json
-#    paths:
-#      - node_modules
-#    policy: pull
-#
-#build-gallery:
-#  stage: build-gallery
-#  script:
-#    - npm run build:gallery
-#  artifacts:
-#    paths:
-#      - $CI_PROJECT_DIR/dist/apps
-#  cache:
-#    key:
-#      files:
-#        - package.json
-#    paths:
-#      - node_modules
-#    policy: pull
-#
-#build-groups:
-#  stage: build-groups
-#  script:
-#    - npm run build:groups
-#  artifacts:
-#    paths:
-#      - $CI_PROJECT_DIR/dist/apps
-#  cache:
-#    key:
-#      files:
-#        - package.json
-#    paths:
-#      - node_modules
-#    policy: pull
-#
-#build-movies:
-#  stage: build-movies
-#  script:
-#    - npm run build:movies
-#  artifacts:
-#    paths:
-#      - $CI_PROJECT_DIR/dist/apps
-#  cache:
-#    key:
-#      files:
-#        - package.json
-#    paths:
-#      - node_modules
-#    policy: pull
-#
-#build-resume:
-#  stage: build-resume
-#  script:
-#    - npm run build:resume
-#  artifacts:
-#    paths:
-#      - $CI_PROJECT_DIR/dist/apps
-#  cache:
-#    key:
-#      files:
-#        - package.json
-#    paths:
-#      - node_modules
-#    policy: pull
+build-budgets:
+  stage: build-budgets
+  script:
+    - npm run build:budgets
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/dist/apps
+  cache:
+    key:
+      files:
+        - package.json
+    paths:
+      - node_modules
+    policy: pull
+
+build-code-master:
+  stage: build-code-master
+  script:
+    - npm run build:code-master
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/dist/apps
+  cache:
+    key:
+      files:
+        - package.json
+    paths:
+      - node_modules
+    policy: pull
+
+build-gallery:
+  stage: build-gallery
+  script:
+    - npm run build:gallery
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/dist/apps
+  cache:
+    key:
+      files:
+        - package.json
+    paths:
+      - node_modules
+    policy: pull
+
+build-groups:
+  stage: build-groups
+  script:
+    - npm run build:groups
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/dist/apps
+  cache:
+    key:
+      files:
+        - package.json
+    paths:
+      - node_modules
+    policy: pull
+
+build-movies:
+  stage: build-movies
+  script:
+    - npm run build:movies
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/dist/apps
+  cache:
+    key:
+      files:
+        - package.json
+    paths:
+      - node_modules
+    policy: pull
+
+build-resume:
+  stage: build-resume
+  script:
+    - npm run build:resume
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/dist/apps
+  cache:
+    key:
+      files:
+        - package.json
+    paths:
+      - node_modules
+    policy: pull
 
 publish-container:
   image: docker:latest
@@ -177,71 +177,71 @@ publish-container:
     - docker push $TAG_COMMIT
     - docker push ${TAG_LATEST}:container
 
-#publish-budgets:
-#  image: docker:latest
-#  stage: publish-budgets
-#  services:
-#    - docker:dind
-#  script:
-#    - docker build -t $TAG_COMMIT -t ${TAG_LATEST}:budgets .
-#    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-#    - docker push $TAG_COMMIT
-#    - docker push ${TAG_LATEST}:budgets
-#
-#publish-code-master:
-#  image: docker:latest
-#  stage: publish-code-master
-#  services:
-#    - docker:dind
-#  script:
-#    - docker build -t $TAG_COMMIT -t ${TAG_LATEST}:code-master .
-#    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-#    - docker push $TAG_COMMIT
-#    - docker push ${TAG_LATEST}:code-master
-#
-#publish-gallery:
-#  image: docker:latest
-#  stage: publish-gallery
-#  services:
-#    - docker:dind
-#  script:
-#    - docker build -t $TAG_COMMIT -t ${TAG_LATEST}:gallery .
-#    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-#    - docker push $TAG_COMMIT
-#    - docker push ${TAG_LATEST}:gallery
-#
-#publish-groups:
-#  image: docker:latest
-#  stage: publish-groups
-#  services:
-#    - docker:dind
-#  script:
-#    - docker build -t $TAG_COMMIT -t ${TAG_LATEST}:groups .
-#    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-#    - docker push $TAG_COMMIT
-#    - docker push ${TAG_LATEST}:groups
-#
-#publish-movies:
-#  image: docker:latest
-#  stage: publish-movies
-#  services:
-#    - docker:dind
-#  script:
-#    - docker build -t $TAG_COMMIT -t ${TAG_LATEST}:movies .
-#    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-#    - docker push $TAG_COMMIT
-#    - docker push ${TAG_LATEST}:movies
-#
-#publish-resume:
-#  image: docker:latest
-#  stage: publish-resume
-#  services:
-#    - docker:dind
-#  script:
-#    - docker build -t $TAG_COMMIT -t ${TAG_LATEST}:resume .
-#    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-#    - docker push $TAG_COMMIT
-#    - docker push ${TAG_LATEST}:resume
+publish-budgets:
+  image: docker:latest
+  stage: publish-budgets
+  services:
+    - docker:dind
+  script:
+    - docker build -t $TAG_COMMIT -t ${TAG_LATEST}:budgets --build-arg="APP=budgets" .
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker push $TAG_COMMIT
+    - docker push ${TAG_LATEST}:budgets
+
+publish-code-master:
+  image: docker:latest
+  stage: publish-code-master
+  services:
+    - docker:dind
+  script:
+    - docker build -t $TAG_COMMIT -t ${TAG_LATEST}:code-master --build-arg="APP=code-master" .
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker push $TAG_COMMIT
+    - docker push ${TAG_LATEST}:code-master
+
+publish-gallery:
+  image: docker:latest
+  stage: publish-gallery
+  services:
+    - docker:dind
+  script:
+    - docker build -t $TAG_COMMIT -t ${TAG_LATEST}:gallery --build-arg="APP=gallery" .
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker push $TAG_COMMIT
+    - docker push ${TAG_LATEST}:gallery
+
+publish-groups:
+  image: docker:latest
+  stage: publish-groups
+  services:
+    - docker:dind
+  script:
+    - docker build -t $TAG_COMMIT -t ${TAG_LATEST}:groups --build-arg="APP=groups" .
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker push $TAG_COMMIT
+    - docker push ${TAG_LATEST}:groups
+
+publish-movies:
+  image: docker:latest
+  stage: publish-movies
+  services:
+    - docker:dind
+  script:
+    - docker build -t $TAG_COMMIT -t ${TAG_LATEST}:movies --build-arg="APP=movies" .
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker push $TAG_COMMIT
+    - docker push ${TAG_LATEST}:movies
+
+publish-resume:
+  image: docker:latest
+  stage: publish-resume
+  services:
+    - docker:dind
+  script:
+    - docker build -t $TAG_COMMIT -t ${TAG_LATEST}:resume --build-arg="APP=resume" .
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker push $TAG_COMMIT
+    - docker push ${TAG_LATEST}:resume
 
 
 #
