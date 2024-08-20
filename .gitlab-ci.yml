@@ -24,6 +24,7 @@ stages:
 
 variables:
   TAG_LATEST: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME
+  TAG_COMMIT: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:$CI_COMMIT_SHORT_SHA
 
 install:
   stage: install
@@ -170,8 +171,9 @@ publish-container:
   services:
     - docker:dind
   script:
-    - docker build -t ${TAG_LATEST}:container Dockerfile.container .
+    - docker build -t $TAG_COMMIT -t ${TAG_LATEST}:container --build-arg app=container .
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker push $TAG_COMMIT
     - docker push ${TAG_LATEST}:container
 
 #publish-budgets:
@@ -180,8 +182,9 @@ publish-container:
 #  services:
 #    - docker:dind
 #  script:
-#    - docker build -t ${TAG_LATEST}:budgets /docker/Dockerfile.budgets
+#    - docker build -t $TAG_COMMIT -t ${TAG_LATEST}:budgets .
 #    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+#    - docker push $TAG_COMMIT
 #    - docker push ${TAG_LATEST}:budgets
 #
 #publish-code-master:
@@ -190,8 +193,9 @@ publish-container:
 #  services:
 #    - docker:dind
 #  script:
-#    - docker build -t ${TAG_LATEST}:code-master /docker/Dockerfile.codemaster
+#    - docker build -t $TAG_COMMIT -t ${TAG_LATEST}:code-master .
 #    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+#    - docker push $TAG_COMMIT
 #    - docker push ${TAG_LATEST}:code-master
 #
 #publish-gallery:
@@ -200,8 +204,9 @@ publish-container:
 #  services:
 #    - docker:dind
 #  script:
-#    - docker build -t ${TAG_LATEST}:gallery /docker/Dockerfile.gallery
+#    - docker build -t $TAG_COMMIT -t ${TAG_LATEST}:gallery .
 #    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+#    - docker push $TAG_COMMIT
 #    - docker push ${TAG_LATEST}:gallery
 #
 #publish-groups:
@@ -210,8 +215,9 @@ publish-container:
 #  services:
 #    - docker:dind
 #  script:
-#    - docker build -t ${TAG_LATEST}:groups /docker/Dockerfile.groups
+#    - docker build -t $TAG_COMMIT -t ${TAG_LATEST}:groups .
 #    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+#    - docker push $TAG_COMMIT
 #    - docker push ${TAG_LATEST}:groups
 #
 #publish-movies:
@@ -220,8 +226,9 @@ publish-container:
 #  services:
 #    - docker:dind
 #  script:
-#    - docker build -t ${TAG_LATEST}:movies /docker/Dockerfile.movies
+#    - docker build -t $TAG_COMMIT -t ${TAG_LATEST}:movies .
 #    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+#    - docker push $TAG_COMMIT
 #    - docker push ${TAG_LATEST}:movies
 #
 #publish-resume:
@@ -230,8 +237,9 @@ publish-container:
 #  services:
 #    - docker:dind
 #  script:
-#    - docker build -t ${TAG_LATEST}:resume /docker/Dockerfile.resume
+#    - docker build -t $TAG_COMMIT -t ${TAG_LATEST}:resume .
 #    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+#    - docker push $TAG_COMMIT
 #    - docker push ${TAG_LATEST}:resume
 
 
