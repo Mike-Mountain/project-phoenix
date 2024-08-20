@@ -6,6 +6,6 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterOutlet],
   selector: 'app-gallery-entry',
-  template: `console.log('test')<router-outlet></router-outlet>`,
+  template: `<router-outlet></router-outlet>`,
 })
 export class RemoteEntryComponent {}
