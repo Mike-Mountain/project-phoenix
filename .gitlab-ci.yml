@@ -60,20 +60,20 @@ install:
 #  script:
 #    - echo "Add tests!"
 
-build-container:
-  stage: build-container
-  script:
-    - npm run build:container
-  artifacts:
-    paths:
-      - $CI_PROJECT_DIR/dist/apps
-  cache:
-    key:
-      files:
-        - package.json
-    paths:
-      - node_modules
-    policy: pull
+#build-container:
+#  stage: build-container
+#  script:
+#    - npm run build:container
+#  artifacts:
+#    paths:
+#      - $CI_PROJECT_DIR/dist/apps
+#  cache:
+#    key:
+#      files:
+#        - package.json
+#    paths:
+#      - node_modules
+#    policy: pull
 
 #build-budgets:
 #  stage: build-budgets
