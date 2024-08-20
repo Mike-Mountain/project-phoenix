@@ -1,2 +1,3 @@
 FROM nginx:latest
-COPY dist/apps/${app}/ /usr/share/nginx/html
+ARG APP
+COPY dist/apps/${APP}/ /usr/share/nginx/html
