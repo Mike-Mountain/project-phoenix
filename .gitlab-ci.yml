@@ -177,12 +177,10 @@ publish-container:
   services:
     - docker:dind
   script:
-    - TAG_LATEST_CONTAINER=${TAG_LATEST}-container:latest
-    - echo $TAG_LATEST_CONTAINER
-    - docker build -t $TAG_COMMIT -t $TAG_LATEST_CONTAINER .
+    - docker build -t $TAG_COMMIT -t ${TAG_LATEST}:container:latest .
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-    - docker push $TAG_LATEST_CONTAINER
     - docker push $TAG_COMMIT
+    - docker push ${TAG_LATEST}:container:latest
 #
 #release:
 #  image: alpine:latest
