@@ -174,7 +174,6 @@ publish-container:
     - ls
     - docker build -t $TAG_COMMIT -t ${TAG_LATEST}:container --build-arg="APP=container" .
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-    - docker push $TAG_COMMIT
     - docker push ${TAG_LATEST}:container
 
 #publish-budgets:
@@ -185,7 +184,6 @@ publish-container:
 #  script:
 #    - docker build -t $TAG_COMMIT -t ${TAG_LATEST}:budgets --build-arg="APP=budgets" .
 #    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-#    - docker push $TAG_COMMIT
 #    - docker push ${TAG_LATEST}:budgets
 #
 #publish-code-master:
@@ -196,7 +194,6 @@ publish-container:
 #  script:
 #    - docker build -t $TAG_COMMIT -t ${TAG_LATEST}:code-master --build-arg="APP=code-master" .
 #    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-#    - docker push $TAG_COMMIT
 #    - docker push ${TAG_LATEST}:code-master
 #
 #publish-gallery:
@@ -207,7 +204,6 @@ publish-container:
 #  script:
 #    - docker build -t $TAG_COMMIT -t ${TAG_LATEST}:gallery --build-arg="APP=gallery" .
 #    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-#    - docker push $TAG_COMMIT
 #    - docker push ${TAG_LATEST}:gallery
 #
 #publish-groups:
@@ -218,7 +214,6 @@ publish-container:
 #  script:
 #    - docker build -t $TAG_COMMIT -t ${TAG_LATEST}:groups --build-arg="APP=groups" .
 #    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-#    - docker push $TAG_COMMIT
 #    - docker push ${TAG_LATEST}:groups
 #
 #publish-movies:
@@ -229,7 +224,6 @@ publish-container:
 #  script:
 #    - docker build -t $TAG_COMMIT -t ${TAG_LATEST}:movies --build-arg="APP=movies" .
 #    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-#    - docker push $TAG_COMMIT
 #    - docker push ${TAG_LATEST}:movies
 #
 #publish-resume:
@@ -240,7 +234,6 @@ publish-container:
 #  script:
 #    - docker build -t $TAG_COMMIT -t ${TAG_LATEST}:resume --build-arg="APP=resume" .
 #    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-#    - docker push $TAG_COMMIT
 #    - docker push ${TAG_LATEST}:resume
 
 
