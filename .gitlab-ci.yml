@@ -26,17 +26,17 @@ variables:
   TAG_LATEST: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME
   TAG_COMMIT: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:$CI_COMMIT_SHORT_SHA
 
-#install:
-#  stage: install
-#  script:
-#    - echo "Installing dependencies"
-#    - npm install --legacy-peer-deps --prefer-offline
-#  cache:
-#    key:
-#      files:
-#        - package.json
-#    paths:
-#      - node_modules
+install:
+  stage: install
+  script:
+    - echo "Installing dependencies"
+    - npm install --legacy-peer-deps --prefer-offline
+  cache:
+    key:
+      files:
+        - package.json
+    paths:
+      - node_modules
 
 #lint:
 #  stage: lint
@@ -60,20 +60,20 @@ variables:
 #  script:
 #    - echo "Add tests!"
 
-#build-container:
-#  stage: build-container
-#  script:
-#    - npm run build:container
-#  artifacts:
-#    paths:
-#      - $CI_PROJECT_DIR/dist/apps
-#  cache:
-#    key:
-#      files:
-#        - package.json
-#    paths:
-#      - node_modules
-#    policy: pull
+build-container:
+  stage: build-container
+  script:
+    - npm run build:container
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/dist/apps
+  cache:
+    key:
+      files:
+        - package.json
+    paths:
+      - node_modules
+    policy: pull
 
 #build-budgets:
 #  stage: build-budgets
