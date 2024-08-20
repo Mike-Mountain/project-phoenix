@@ -41,6 +41,7 @@ export class ResumeContainerComponent implements OnInit {
   private themeService = inject(ThemeService);
 
   ngOnInit(): void {
+    console.log('TESTING AFFECTED');
     this.themeService.updateTheme(Theme.DEFAULT);
     this.toolbarService.updateTitle('Curriculum Vitae');
   }
