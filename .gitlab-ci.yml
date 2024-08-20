@@ -171,6 +171,7 @@ publish-container:
   services:
     - docker:dind
   script:
+    - ls
     - docker build -t $TAG_COMMIT -t ${TAG_LATEST}:container --build-arg app=container .
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
     - docker push $TAG_COMMIT

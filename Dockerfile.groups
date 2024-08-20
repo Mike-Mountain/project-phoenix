@@ -1,2 +1,0 @@
-FROM nginx:latest
-COPY dist/apps/groups/ /usr/share/nginx/html
