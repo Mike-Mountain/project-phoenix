@@ -1,2 +1,2 @@
 FROM nginx:latest
-COPY dist/apps/container/index.html /usr/share/nginx/html
+COPY dist/apps/container/ /usr/share/nginx/html
