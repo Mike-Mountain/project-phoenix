@@ -8,11 +8,11 @@ export default withModuleFederation({
    * Each entry is a pair of a unique name and the URL where it is deployed.
    */
   remotes: [
-    ['resume', 'https://resume.honeystonemountain.com'],
-    ['budgets', 'https://budgets.honeystonemountain.com'],
-    ['code-master', 'https://code-master.honeystonemountain.com'],
-    ['gallery', 'https://gallery.honeystonemountain.com'],
-    ['movies', 'https://movies.honeystonemountain.com'],
-    ['groups', 'https://groups.honeystonemountain.com'],
+    ['resume', 'resume:80'],
+    ['budgets', 'budgets:80'],
+    ['code-master', 'code-master:80'],
+    ['gallery', 'gallery:80'],
+    ['movies', 'movies:80'],
+    ['groups', 'groups:80'],
   ]
 });
