@@ -8,11 +8,11 @@ export default withModuleFederation({
    * Each entry is a pair of a unique name and the URL where it is deployed.
    */
   remotes: [
-    ['resume', 'https://resume'],
-    ['budgets', 'https://budgets'],
-    ['code-master', 'https://code-master'],
-    ['gallery', 'https://gallery'],
-    ['movies', 'https://movies'],
-    ['groups', 'https://groups'],
+    ['resume', 'http://resume'],
+    ['budgets', 'http://budgets'],
+    ['code-master', 'http://code-master'],
+    ['gallery', 'http://gallery'],
+    ['movies', 'http://movies'],
+    ['groups', 'http://groups'],
   ]
 });
