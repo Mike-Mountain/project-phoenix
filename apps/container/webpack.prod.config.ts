@@ -8,11 +8,11 @@ export default withModuleFederation({
    * Each entry is a pair of a unique name and the URL where it is deployed.
    */
   remotes: [
-    ['resume', 'https://resume.honeystonemountain.com'],
-    ['budgets', 'https://budgets.honeystonemountain.com'],
-    ['code-master', 'https://code-master.honeystonemountain.com'],
-    ['gallery', 'https://gallery.honeystonemountain.com'],
-    ['movies', 'https://movies.honeystonemountain.com'],
-    ['groups', 'https://groups.honeystonemountain.com'],
+    ['resume', 'https://resume.honeystonemountain.com/remoteEntry.js'],
+    ['budgets', 'https://budgets.honeystonemountain.com/remoteEntry.js'],
+    ['code-master', 'https://code-master.honeystonemountain.com/remoteEntry.js'],
+    ['gallery', 'https://gallery.honeystonemountain.com/remoteEntry.js'],
+    ['movies', 'https://movies.honeystonemountain.com/remoteEntry.js'],
+    ['groups', 'https://groups.honeystonemountain.com/remoteEntry.js'],
   ]
 });
