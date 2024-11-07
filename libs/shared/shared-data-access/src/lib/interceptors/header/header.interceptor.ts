@@ -4,7 +4,8 @@ import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 
 export const headerInterceptor: HttpInterceptorFn = (req, next) => {
-  if (req.url.includes('auth')) {
+
+  if (req.url.includes('auth') || req.url.includes('omdb')) {
     return next(req);
   }
   const authService = inject(AuthService);

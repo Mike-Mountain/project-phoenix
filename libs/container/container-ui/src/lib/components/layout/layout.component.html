@@ -31,8 +31,9 @@
           @if (user$ | async) {
             <button class="mr-2" mat-stroked-button color="accent" (click)="signOut()">Sign Out</button>
           } @else {
-            <button class="ml-2" mat-stroked-button color="accent" (click)="openAuthDialog('signIn')">Sign In</button>
-            <button class="mx-2" mat-raised-button color="accent" (click)="openAuthDialog('signUp')">Sign Up</button>
+                <!-- //TODO: Uncomment when the api is working-->
+<!--            <button class="ml-2" mat-stroked-button color="accent" (click)="openAuthDialog('signIn')">Sign In</button>-->
+<!--            <button class="mx-2" mat-raised-button color="accent" (click)="openAuthDialog('signUp')">Sign Up</button>-->
           }
         </div>
       }
@@ -42,8 +43,9 @@
             @if (user$ | async) {
               <button class="mr-2" mat-stroked-button color="accent" (click)="signOut()">Sign Out</button>
             } @else {
-              <button class="ml-2" mat-stroked-button color="accent" (click)="openAuthDialog('signIn')">Sign In</button>
-              <button class="mx-2" mat-raised-button color="accent" (click)="openAuthDialog('signUp')">Sign Up</button>
+              <!-- //TODO: Uncomment when the api is working-->
+<!--              <button class="ml-2" mat-stroked-button color="accent" (click)="openAuthDialog('signIn')">Sign In</button>-->
+<!--              <button class="mx-2" mat-raised-button color="accent" (click)="openAuthDialog('signUp')">Sign Up</button>-->
             }
             <button
               type="button"
@@ -76,8 +78,9 @@
               </a>
               <button class="ml-2" mat-raised-button color="accent" (click)="signOut()">Sign Out</button>
             } @else {
-              <button class="ml-2" mat-stroked-button color="accent" (click)="openAuthDialog('signIn')">Sign In</button>
-              <button class="ml-2" mat-raised-button color="accent" (click)="openAuthDialog('signUp')">Sign Up</button>
+              <!-- //TODO: Uncomment when the api is working-->
+<!--              <button class="ml-2" mat-stroked-button color="accent" (click)="openAuthDialog('signIn')">Sign In</button>-->
+<!--              <button class="ml-2" mat-raised-button color="accent" (click)="openAuthDialog('signUp')">Sign Up</button>-->
             }
           </div>
         }
