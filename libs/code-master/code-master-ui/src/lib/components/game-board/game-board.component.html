@@ -52,13 +52,10 @@
         </div>
         <div class="w-100 h-100 flex-center">
           <button
+            mat-icon-button
             class="complete-button"
-            (click)="completeTurn(turn, turnIdx)"
-          >
-            @if (turn.turnState === turnState.Complete) {
-              <mat-icon>done</mat-icon>
-            }
-          </button>
+            [class.black-pin]="turn.turnState === TurnState.Complete"
+            (click)="completeTurn(turn, turnIdx)"></button>
         </div>
       </div>
     }

@@ -15,6 +15,9 @@
     --primary: #{map-get($default-primary, 500)};
     --accent: #{map-get($default-accent, 500)};
     --warn: #{map-get($default-warn, 500)};
+    --primary-text: #{map-get($default-primary, 600)};
+    --accent-text: #{map-get($default-accent, 600)};
+    --warn-text: #{map-get($default-warn, 600)};
     --background: #{map-get($default-background, 500)};
     --blocksBackground: #{map-get($default-background, 900)};
 
@@ -30,6 +33,9 @@
     --primary: #{map-get($cm-primary, 500)};
     --accent: #{map-get($cm-accent, 500)};
     --warn: #{map-get($cm-warn, 500)};
+    --primary-text: #{map-get($cm-primary, 600)};
+    --accent-text: #{map-get($cm-accent, 600)};
+    --warn-text: #{map-get($cm-warn, 600)};
     --background: #{map-get($cm-background, 500)};
     --containerBackground: #{map-get($cm-background, 700)};
     --blocksBackground: #{map-get($cm-background, 900)};
@@ -47,6 +53,9 @@
     --primary: #{map-get($movies-primary, 500)};
     --accent: #{map-get($cm-accent, 500)};
     --warn: #{map-get($cm-warn, 500)};
+    --primary-text: #{map-get($movies-primary, 600)};
+    --accent-text: #{map-get($cm-accent, 600)};
+    --warn-text: #{map-get($cm-warn, 600)};
     --background: #{map-get($movies-background, 500)};
     --containerBackground: #{map-get($movies-background, 700)};
     --blocksBackground: #{map-get($movies-background, 900)};

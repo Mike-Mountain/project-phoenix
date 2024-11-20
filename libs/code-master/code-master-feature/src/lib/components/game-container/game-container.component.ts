@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, inject, Inject, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { CommonModule, DOCUMENT } from '@angular/common';
-import { GameBoardComponent } from '@project-phoenix/code-master/code-master-ui';
+import { GameBoardComponent, InstructionsComponent } from '@project-phoenix/code-master/code-master-ui';
 import {
   CmGameService,
   CmSettingsService,
@@ -89,5 +89,9 @@ export class GameContainerComponent implements OnInit, AfterViewInit, OnDestroy 
     this.document.body.classList.add('default-dark');
     this.destroyed$.next(true);
     this.destroyed$.complete();
+  }
+
+  openInstructionsDialog() {
+    this.dialog.open(InstructionsComponent)
   }
 }

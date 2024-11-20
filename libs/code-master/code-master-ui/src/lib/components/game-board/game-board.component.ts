@@ -9,11 +9,12 @@ import {
 } from '@project-phoenix/code-master/code-master-data-access';
 import { MatIcon } from '@angular/material/icon';
 import { ReplaySubject, takeUntil } from 'rxjs';
+import { MatIconButton } from '@angular/material/button';
 
 @Component({
   selector: 'code-master-ui-game-board',
   standalone: true,
-  imports: [CommonModule, MatIcon],
+  imports: [CommonModule, MatIcon, MatIconButton],
   templateUrl: './game-board.component.html',
   styleUrl: './game-board.component.scss'
 })
@@ -55,4 +56,6 @@ export class GameBoardComponent implements OnInit, OnDestroy {
     this.destroyed$.next(true);
     this.destroyed$.complete();
   }
+
+  protected readonly TurnState = TurnState;
 }

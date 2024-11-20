@@ -1,3 +1,41 @@
 <section class="mx-auto portfolio-card">
-    <shared-ui-personal-details [details]="personalDetails" [isHome]="true"></shared-ui-personal-details>
+  <mat-card>
+    <mat-card-content>
+      <div class="home-grid">
+        <div class="description">
+          <div class="w-75">
+            <h1>Hi there</h1>
+            <h1 class="fs-2xl flex-wrap">My name is <span class="fs-2xl text-color-accent">Mike</span>, and I'm</h1>
+            <div class="description-titles">
+              <div class="title-box mt-2">
+                <div class="slider" #slider>
+                  @for (title of titles; track title; let idx = $index) {
+                    <p class="title">{{ title }}</p>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="photo photo-lg" alt=""></div>
+      </div>
+      <div class="action-buttons">
+        <a class="w-45 p-2" mat-stroked-button color="accent" routerLink="/resume">
+          <p class=" fs-m">Have a look at my C.V.</p>
+        </a>
+        <p>Or</p>
+        <button class="w-45 p-2" mat-stroked-button color="accent" (click)="scrollTo(projects)">
+          <p class=" fs-m">Check out some of my projects</p>
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <div #projects></div>
+  <mat-card class="mt-4">
+    <mat-card-content>
+      @for (project of sideProjects; track project.title) {
+        <resume-ui-project-card [project]="project"></resume-ui-project-card>
+      }
+    </mat-card-content>
+  </mat-card>
 </section>

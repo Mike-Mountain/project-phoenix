@@ -55,7 +55,7 @@
 }
 
 .black-pin {
-  background-color: var(--primary);
+  background-color: var(--primary) !important;
 }
 
 .white-pin {
@@ -105,4 +105,8 @@
   background-color: var(--accent);
 }
 
-
+@media (min-width: 900px) {
+  .codemaster-game-board {
+    height: 90%;
+  }
+}

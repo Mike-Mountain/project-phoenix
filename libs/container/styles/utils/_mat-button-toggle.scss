@@ -37,3 +37,15 @@ mat-button-toggle-disabled,
     border-color: #F0F0F0;
     background: #F0F0F0 !important;
 }
+
+.mat-mdc-outlined-button.mat-primary {
+  --mdc-outlined-button-outline-color: var(--primary-text) !important;
+}
+
+.mat-mdc-outlined-button.mat-accent {
+  --mdc-outlined-button-outline-color: var(--accent-text) !important;
+}
+
+.mat-mdc-outlined-button.mat-warn {
+  --mdc-outlined-button-outline-color: var(--warn-text) !important;
+}
