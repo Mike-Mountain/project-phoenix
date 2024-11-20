@@ -12,6 +12,8 @@
       <a mat-list-item routerLink="code-master" (click)="drawer.close()">Code Master</a>
       <a mat-list-item routerLink="movies" (click)="drawer.close()">Movies</a>
       <a mat-list-item routerLink="gallery" (click)="drawer.close()">Gallery</a>
+      <a mat-list-item routerLink="budgets" (click)="drawer.close()">Budgets</a>
+      <a mat-list-item routerLink="groups" (click)="drawer.close()">Groups</a>
       @if (user$ | async) {
         <a mat-list-item routerLink="budgets" (click)="drawer.close()">Budgets</a>
         <a mat-list-item routerLink="groups" (click)="drawer.close()">Groups</a>
