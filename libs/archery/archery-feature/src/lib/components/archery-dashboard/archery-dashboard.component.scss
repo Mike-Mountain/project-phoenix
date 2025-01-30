@@ -1,0 +1,25 @@
+.archery-dashboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.dash-icon {
+  width: 15%;
+}
+
+.archery-button {
+  margin: .75rem auto;
+  width: 85%;
+  height: 4rem;
+  font-size: 1.2rem;
+  color: white;
+}
+
+@media (min-width: 500px) {
+  .dash-icon {
+    width: 8%
+  }
+}

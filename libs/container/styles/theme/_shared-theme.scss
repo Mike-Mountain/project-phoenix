@@ -16,6 +16,9 @@
 @use 'palettes/budgets/budgets-primary';
 @use 'palettes/budgets/budgets-accent';
 
+@use 'palettes/archery/archery-primary';
+@use 'palettes/archery/archery-accent';
+
 @import "../partials/index";
 @import "../utils/index";
 @import "../variables/index";
@@ -36,6 +39,9 @@ $movies-primary: mat.define-palette(movies-primary.$movies-primary);
 
 $budgets-primary: mat.define-palette(budgets-primary.$budgets-primary);
 $budgets-accent: mat.define-palette(budgets-accent.$budgets-accent);
+
+$archery-primary: mat.define-palette(archery-primary.$archery-primary);
+$archery-accent: mat.define-palette(archery-accent.$archery-accent);
 
 $shared-warn: mat.define-palette(default-warn.$default-warn);
 
@@ -80,6 +86,14 @@ $budgets-theme: mat.define-light-theme((
   )
 ));
 
+$archery-theme: mat.define-dark-theme((
+  color: (
+    primary: $archery-primary,
+    accent: $archery-accent,
+    warn: $shared-warn,
+  )
+));
+
 
 @include mat.all-component-themes($default-light-theme);
 
@@ -100,4 +114,10 @@ $budgets-theme: mat.define-light-theme((
 
 .budgets {
   @include mat.all-component-colors($budgets-theme);
+}
+
+.archery {
+  @include mat.all-component-colors($archery-theme);
+  @import "../partials/code-master-specific";
+  @import "../partials/archery-specific";
 }

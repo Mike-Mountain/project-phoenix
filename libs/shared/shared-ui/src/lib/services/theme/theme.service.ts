@@ -22,6 +22,9 @@ export class ThemeService {
       case classList.contains(Theme.BUDGETS):
         this.document.body.classList.remove(Theme.BUDGETS);
         break;
+      case classList.contains(Theme.ARCHERY):
+        this.document.body.classList.remove(Theme.ARCHERY);
+        break;
       default:
         this.document.body.classList.remove(Theme.DEFAULT);
         break;

@@ -13,6 +13,7 @@
       <a mat-list-item routerLink="movies" (click)="drawer.close()">Movies</a>
       <a mat-list-item routerLink="gallery" (click)="drawer.close()">Gallery</a>
       <a mat-list-item routerLink="budgets" (click)="drawer.close()">Budgets</a>
+      <a mat-list-item routerLink="archery" (click)="drawer.close()">Archery</a>
       @if (user$ | async) {
         <a mat-list-item routerLink="groups" (click)="drawer.close()">Groups</a>
       }
@@ -71,6 +72,9 @@
             </a>
             <a routerLink="budgets">
               <button class="ml-2" mat-stroked-button color="accent">Budgets</button>
+            </a>
+            <a routerLink="archery">
+              <button class="ml-2" mat-stroked-button color="accent">Archery</button>
             </a>
             @if (user$ | async) {
               <a routerLink="groups">

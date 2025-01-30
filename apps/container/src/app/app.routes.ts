@@ -4,6 +4,10 @@ import { authGuard } from '@project-phoenix/shared/shared-util';
 
 export const appRoutes: Route[] = [
   {
+    path: 'archery',
+    loadChildren: () => import('archery/Routes').then((m) => m.remoteRoutes),
+  },
+  {
     path: 'gallery',
     loadChildren: () => import('gallery/Routes').then((m) => m.remoteRoutes),
   },

@@ -8,6 +8,9 @@
 @import '../theme/palettes/code-master/cm-background';
 @import '../theme/palettes/movies/movies-primary';
 @import '../theme/palettes/movies/movies-background';
+@import '../theme/palettes/archery/archery-primary';
+@import '../theme/palettes/archery/archery-accent';
+@import '../theme/palettes/archery/archery-background';
 
 
 :root {
@@ -64,6 +67,25 @@
     --warnValues: #{$cm-warn-values};
     --backgroundValues: #{$movies-background-values};
     --containerBackgroundValues: #{$movies-containerBackground-values};
+  }
+
+  .archery {
+    --primary: #{map-get($archery-primary, 500)};
+    --accent: #{map-get($archery-accent, 500)};
+    --warn: #{map-get($default-warn, 500)};
+    --primary-text: #{map-get($archery-primary, 600)};
+    --accent-text: #{map-get($archery-accent, 600)};
+    --warn-text: #{map-get($default-warn, 600)};
+    --background: #{map-get($archery-background, 500)};
+    --containerBackground: #{map-get($archery-accent, 800)};
+    --blocksBackground: #{map-get($archery-background, 900)};
+    --primaryValues: #{$archery-primary-values};
+    --accentValues: #{$archery-accent-values};
+    --warnValues: #{$default-warn-values};
+    --backgroundValues-top: #{$archery-background-values-top};
+    --backgroundValues-bottom: #{$archery-background-values-bottom};
+    --backgroundGradient: linear-gradient(to bottom, rgb(var(--backgroundValues-top)), rgb(var(--backgroundValues-bottom)));
+    --containerBackgroundValues: #{$archery-containerBackground-values};
   }
 
   --yellow: #e0ca00;

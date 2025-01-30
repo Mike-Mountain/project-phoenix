@@ -15,6 +15,19 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@project-phoenix/archery-data-access": [
+        "libs/archery/archery-data-access/src/index.ts"
+      ],
+      "@project-phoenix/archery-feature": [
+        "libs/archery/archery-feature/src/index.ts"
+      ],
+      "@project-phoenix/archery-ui": ["libs/archery/archery-ui/src/index.ts"],
+      "@project-phoenix/archery-util": [
+        "libs/archery/archery-util/src/index.ts"
+      ],
+      "@project-phoenix/archery/Routing": [
+        "libs/archery/archery-feature/src/lib/archery.routes.ts"
+      ],
       "@project-phoenix/budgets-data-access": [
         "libs/budgets/budgets-data-access/src/index.ts"
       ],
@@ -107,6 +120,7 @@
       "@project-phoenix/shared/shared-util": [
         "libs/shared/shared-util/src/index.ts"
       ],
+      "archery/Routes": ["apps/archery/src/app/remote-entry/entry.routes.ts"],
       "budgets/Routes": ["apps/budgets/src/app/remote-entry/entry.routes.ts"],
       "code-master/Routes": [
         "apps/code-master/src/app/remote-entry/entry.routes.ts"

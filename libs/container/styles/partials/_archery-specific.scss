@@ -1,0 +1,8 @@
+.mat-drawer-container {
+  background: var(--backgroundGradient);
+}
+
+.mat-mdc-fab.mat-accent {
+  --mdc-fab-container-color: transparent;
+  box-shadow: none !important;
+}
